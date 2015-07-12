@@ -1,0 +1,24 @@
+<h2>Guess a letter</h2>
+
+<% if flash[:message] %>
+  <p>
+    <span class="error"><%= flash[:message] %></span>
+  </p>
+<% end %>
+
+<p>
+  Wrong Guesses:
+  <span class="guesses"><%= @game.wrong_guesses %></span>
+</p>
+
+<p>
+  Word so far:
+  <span class="word"><%= @game.word_with_guesses %></span>
+</p>
+
+<form action="/guess" method="post">
+  <input type="text" size="1" name="guess" autocomplete="off"/>
+  <input type="submit" value="Guess!"/>
+</form>
+
+<%= erb :new %>

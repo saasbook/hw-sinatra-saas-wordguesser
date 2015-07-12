@@ -1101,6 +1101,3 @@ endpoint* that mimics the behavior of the Random Word Generator service
 we used in this assignment.  A simple implementation would respond to the
 RESTful request `GET /` with a random word drawn randomly from
 `/usr/share/dict/words`. 
-
-
-

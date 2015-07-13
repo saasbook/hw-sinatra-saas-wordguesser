@@ -5,6 +5,13 @@ class HangpersonGame
 
   # Get a word from remote "random word" service
 
+  # def initialize()
+  # end
+  
+  def initialize(word)
+    @word = word
+  end
+
   def self.get_random_word
     require 'uri'
     require 'net/http'

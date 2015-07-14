@@ -6,11 +6,11 @@ gem 'sinatra-flash'
 
 group :development, :test do
   gem 'capybara'
-  gem 'cucumber'
+  gem 'rspec', '~> 2.14.1'
+  gem 'cucumber', '~> 1.3.15'
   gem 'cucumber-sinatra'
   gem 'byebug'
   gem 'launchy'
-  gem 'rspec'
   gem 'rack-test'
   gem 'rack_session_access'
   gem 'rerun'

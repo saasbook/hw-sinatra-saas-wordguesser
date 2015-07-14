@@ -9,10 +9,12 @@ describe HangpersonGame do
     end
   end
   describe 'new', :pending => true do
-    subject { HangpersonGame.new('glorp') }
-    its(:word)    { should == 'glorp' }
-    its(:guesses) { should == '' }
-    its(:wrong_guesses) { should == '' }
+    it 'new' do
+      subject { HangpersonGame.new('glorp') }
+      expect(:word).to eq('glorp')
+      expect(:guesses).to eq('')
+      expect(:wrong_guesses).to eq('')
+    end
   end
   describe 'guessing' do
     context 'correctly' do

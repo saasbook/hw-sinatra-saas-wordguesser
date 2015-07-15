@@ -6,8 +6,9 @@ gem 'sinatra-flash'
 
 group :development, :test do
   gem 'capybara'
-  gem 'rspec', '~> 2.14.1'
-  gem 'cucumber', '~> 1.3.15'
+  gem 'rspec', '3.3.0'
+  gem 'cucumber', '2.0.0'
+  gem 'rspec-autotest'
   gem 'cucumber-sinatra'
   gem 'byebug'
   gem 'launchy'

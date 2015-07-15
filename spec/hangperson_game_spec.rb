@@ -8,26 +8,29 @@ describe HangpersonGame do
       game.guess(letter)
     end
   end
+
   describe 'new', :pending => true do
-    it 'new' do
-      subject { HangpersonGame.new('glorp') }
-      expect(:word).to eq('glorp')
-      expect(:guesses).to eq('')
-      expect(:wrong_guesses).to eq('')
+    it "takes a parameter and returns a HangpersonGame object" do      
+      @hangpersonGame = HangpersonGame.new('glorp')
+      expect(@hangpersonGame).to be_an_instance_of(HangpersonGame)
+      expect(@hangpersonGame.word).to eq('glorp')
+      expect(@hangpersonGame.guesses).to eq('')
+      expect(@hangpersonGame.wrong_guesses).to eq('')
     end
   end
-  describe 'guessing' do
+
+  describe 'guessing', :pending => true do
     context 'correctly' do
       before :each do
         @game = HangpersonGame.new('garply')
         @valid = @game.guess('a')
       end
       it 'changes correct guess list', :pending => true do
-        @game.guesses.should == 'a'
-        @game.wrong_guesses.should == ''
+        expect(@game.guesses).to eq('a')
+        expect(@game.wrong_guesses).to eq('')
       end
       it 'returns true', :pending => true do
-        @valid.should_not be(false)
+        expect(@valid).not_to be false
       end
     end
     context 'incorrectly' do
@@ -36,11 +39,11 @@ describe HangpersonGame do
         @valid = @game.guess('z')
       end
       it 'changes wrong guess list', :pending => true do
-        @game.guesses.should == ''
-        @game.wrong_guesses.should == 'z'
+        expect(@game.guesses).to eq('')
+        expect(@game.wrong_guesses).to eq('z')
       end
       it 'returns true', :pending => true do
-        @valid.should_not be(false)
+        expect(@valid).not_to be false
       end
     end
     context 'same letter repeatedly' do
@@ -50,15 +53,21 @@ describe HangpersonGame do
       end
       it 'does not change correct guess list', :pending => true do
         @game.guess('a')
-        @game.guesses.should == 'a'
+        expect(@game.guesses).to eq('a')
       end
       it 'does not change wrong guess list', :pending => true do
         @game.guess('q')
-        @game.wrong_guesses.should == 'q'
+        expect(@game.wrong_guesses).to eq('q')
       end
       it 'returns false', :pending => true do
-        @game.guess('a').should be(false)
-        @game.guess('q').should be(false)
+        expect(@game.guess('a')).to be false
+        expect(@game.guess('q')).to be false
+      end
+      it 'is case insensitive', :pending => true do
+        expect(@game.guess('A')).to be false
+        expect(@game.guess('Q')).to be false
+        expect(@game.guesses).not_to include('A')
+        expect(@game.wrong_guesses).not_to include('Q')
       end
     end
     context 'invalid' do
@@ -76,6 +85,7 @@ describe HangpersonGame do
       end
     end
   end
+
   describe 'displayed word with guesses', :pending => true do
     before :each do
       @game = HangpersonGame.new('banana')
@@ -89,29 +99,26 @@ describe HangpersonGame do
     @test_cases.each_pair do |guesses, displayed|
       it "should be '#{displayed}' when guesses are '#{guesses}'" do
         guess_several_letters(@game, guesses)
-        @game.word_with_guesses.should == displayed
+        expect(@game.word_with_guesses).to eq(displayed)
       end
     end
   end
+
   describe 'game status' do
     before :each do 
       @game = HangpersonGame.new('dog')
     end
     it 'should be win when all letters guessed', :pending => true do
       guess_several_letters(@game, 'ogd')
-      @game.check_win_or_lose.should == :win
+      expect(@game.check_win_or_lose).to eq(:win)
     end
     it 'should be lose after 7 incorrect guesses', :pending => true do
       guess_several_letters(@game, 'tuvwxyz')
-      @game.check_win_or_lose.should == :lose
+      expect(@game.check_win_or_lose).to eq(:lose)
     end
     it 'should continue play if neither win nor lose', :pending => true do
       guess_several_letters(@game, 'do')
-      @game.check_win_or_lose.should == :play
+      expect(@game.check_win_or_lose).to eq(:play)
     end
   end
 end
-
-    
-    
-    

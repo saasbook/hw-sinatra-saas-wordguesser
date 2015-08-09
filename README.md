@@ -1,7 +1,7 @@
 Hangperson: a scaffolded (!) ESaaS getting-started assignment
 =============================================================
 
-** v1.0, January 2015.  Written by Armando Fox and Nick Herson **
+(v1.1, September 2015.  Written by Armando Fox and Nick Herson)
 
 In this assignment you'll be introduced to part of the basic cycle of creating SaaS in
 a disciplined way.
@@ -94,9 +94,9 @@ capitalization is important) with the following contents.  This file
 will be a permanent part of your app and will travel with your app
 anywhere it goes:
 
-```ruby
+```
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.2.0'
 
 gem 'sinatra', '>= 1.4'
 ```
@@ -441,10 +441,10 @@ get different words.
 
 `curl --data '' http://watchout4snakes.com/wo4snakes/Random/RandomWord`
 
-(Normally the
+(`--data` is necessary to force `curl`
+to do a POST rather than a GET.  Normally the
 argument to `--data` would be the encoded form fields, but in this case
-no form fields are needed; however `--data` is necessary to force `curl`
-to do a POST rather than a GET.) 
+no form fields are needed.)
 Using `curl` is a great way to experiment with/debug interactions with
 external services.
 

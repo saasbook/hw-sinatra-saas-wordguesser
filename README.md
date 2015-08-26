@@ -184,8 +184,8 @@ The `get` method is provided by the `Sinatra::Base` class, from which
 our `MyApp` class inherits; `Sinatra::Base` is available because we load
 the Sinatra library  in line 1.
 
-* Self-check: What *two* steps did we take earlier to guarantee that the
-Sinatra library is available to our app?
+* What *two* steps did we take earlier to guarantee that the
+Sinatra library is available to load in line 1?
 
 > We specified  `gem 'sinatra'`  in the `Gemfile` *and* successfully ran
 > `bundle` to confirm that the gem is installed and "lock" the correct
@@ -428,12 +428,14 @@ accordingly; `check_win_or_lose`, which returns one of the symbols
 `word_with_guesses`, which substitutes the correct guesses made so far
 into the word.
 
-* Debugging Tip: when running tests, you can insert the Ruby command
+### Debugging Tip
+
+When running tests, you can insert the Ruby command
 `debugger` into your app code to drop into the command-line debugger and
 inspect variables and so on.  Type `h` for help at the debug prompt.
 Type `c` to leave the debugger and continue running your code.
 
-* Self-check: take a look at the code in the class method
+* Take a look at the code in the class method
 `get_random_word`, which retrieves a random word from a Web service we found
 that does just that.  Use the following command to verify that the Web
 service actually works this way. Run it several times to verify that you
@@ -445,8 +447,9 @@ get different words.
 to do a POST rather than a GET.  Normally the
 argument to `--data` would be the encoded form fields, but in this case
 no form fields are needed.)
-Using `curl` is a great way to experiment with/debug interactions with
-external services.
+Using `curl` is a great way to debug interactions with
+external services.  `man curl` for (much) more detail on this powerful
+command-line tool.
 
 
 RESTful thinking for HangPerson
@@ -490,7 +493,7 @@ pointer to state that lives in a database.  But for this simple example,
 the game state is small enough that we can keep it directly in the
 session cookie.
 
-* Self-check question: enumerate the minimal game state that must be maintained
+* Enumerate the minimal game state that must be maintained
 during a game of Hangperson.
 
 > The secret word; the list of letters that have been guessed correctly;
@@ -501,7 +504,7 @@ during a game of Hangperson.
 The game as a RESTful resource
 ------------------------------
 
-* Self-check questions: enumerate the player actions that could cause changes
+* Enumerate the player actions that could cause changes
 in game state.
 
 > Guess a letter: possibly modifies the lists of correct or incorrect
@@ -513,9 +516,9 @@ in game state.
 In a service-oriented architecture, we do not expose
 internal state directly; instead we expose a set of HTTP requests that
 either display or perform some operation on a hypothetical
-underlying **resource**.  The trickiest and most important part of
+underlying **resource**.  **The trickiest and most important part of
 RESTful design is modeling what your resources are and what
-operations are possible on them.
+operations are possible on them.**
 
 In our case, we can think of the game itself as the underlying
 resource.  Doing so results in some important design decisions about how

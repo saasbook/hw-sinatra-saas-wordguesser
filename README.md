@@ -309,8 +309,10 @@ the file that starts up the app.
 * You deployed this simple app to Heroku.
 
 
-With this machinery in mind, download and unpack the homework skeleton into a new directory and let's work on Hangperson.
+With this machinery in mind, fork this repo into your github account, clone it into Cloud9, and let's work on Hangperson.
 ===========================================================================
+
+`git clone .....clone url from your github fork of this repo......`
 
 Developing Hangperson Using TDD and Autotest
 ============================================
@@ -356,20 +358,20 @@ which contains RSpec options and indicates we're using the RSpec testing
 framework.  Autotest will therefore look for test files under `spec/` and the
 corresponding class files in `lib/`.
 
-We've provided a set of 19 test cases to help you develop the game class.
+We've provided a set of 18 test cases to help you develop the game class.
 Take a look at `spec/hangperson_game_spec.rb`.  It specifies behaviors
 that it expects from the class `lib/hangperson_game.rb`.  
 initially, we have added `:pending => true` to every spec, so when
 Autotest first runs these, you should see the test case names printed
-in yellow, and the report "19 examples, 19 pending."
+in yellow, and the report "18 examples, 0 failures, 18 pending."
 
-Now, with Autotest still running, delete `:pending => true` from line 11, and
+Now, with Autotest still running, delete `:pending => true` from line 12, and
 save the file.  You should immediately see Autotest wake up and re-run
-the tests.  You should now have 3 failures and 16 pending examples.
+the tests.  You should now have 18 examples, 1 failure, 17 pending.
 
 The `describe 'new'` block means "the following block of tests describe
-the behavior of a 'new' HangpersonGame instance."  The `subject` block
-causes a new instance to be created, and the `its` blocks verify the
+the behavior of a 'new' HangpersonGame instance."  The `hangpersonGame` line
+causes a new instance to be created, and the next lines verify the
 presence and values of instance variables.
 
 * Self-check: According to our test cases, how many arguments does the
@@ -388,7 +390,7 @@ instance variables is a HangpersonGame expected to have?
 
 You'll need to create getters and setters for these.  Hint: use `attr_accessor`.
 When you've done this successfully and saved `hangperson_game.rb`,
-Autotest should wake up again and the three examples that were
+Autotest should wake up again and the examples that were
 previously failing should now be passing (green).
 
 Continue in this manner, removing `:pending => true` from one example at

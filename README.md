@@ -65,7 +65,7 @@ Sinatra framework, version it properly, and deploy it to Heroku.
 Creating and versioning a simple SaaS app
 -----------------------------------------
 
-SaaS apps are developed on your computer but *deployed to production* on
+SaaS apps are developed on your computer (or cloud-based IDE) but *deployed to production* on
 a server that others can access.  We try to minimize the differences
 between the development and production *environments*, to avoid
 difficult-to-diagnose problems in which something works one way on your
@@ -96,7 +96,7 @@ anywhere it goes:
 
 ```
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'sinatra', '>= 1.4'
 ```
@@ -124,6 +124,16 @@ sure the correct gems (and, where specified, the correct versions) are
 available, and tries to install them otherwise.  This will create a new
 file `Gemfile.lock`, *which you should place under version control.*
 
+```
+To place under version control, use these commands:
+
+git add -A
+git commit -am "Set up the Gemfile"
+
+The first command stages all changed files for committing.
+The second command commits the staged files with the comment in the quotes.
+You can repeat these commands to commit future changes. Remember that these are LOCAL commits -- if you want these changes on GitHub, you'll need to do a git push command, which we will show later.
+```
 
 * What's the difference between the purpose and contents of `Gemfile`
 and `Gemfile.lock`?  Which file is needed to completely reproduce the
@@ -214,29 +224,22 @@ that our `app` file is located in the current directory (.) because
 `require` normally looks only in standard system directories to find
 gems.
 
-We're now ready to test-drive our simple app with this command line:
+If you're using Cloud9, you're now ready to test-drive our simple app with this command line:
 
 ```bash
-rackup
+rackup -p $PORT -o $IP
 ```
 
 This command starts the Rack appserver and the WEBrick webserver.  Rack
 will look for `config.ru` and attempt to start our app based on the
-information there.  
+information there.  If you're using Cloud9, you will see a small popup in the terminal with a URL to your running webapp. It will open in a new tab in the IDE.
 
-* From the messages printed out by `rackup` as Rack is
-starting, what URL should you type into your browser to communicate with
-our running app?
-
->  `http://localhost:9292`, since it's running on your own machine
-> (localhost) and by default `rack` should report that it's listening on
->  port 9292.
 
 Point your Web browser at the running app and verify that you can get
 "Hello World".
 
 * What happens if you try to visit a non-root URL such as
-`http://localhost:9292/hello` and why?
+`https://workspace-username.c9.io/hello` and why? (your URL may vary)
 
 > You'll get a humorous error message from the Sinatra framework, since
 > you don't have a route matching `get '/hello'` in your app.  Since
@@ -261,57 +264,28 @@ Confused?
 
 Now go back to the shell window where you ran `rackup`
 and press Ctrl-C to 
-stop Rack.  Then type `rackup` again, and once it is running, go back to
+stop Rack.  Then type `rackup -p $PORT -o $IP` again (for Cloud9), and once it is running, go back to
 your web browser and try the URL again.  This time it should work.
 
 What this shows you is that if you modify your app while it's running,
-you have to restart Rack in order for it to "see" those changes.  Since
-restarting it manually is tedious, we'll use the `rerun` gem, which
-restarts Rack automatically when it sees changes
-to files in the app's directory.  (Rails does this for you
-by default during development, as we'll see, but Sinatra doesn't.)
-
-You're probably already thinking: "Aha! If our app depends on this
-additional gem, we should add it to the `Gemfile` and run `bundle` to
-make sure it's really present."  Good thinking.  But it may also occur
-to you that this particular gem wouldn't be necessary in a production
-environment: we only need it as a tool while developing.  Fortunately,
-there's a way to tell Bundler that some gems are only necessary in
-certain environments.  Add the following to the Gemfile (it doesn't
-matter where):
-
-```ruby
-group :development do
-  gem 'rerun'
-end
-```
-Any gem specifications inside the `group :development` block will only
-be examined if `bundle` is run in the development environment.   (The
-other environments you can specify are `:test` and `:production`, and
-you can define new environments yourself.)
-Gem specifications outside of any `group` block are assumed to apply
-in all environments.
-
-* Say `rerun rackup` in the terminal window to start your app and verify
-the app is running.
-
-* Modify `app.rb` to print a different message, and verify that the
-change is detected by `rerun` and works as expected.
+you have to restart Rack in order for it to "see" those changes.
 
 Deploy to Heroku
 ----------------
 
-Make sure the Heroku Toolbelt is installed (when you create an account
-on Heroku, a download link is provided).  Log in to your Heroku account
-and create a new app; specify any name you want, but we will use
-`sinatra-demo` in this discussion.
+If using Cloud9, update your Heroku Toolbelt installation by typing the following command:
+`wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh`
 
-Follow the instructions that appear after app creation; you don't have
-to do `git init` since you've been using Git to manage this simple app's
-repo all along.
+Log in to your Heroku account by typing the command: `heroku login`.
 
-Deploy your app to Heroku and verify that going to
-`http://sinatra-demo.herokuapp.com/` shows your Hello World page.
+While in the root directory of your project (not your workspace), type `heroku create` to create a new project in Heroku. This will add a remote git repository for you called `heroku`.
+
+Next, make sure you stage and commit all changes locally as instructed above.
+
+Then, you will push your local (Cloud9) git repo to Heroku, which is now ready for you:
+`git push heroku master`
+
+This will create a running instance of your app at some URL ending with @herokuapp.com. Enter that URL in a new browser tab (not in the Cloud9 IDE) to see your app running live.
 
 Summary
 -------
@@ -326,10 +300,7 @@ this file in `config.ru`, and used `rackup` to start the appserver and
 the WEBrick web server.
 
 * You learned that changing the app's code doesn't automatically cause
-Rack to reload the app.  To save the work of restarting the app manually
-every time you make a change, you used the `rerun` gem, adding it to the
-Gemfile in a way that specifies you won't need it in production, only
-during development.
+Rack to reload the app. 
 
 * You versioned the important files containing not only your app's code
 but the necessary info to reproduce all the libraries it relies on and

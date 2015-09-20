@@ -309,8 +309,7 @@ the file that starts up the app.
 * You deployed this simple app to Heroku.
 
 
-With this machinery in mind, download and unpack the homework skeleton
-into a new directory and let's work on Hangperson.
+With this machinery in mind, download and unpack the homework skeleton into a new directory and let's work on Hangperson.
 ===========================================================================
 
 Developing Hangperson Using TDD and Autotest

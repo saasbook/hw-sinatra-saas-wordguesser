@@ -2,6 +2,7 @@ Hangperson: a scaffolded (!) ESaaS getting-started assignment
 =============================================================
 
 (v1.1, September 2015.  Written by Armando Fox and Nick Herson)
+(some edits by mverdicchio 21 September 2015)
 
 In this assignment you'll be introduced to part of the basic cycle of creating SaaS in
 a disciplined way.
@@ -52,7 +53,7 @@ to edit code files.
 * Basic concepts behind SaaS application architecture, as described in
 Chapter 2 of *Engineering Software as a Service*.
 
-Demystifying SaaS app creation
+Part 0: Demystifying SaaS app creation
 ==============================
 
 **Goal:** Understand the steps needed to create, version, and deploy a
@@ -321,13 +322,14 @@ the file that starts up the app.
 * You deployed this simple app to Heroku.
 
 
-With this machinery in mind, fork this repo into your github account, clone it into Cloud9, and let's work on Hangperson.
+Part 1: Hangperson
 ===========================================================================
+With all this machinery in mind, fork this repo into your github account, clone it into Cloud9, and let's work on Hangperson.
 
 `git clone <insert the clone url from your github fork of this repo here>`
 
 Developing Hangperson Using TDD and Autotest
-============================================
+--------------------------------------------
 
 **Goals:** Use test-driven development (TDD) based on the tests we've
 provided to develop the game logic for Hangman, which forces you to
@@ -438,8 +440,9 @@ external services.  `man curl` for (much) more detail on this powerful
 command-line tool.
 
 
-RESTful thinking for HangPerson
-=================================
+Part 2: RESTful thinking for HangPerson
+=======================================
+Note: Part 2 is just reading/background info for Part 3.
 
 **Goals:**  Understand how to expose your app's behaviors as RESTful
 actions in a SaaS environment, and how to preserve game state across
@@ -703,8 +706,8 @@ app since we have only one model.  As we'll see later, more powerful
 MVC-focused frameworks like Rails are much more productive for creating
 apps that have many types of models.
 
-Connecting HangpersonGame to Sinatra
-------------------------------------
+Part 3: Connecting HangpersonGame to Sinatra
+============================================
 
 You've already met Sinatra.  Here's what's new in the Sinatra app
 skeleton `app.rb` that we provide for Hangperson:
@@ -811,8 +814,8 @@ Let's get our app onto Heroku.
 * Verify the broken functionality by clicking the new game button.
 
 
-Introducing Cucumber
-====================
+Part 4: Introducing Cucumber
+============================
 
 Cucumber is a remarkable tool for writing high-level integration and
 acceptance tests, terms with which you're already familiar.  We'll learn
@@ -995,8 +998,8 @@ what the page looks like at that point in the scenario.  The
 functionality is provided in part by a gem called `launchy` which is in
 the Gemfile.
 
-Corner Cases
-============
+Part 5: Corner Cases
+====================
 
 By now you should be familiar with the cycle:
 
@@ -1016,15 +1019,17 @@ The scenario `game_over.feature` tests these behaviors in your SaaS app.
 Push to Heroku and make sure everything still works.  Give yourself a
 break and play a few rounds of hangperson.
 
-While you're playing, what happens if you directly go to
-`http://localhost:9292/win`?  Make sure the player cannot cheat by
-simply visiting `GET /win`.  The scenario `prevent_cheating.feature`
-tests these behaviors.
+While you're playing, what happens if you directly add
+`/win` to the end of your app's URL?  Make sure the player cannot cheat by
+simply visiting `GET /win`.  Consider how to modify the actions for win, lose, and show to prevent this behavior. Finishing this part is optional.
 
 * What to submit:  Make sure all Cucumber scenarios are passing.  A
 shorthand way to run all of them is `cucumber features/` which runs all
-`.feature` files in the given directory.  When all are passing, deploy
-to Heroku and submit the URL of your deployed game.
+`.feature` files in the given directory.
+
+Submission Instructions
+-----------------------
+When all scenarios are passing, deploy to Heroku and submit the URL of your deployed game.
 
 Conclusion
 ==========

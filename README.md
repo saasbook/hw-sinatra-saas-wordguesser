@@ -799,9 +799,16 @@ is because we've deliberately left the `<form>` that encloses this
 button incomplete: we haven't specified where the form should post to.
 We'll do that next, but we'll do it in a test-driven way.
 
-* Commit all your changes, then deploy to Heroku.  Verify that the
-Heroku-deployed Hangperson behaves the same as your development version
-before continuing.
+Let's get our app onto Heroku.
+* First, run `bundle install` to make sure our Gemfile and Gemfile.lock are in sync.
+* Next, type `git add -A` to stage all changed files (including Gemfile.lock)
+* Then type `git commit -am"Ready for Heroku!"` to commit all local changes on Cloud9.
+* Next, type `heroku login` and authenticate.
+* Since this is the first time we're telling Heroku about the Hangperson app, we must type `heroku create` to have Heroku prepare to recieve this code and to have it create a git reference for referencing the new remote repository. 
+* Then, type `git push heroku master` to push your Cloud9 code to Heroku. 
+* When you want to update Heroku later, you only need to commit your changes to git locally in Cloud9, then push to Heroku as in the last step. 
+* Verify that the Heroku-deployed Hangperson behaves the same as your development version before continuing. A few lines up from the bottom of the Heroku output in the Cloud9 terminal should have a URL ending in herokuapp.com. Find that, copy it to the clipboard, and paste it into a new browser tab to see the current app. The Cloud9 IDE browser tab won't render the app properly, so use a new browser tab outside of Cloud9.
+* Verify the broken functionality by clicking the new game button.
 
 
 Introducing Cucumber
@@ -902,25 +909,20 @@ Run the "new game" scenario with:
 cucumber features/start_new_game.feature
 ```
 
-The scenario fails because the `<form>` tag in `views/new.erb` is missing the
+The scenario fails because the `<form>` tag in `views/new.erb` is incorrect and incomplete in the
 information that tells the browser what URL to post the form to.  Based
 on the table of routes we developed in an earlier section, fill in the
-`<form>` tag's attributes appropriately, and add the necessary code to
-the Sinatra app to recognize this route.  (Hint: if you get stuck, take
-a look at `show.erb` for a similar example.)
+`<form>` tag's attributes appropriately. You can inspect what happens for various routes in app.rb, but you don't need to edit this file yet.  (Hint: if you get stuck, take a look at `show.erb` (at the bottom) for a similar example of a filled in form tag.)
 
 The create-new-game code in the Sinatra app should do the following:
 
 * Call the HangpersonGame class method `get_random_word`
-
 * Create a new instance of HangpersonGame using that word
-
 * Redirect the browser to the `show` action
 
-When you finish this task, you should be able to re-run the scenario and
-have all steps passing green.  
+View how these steps are actualized in the app.rb file under the `post /create do` route.
 
-At that point, deploy to Heroku again and manually verify this behavior.
+At that point, stage and commit all files locally on Cloud9, then `git push heroku master` to deploy to Heroku again and manually verify this improved behavior.
 
 * Self-check: What is the significance of using `Given` vs. `When`
 vs. `Then` in the feature file?  What happens if you switch them around?
@@ -975,18 +977,17 @@ error.
 > not included in `params` at all).   `[0]` grabs the first character
 > only; for an empty string, it returns an empty string.
 
-In the `guess` code in the Sinatra app,
-you should:
+In the `guess` code in the Sinatra app.rb file, you should:
 
-* Extract the letter submitted on the form.  
-
-* Use that letter as a guess on the current game.
-
+* Extract the letter submitted on the form. (given above and in the code for you)
+* Use that letter as a guess on the current game. (add this code in)
 * Redirect to the `show` action so the player can see the result of
-their guess.
+their guess. (done for you as well)
 
-Develop that code and verify that all the steps in
-`features/guess.feature` now pass.
+While you're here, read the comments in the file. They give clues for future steps in this assignment.
+
+When finished adding that code, verify that all the steps in
+`features/guess.feature` now pass by running cucumber for that .feature file.
 
 * Debugging tip: The Capybara command `save_and_open_page` placed in a
 step definition will cause the step to open a Web browser window showing
@@ -999,7 +1000,7 @@ Corner Cases
 
 By now you should be familiar with the cycle:
 
-0.  Pick a new scenario to work on
+0.  Pick a new scenario to work on (you should have 2/4 working at this point)
 0.  Run the scenario and watch it fail
 0.  Develop code that makes each step of the scenario pass
 0.  Repeat till all steps passing.

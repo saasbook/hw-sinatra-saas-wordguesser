@@ -279,7 +279,7 @@ end
 
 Any gem specifications inside the group :development block will only be examined if bundle is run in the development environment. (The other environments you can specify are :test and :production, and you can define new environments yourself.) Gem specifications outside of any group block are assumed to apply in all environments.
 
-Say `rerun "rackup app.rb -p $PORT -o $IP"` in the terminal window to start your app and verify the app is running. NOte that you need to put everything except `rerun` in quotes in order to make the command unambiguous in Cloud9. Now any detected changes will cause the server to restart automatically, similar to `autotest` for rspec.
+Say `rerun "rackup -p $PORT -o $IP"` in the terminal window to start your app and verify the app is running. NOte that you need to put everything except `rerun` in quotes in order to make the command unambiguous in Cloud9. Now any detected changes will cause the server to restart automatically, similar to `autotest` for rspec.
 
 Modify app.rb to print a different message, and verify that the change is detected by rerun by again refreshing your browser tab with the running app.
 

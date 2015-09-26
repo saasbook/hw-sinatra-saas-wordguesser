@@ -911,6 +911,12 @@ Run the "new game" scenario with:
 ```bash
 cucumber features/start_new_game.feature
 ```
+If you get an error about Cucumber like this one, just follow the advice and run `bundle install` first.
+```bash
+~/workspace/hw-sinatra-saas-hangperson (master) $ cucumber features/start_new_game.feature
+Could not find proper version of cucumber (2.0.0) in any of the sources
+Run `bundle install` to install missing gems.
+```
 
 The scenario fails because the `<form>` tag in `views/new.erb` is incorrect and incomplete in the
 information that tells the browser what URL to post the form to.  Based

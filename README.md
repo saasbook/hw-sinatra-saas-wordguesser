@@ -1081,11 +1081,15 @@ problems.
 Verify that a file exists on the courseware VM called
 `/usr/share/dict/words`.  What's in it?
 
+(Note: if this file doesn't exist, you can install it on Ubuntu 14 by
+typing `sudo apt-get install --reinstall wamerican`.  On other
+distributions or non-Linux versions of Unix, the file may be 
+[elsewhere](http://objectroot.org/articles/brief-history-of-hier/), or
+absent. 
+
 > This file has been part of Unix since almost 
-> [the beginning of time](http://en.wikipedia.org/wiki/Unix_time), 
-> although it 
-> [has moved around](http://objectroot.org/articles/brief-history-of-hier/) 
-> since then.  It has been used by programs ranging from spelling
+> [the beginning of time](http://en.wikipedia.org/wiki/Unix_time).
+> It has been used by programs ranging from spelling
 > checkers to password guessers.
 
 Why do you think we used a remote SOA endpoint to generate random words

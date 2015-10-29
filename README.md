@@ -96,7 +96,7 @@ anywhere it goes:
 
 ```
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'sinatra', '>= 1.4'
 ```
@@ -119,7 +119,7 @@ absent from earlier versions of Sinatra.
 Run Bundler
 -----------
 
-Run the command `bundle`, which examines your `Gemfile` to make
+Run the command `bundle` (`gem install bundle` if not already installed), which examines your `Gemfile` to make
 sure the correct gems (and, where specified, the correct versions) are
 available, and tries to install them otherwise.  This will create a new
 file `Gemfile.lock`, *which you should place under version control.*
@@ -293,7 +293,7 @@ Gem specifications outside of any `group` block are assumed to apply
 in all environments.
 
 * Say `rerun rackup` in the terminal window to start your app and verify
-the app is running.
+the app is running. [Note: on c9 you'll need `rerun -- rackup -p $PORT -o $IP`]
 
 * Modify `app.rb` to print a different message, and verify that the
 change is detected by `rerun` and works as expected.

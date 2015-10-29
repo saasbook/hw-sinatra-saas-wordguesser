@@ -119,7 +119,7 @@ absent from earlier versions of Sinatra.
 Run Bundler
 -----------
 
-Run the command `bundle`, which examines your `Gemfile` to make
+Run the command `bundle` (`gem install bundle` if not already installed), which examines your `Gemfile` to make
 sure the correct gems (and, where specified, the correct versions) are
 available, and tries to install them otherwise.  This will create a new
 file `Gemfile.lock`, *which you should place under version control.*

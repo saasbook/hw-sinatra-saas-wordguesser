@@ -310,7 +310,8 @@ Follow the instructions that appear after app creation; you don't have
 to do `git init` since you've been using Git to manage this simple app's
 repo all along.
 
-Deploy your app to Heroku and verify that going to
+Make sure to git add all the files for the app, and deploy your app to 
+Heroku (`git push heroku master`) and verify that going to
 `http://sinatra-demo.herokuapp.com/` shows your Hello World page.
 
 Summary
@@ -375,6 +376,7 @@ block" in a **Service-Oriented Architecture**, but also how a Cucumber
 scenario can test such an app deterministically with tests that
 **break the dependency** on the external service at testing time.
 
+* In the app's root directory, run `bundle`
 * In the app's root directory, say `autotest`.  
 
 This will fire up the Autotest framework, which looks for various files

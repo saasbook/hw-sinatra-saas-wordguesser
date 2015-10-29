@@ -2,6 +2,7 @@ Hangperson: a scaffolded (!) ESaaS getting-started assignment
 =============================================================
 
 (v1.1, September 2015.  Written by Armando Fox and Nick Herson)
+(some edits by mverdicchio 21 September 2015)
 
 In this assignment you'll be introduced to part of the basic cycle of creating SaaS in
 a disciplined way.
@@ -52,7 +53,7 @@ to edit code files.
 * Basic concepts behind SaaS application architecture, as described in
 Chapter 2 of *Engineering Software as a Service*.
 
-Demystifying SaaS app creation
+Part 0: Demystifying SaaS app creation
 ==============================
 
 **Goal:** Understand the steps needed to create, version, and deploy a
@@ -65,7 +66,7 @@ Sinatra framework, version it properly, and deploy it to Heroku.
 Creating and versioning a simple SaaS app
 -----------------------------------------
 
-SaaS apps are developed on your computer but *deployed to production* on
+SaaS apps are developed on your computer (or cloud-based IDE) but *deployed to production* on
 a server that others can access.  We try to minimize the differences
 between the development and production *environments*, to avoid
 difficult-to-diagnose problems in which something works one way on your
@@ -96,7 +97,7 @@ anywhere it goes:
 
 ```
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'sinatra', '>= 1.4'
 ```
@@ -123,6 +124,17 @@ Run the command `bundle`, which examines your `Gemfile` to make
 sure the correct gems (and, where specified, the correct versions) are
 available, and tries to install them otherwise.  This will create a new
 file `Gemfile.lock`, *which you should place under version control.*
+
+```
+To place under version control, use these commands:
+
+git add -A
+git commit -am "Set up the Gemfile"
+
+```
+The first command stages all changed files for committing.
+The second command commits the staged files with the comment in the quotes.
+You can repeat these commands to commit future changes. Remember that these are LOCAL commits -- if you want these changes on GitHub, you'll need to do a git push command, which we will show later.
 
 
 * What's the difference between the purpose and contents of `Gemfile`
@@ -214,29 +226,21 @@ that our `app` file is located in the current directory (.) because
 `require` normally looks only in standard system directories to find
 gems.
 
-We're now ready to test-drive our simple app with this command line:
+If you're using Cloud9, you're now ready to test-drive our simple app with this command line:
 
 ```bash
-rackup
+rackup -p $PORT -o $IP
 ```
 
 This command starts the Rack appserver and the WEBrick webserver.  Rack
 will look for `config.ru` and attempt to start our app based on the
-information there.  
+information there.  If you're using Cloud9, you will see a small popup in the terminal with a URL to your running webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
 
-* From the messages printed out by `rackup` as Rack is
-starting, what URL should you type into your browser to communicate with
-our running app?
 
->  `http://localhost:9292`, since it's running on your own machine
-> (localhost) and by default `rack` should report that it's listening on
->  port 9292.
-
-Point your Web browser at the running app and verify that you can get
-"Hello World".
+Point a new Web browser tab at the running app's URL and verify that you can see "Hello World".
 
 * What happens if you try to visit a non-root URL such as
-`http://localhost:9292/hello` and why?
+`https://workspace-username.c9.io/hello` and why? (your URL root will vary)
 
 > You'll get a humorous error message from the Sinatra framework, since
 > you don't have a route matching `get '/hello'` in your app.  Since
@@ -254,64 +258,48 @@ Modify the app
 --------------
 
 Modify `app.rb` so that instead of "Hello World" it prints "Goodbye World".
-Save your changes to `app.rb` and try visiting
-that URL again.  
+Save your changes to `app.rb` and try refreshing your browser tab where the app is running.  
 
-Confused?
+No changes? Confused?
 
 Now go back to the shell window where you ran `rackup`
-and press Ctrl-C to 
-stop Rack.  Then type `rackup` again, and once it is running, go back to
-your web browser and try the URL again.  This time it should work.
+and press Ctrl-C to stop Rack.  Then type `rackup -p $PORT -o $IP` again (for Cloud9), and once it is running, go back to
+your browser tab with your app and refresh the page.  This time it should work.
 
 What this shows you is that if you modify your app while it's running,
-you have to restart Rack in order for it to "see" those changes.  Since
-restarting it manually is tedious, we'll use the `rerun` gem, which
-restarts Rack automatically when it sees changes
-to files in the app's directory.  (Rails does this for you
-by default during development, as we'll see, but Sinatra doesn't.)
+you have to restart Rack in order for it to "see" those changes. Since restarting it manually is tedious, we'll use the rerun gem, which restarts Rack automatically when it sees changes to files in the app's directory. (Rails does this for you by default during development, as we'll see, but Sinatra doesn't.)
 
-You're probably already thinking: "Aha! If our app depends on this
-additional gem, we should add it to the `Gemfile` and run `bundle` to
-make sure it's really present."  Good thinking.  But it may also occur
-to you that this particular gem wouldn't be necessary in a production
-environment: we only need it as a tool while developing.  Fortunately,
-there's a way to tell Bundler that some gems are only necessary in
-certain environments.  Add the following to the Gemfile (it doesn't
-matter where):
+You're probably already thinking: "Aha! If our app depends on this additional gem, we should add it to the Gemfile and run bundle to make sure it's really present." Good thinking. But it may also occur to you that this particular gem wouldn't be necessary in a production environment: we only need it as a tool while developing. Fortunately, there's a way to tell Bundler that some gems are only necessary in certain environments. Add the following to the Gemfile (it doesn't matter where):
 
-```ruby
+```bash
 group :development do
   gem 'rerun'
 end
 ```
-Any gem specifications inside the `group :development` block will only
-be examined if `bundle` is run in the development environment.   (The
-other environments you can specify are `:test` and `:production`, and
-you can define new environments yourself.)
-Gem specifications outside of any `group` block are assumed to apply
-in all environments.
 
-* Say `rerun rackup` in the terminal window to start your app and verify
-the app is running.
+Any gem specifications inside the group :development block will only be examined if bundle is run in the development environment. (The other environments you can specify are :test and :production, and you can define new environments yourself.) Gem specifications outside of any group block are assumed to apply in all environments.
 
-* Modify `app.rb` to print a different message, and verify that the
-change is detected by `rerun` and works as expected.
+Say `rerun "rackup -p $PORT -o $IP"` in the terminal window to start your app and verify the app is running. NOte that you need to put everything except `rerun` in quotes in order to make the command unambiguous in Cloud9. Now any detected changes will cause the server to restart automatically, similar to `autotest` for rspec.
+
+Modify app.rb to print a different message, and verify that the change is detected by rerun by again refreshing your browser tab with the running app.
 
 Deploy to Heroku
 ----------------
+Heroku is a cloud platform-as-a-service (PaaS) where we can deploy our Sinatra (and later Rails) applications in a more robust way than via Cloud9. If you don't have an account yet, go sign up at http://www.heroku.com. You'll need your login and password for the next step.
 
-Make sure the Heroku Toolbelt is installed (when you create an account
-on Heroku, a download link is provided).  Log in to your Heroku account
-and create a new app; specify any name you want, but we will use
-`sinatra-demo` in this discussion.
+If using Cloud9, update your Heroku Toolbelt installation by typing the following command:
+`wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh`
 
-Follow the instructions that appear after app creation; you don't have
-to do `git init` since you've been using Git to manage this simple app's
-repo all along.
+Log in to your Heroku account by typing the command: `heroku login` in the Cloud9 terminal. This will connect your Cloud9 workspace to your Heroku account.
 
-Deploy your app to Heroku and verify that going to
-`http://sinatra-demo.herokuapp.com/` shows your Hello World page.
+While in the root directory of your project (not your whole workspace), type `heroku create` to create a new project in Heroku. This will tell the Heroku service to prepare for some incoming code, and locally on Cloud9, it will add a remote git repository for you called `heroku`.
+
+Next, make sure you stage and commit all changes locally as instructed above (i.e. git add, git commit, etc).
+
+Then, you will push your local Cloud9 git repo (called master) to Heroku, which is now ready for you:
+`git push heroku master`
+
+This will create a running instance of your app at some URL ending with herokuapp.com. Enter that URL in a new browser tab (not in the Cloud9 IDE) to see your app running live. You did it!
 
 Summary
 -------
@@ -325,11 +313,7 @@ versions of gems actually in use.
 this file in `config.ru`, and used `rackup` to start the appserver and
 the WEBrick web server.
 
-* You learned that changing the app's code doesn't automatically cause
-Rack to reload the app.  To save the work of restarting the app manually
-every time you make a change, you used the `rerun` gem, adding it to the
-Gemfile in a way that specifies you won't need it in production, only
-during development.
+* You learned that changing the app's code doesn't automatically cause Rack to reload the app. To save the work of restarting the app manually every time you make a change, you used the `rerun` gem, adding it to the Gemfile in a way that specifies you won't need it in production, only during development.
 
 * You versioned the important files containing not only your app's code
 but the necessary info to reproduce all the libraries it relies on and
@@ -337,11 +321,15 @@ the file that starts up the app.
 
 * You deployed this simple app to Heroku.
 
-With this machinery in mind, download and unpack the homework skeleton
-into a new directory and let's work on Hangperson.
+
+Part 1: Hangperson
+===========================================================================
+With all this machinery in mind, fork this repo into your github account, clone it into Cloud9, and let's work on Hangperson.
+
+`git clone <insert the clone url from your github fork of this repo here>`
 
 Developing Hangperson Using TDD and Autotest
-============================================
+--------------------------------------------
 
 **Goals:** Use test-driven development (TDD) based on the tests we've
 provided to develop the game logic for Hangman, which forces you to
@@ -384,20 +372,20 @@ which contains RSpec options and indicates we're using the RSpec testing
 framework.  Autotest will therefore look for test files under `spec/` and the
 corresponding class files in `lib/`.
 
-We've provided a set of 19 test cases to help you develop the game class.
+We've provided a set of 18 test cases to help you develop the game class.
 Take a look at `spec/hangperson_game_spec.rb`.  It specifies behaviors
 that it expects from the class `lib/hangperson_game.rb`.  
 initially, we have added `:pending => true` to every spec, so when
 Autotest first runs these, you should see the test case names printed
-in yellow, and the report "19 examples, 19 pending."
+in yellow, and the report "18 examples, 0 failures, 18 pending."
 
-Now, with Autotest still running, delete `:pending => true` from line 11, and
+Now, with Autotest still running, delete `:pending => true` from line 12, and
 save the file.  You should immediately see Autotest wake up and re-run
-the tests.  You should now have 3 failures and 16 pending examples.
+the tests.  You should now have 18 examples, 1 failure, 17 pending.
 
 The `describe 'new'` block means "the following block of tests describe
-the behavior of a 'new' HangpersonGame instance."  The `subject` block
-causes a new instance to be created, and the `its` blocks verify the
+the behavior of a 'new' HangpersonGame instance."  The `hangpersonGame` line
+causes a new instance to be created, and the next lines verify the
 presence and values of instance variables.
 
 * Self-check: According to our test cases, how many arguments does the
@@ -416,10 +404,10 @@ instance variables is a HangpersonGame expected to have?
 
 You'll need to create getters and setters for these.  Hint: use `attr_accessor`.
 When you've done this successfully and saved `hangperson_game.rb`,
-Autotest should wake up again and the three examples that were
+Autotest should wake up again and the examples that were
 previously failing should now be passing (green).
 
-Continue in this manner, removing `:pending => true` from one example at
+Continue in this manner, removing `:pending => true` from one or two examples at
 a time working your way down the specs, until you've implemented all the
 instance methods of the game class: `guess`, which processes a guess and
 modifies the instance variables `wrong_guesses` and `guesses`
@@ -452,8 +440,9 @@ external services.  `man curl` for (much) more detail on this powerful
 command-line tool.
 
 
-RESTful thinking for HangPerson
-=================================
+Part 2: RESTful thinking for HangPerson
+=======================================
+Note: Part 2 is just reading/background info for Part 3.
 
 **Goals:**  Understand how to expose your app's behaviors as RESTful
 actions in a SaaS environment, and how to preserve game state across
@@ -717,8 +706,8 @@ app since we have only one model.  As we'll see later, more powerful
 MVC-focused frameworks like Rails are much more productive for creating
 apps that have many types of models.
 
-Connecting HangpersonGame to Sinatra
-------------------------------------
+Part 3: Connecting HangpersonGame to Sinatra
+============================================
 
 You've already met Sinatra.  Here's what's new in the Sinatra app
 skeleton `app.rb` that we provide for Hangperson:
@@ -738,7 +727,7 @@ variables set up in the `get` or `post` blocks.
 * Self-check: `@game` in this context is an instance variable of what
 class?  (Careful-- tricky!)
 
-> It's an instance variable of `HangpersonApp`.  Remember we are dealing
+> It's an instance variable of the `HangpersonApp` class in the app.rb file.  Remember we are dealing
 > with two Ruby classes here: the `HangpersonGame` class encapsulates
 > the game logic itself (that is, the Model in model-view-controller),
 > whereas `HangpersonApp` encapsulates the logic that lets us deliver
@@ -792,16 +781,14 @@ messages in the `session[]` hash?
 Running the Sinatra app
 -----------------------
 
-As before, run the shell command `rackup` to start the app, or `rerun
-rackup` if you want to rerun the app each time you make a code change.  
+As before, run the shell command `rackup -p $PORT -o $IP` to start the app, or `rerun "rackup -p $PORT -o $IP"` if you want to rerun the app each time you make a code change.  
 
 * Self-check: based on the output from running this command, what is the
 full URL you need to visit in order to visit the New Game page?
 
-> The web server connected to Sinatra is listening on port 9292 of your
-> computer, so the hostname part of the URL is `http://localhost:9292`.
+> The web server connected to Sinatra is running on Cloud9, so the first part of the URL is something like `http://your-workspace-name.c9.io`.
 > The Ruby code `get '/new' do...` in `app.rb` renders the New Game
-> page, so the full URL is `http://localhost:9292/new`.
+> page, so the full URL is in the form `http://your-workspace-name.c9.io/new`.
 
 Visit this URL and verify that the Start New Game page appears. 
 
@@ -815,13 +802,20 @@ is because we've deliberately left the `<form>` that encloses this
 button incomplete: we haven't specified where the form should post to.
 We'll do that next, but we'll do it in a test-driven way.
 
-* Commit all your changes, then deploy to Heroku.  Verify that the
-Heroku-deployed Hangperson behaves the same as your development version
-before continuing.
+Let's get our app onto Heroku.
+* First, run `bundle install` to make sure our Gemfile and Gemfile.lock are in sync.
+* Next, type `git add -A` to stage all changed files (including Gemfile.lock)
+* Then type `git commit -am"Ready for Heroku!"` to commit all local changes on Cloud9.
+* Next, type `heroku login` and authenticate.
+* Since this is the first time we're telling Heroku about the Hangperson app, we must type `heroku create` to have Heroku prepare to recieve this code and to have it create a git reference for referencing the new remote repository. 
+* Then, type `git push heroku master` to push your Cloud9 code to Heroku. 
+* When you want to update Heroku later, you only need to commit your changes to git locally in Cloud9, then push to Heroku as in the last step. 
+* Verify that the Heroku-deployed Hangperson behaves the same as your development version before continuing. A few lines up from the bottom of the Heroku output in the Cloud9 terminal should have a URL ending in herokuapp.com. Find that, copy it to the clipboard, and paste it into a new browser tab to see the current app. The Cloud9 IDE browser tab won't render the app properly, so use a new browser tab outside of Cloud9.
+* Verify the broken functionality by clicking the new game button.
 
 
-Introducing Cucumber
-====================
+Part 4: Introducing Cucumber
+============================
 
 Cucumber is a remarkable tool for writing high-level integration and
 acceptance tests, terms with which you're already familiar.  We'll learn
@@ -917,26 +911,27 @@ Run the "new game" scenario with:
 ```bash
 cucumber features/start_new_game.feature
 ```
+If you get an error about Cucumber like this one, just follow the advice and run `bundle install` first.
+```bash
+~/workspace/hw-sinatra-saas-hangperson (master) $ cucumber features/start_new_game.feature
+Could not find proper version of cucumber (2.0.0) in any of the sources
+Run `bundle install` to install missing gems.
+```
 
-The scenario fails because the `<form>` tag in `views/new.erb` is missing the
+The scenario fails because the `<form>` tag in `views/new.erb` is incorrect and incomplete in the
 information that tells the browser what URL to post the form to.  Based
 on the table of routes we developed in an earlier section, fill in the
-`<form>` tag's attributes appropriately, and add the necessary code to
-the Sinatra app to recognize this route.  (Hint: if you get stuck, take
-a look at `show.erb` for a similar example.)
+`<form>` tag's attributes appropriately. You can inspect what happens for various routes in app.rb, but you don't need to edit this file yet.  (Hint: if you get stuck, take a look at `show.erb` (at the bottom) for a similar example of a filled in form tag.)
 
 The create-new-game code in the Sinatra app should do the following:
 
 * Call the HangpersonGame class method `get_random_word`
-
 * Create a new instance of HangpersonGame using that word
-
 * Redirect the browser to the `show` action
 
-When you finish this task, you should be able to re-run the scenario and
-have all steps passing green.  
+View how these steps are actualized in the app.rb file under the `post /create do` route.
 
-At that point, deploy to Heroku again and manually verify this behavior.
+At that point, stage and commit all files locally on Cloud9, then `git push heroku master` to deploy to Heroku again and manually verify this improved behavior.
 
 * Self-check: What is the significance of using `Given` vs. `When`
 vs. `Then` in the feature file?  What happens if you switch them around?
@@ -991,18 +986,17 @@ error.
 > not included in `params` at all).   `[0]` grabs the first character
 > only; for an empty string, it returns an empty string.
 
-In the `guess` code in the Sinatra app,
-you should:
+In the `guess` code in the Sinatra app.rb file, you should:
 
-* Extract the letter submitted on the form.  
-
-* Use that letter as a guess on the current game.
-
+* Extract the letter submitted on the form. (given above and in the code for you)
+* Use that letter as a guess on the current game. (add this code in)
 * Redirect to the `show` action so the player can see the result of
-their guess.
+their guess. (done for you as well)
 
-Develop that code and verify that all the steps in
-`features/guess.feature` now pass.
+While you're here, read the comments in the file. They give clues for future steps in this assignment.
+
+When finished adding that code, verify that all the steps in
+`features/guess.feature` now pass by running cucumber for that .feature file.
 
 * Debugging tip: The Capybara command `save_and_open_page` placed in a
 step definition will cause the step to open a Web browser window showing
@@ -1010,12 +1004,12 @@ what the page looks like at that point in the scenario.  The
 functionality is provided in part by a gem called `launchy` which is in
 the Gemfile.
 
-Corner Cases
-============
+Part 5: Corner Cases
+====================
 
 By now you should be familiar with the cycle:
 
-0.  Pick a new scenario to work on
+0.  Pick a new scenario to work on (you should have 2/4 working at this point)
 0.  Run the scenario and watch it fail
 0.  Develop code that makes each step of the scenario pass
 0.  Repeat till all steps passing.
@@ -1031,15 +1025,17 @@ The scenario `game_over.feature` tests these behaviors in your SaaS app.
 Push to Heroku and make sure everything still works.  Give yourself a
 break and play a few rounds of hangperson.
 
-While you're playing, what happens if you directly go to
-`http://localhost:9292/win`?  Make sure the player cannot cheat by
-simply visiting `GET /win`.  The scenario `prevent_cheating.feature`
-tests these behaviors.
+While you're playing, what happens if you directly add
+`/win` to the end of your app's URL?  Make sure the player cannot cheat by
+simply visiting `GET /win`.  Consider how to modify the actions for win, lose, and show to prevent this behavior. Finishing this part is optional.
 
 * What to submit:  Make sure all Cucumber scenarios are passing.  A
 shorthand way to run all of them is `cucumber features/` which runs all
-`.feature` files in the given directory.  When all are passing, deploy
-to Heroku and submit the URL of your deployed game.
+`.feature` files in the given directory.
+
+Submission Instructions
+-----------------------
+When all scenarios are passing, deploy to Heroku and submit the URL of your deployed game.
 
 Conclusion
 ==========

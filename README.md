@@ -293,7 +293,7 @@ Gem specifications outside of any `group` block are assumed to apply
 in all environments.
 
 * Say `rerun rackup` in the terminal window to start your app and verify
-the app is running.
+the app is running. [Note: on c9 you'll need `rerun -- rackup -p $PORT -o $IP`]
 
 * Modify `app.rb` to print a different message, and verify that the
 change is detected by `rerun` and works as expected.

@@ -375,11 +375,11 @@ corresponding class files in `lib/`.
 We've provided a set of 18 test cases to help you develop the game class.
 Take a look at `spec/hangperson_game_spec.rb`.  It specifies behaviors
 that it expects from the class `lib/hangperson_game.rb`.  
-initially, we have added `:pending => true` to every spec, so when
+initially, we have added `, :pending => true` to every spec, so when
 Autotest first runs these, you should see the test case names printed
 in yellow, and the report "18 examples, 0 failures, 18 pending."
 
-Now, with Autotest still running, delete `:pending => true` from line 12, and
+Now, with Autotest still running, delete `, :pending => true` from line 12, and
 save the file.  You should immediately see Autotest wake up and re-run
 the tests.  You should now have 18 examples, 1 failure, 17 pending.
 
@@ -407,7 +407,7 @@ When you've done this successfully and saved `hangperson_game.rb`,
 Autotest should wake up again and the examples that were
 previously failing should now be passing (green).
 
-Continue in this manner, removing `:pending => true` from one or two examples at
+Continue in this manner, removing `, :pending => true` from one or two examples at
 a time working your way down the specs, until you've implemented all the
 instance methods of the game class: `guess`, which processes a guess and
 modifies the instance variables `wrong_guesses` and `guesses`

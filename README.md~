@@ -786,8 +786,6 @@ Your `config.ru` file should look like the following:
 ```ruby
 require './app'
 run HangpersonApp
-# require './myapp'
-# run MyApp
 ```
 
 As before, run the shell command `rackup -p $PORT -o $IP` to start the app, or `rerun "rackup -p $PORT -o $IP"` if you want to rerun the app each time you make a code change.  

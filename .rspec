@@ -1,1 +1,1 @@
---format documentation --color
+--format documentation --color --fail-fast

@@ -106,21 +106,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest
-  byebug
-  capybara
+  ZenTest (= 4.11.0)
+  byebug (= 5.0.0)
+  capybara (= 2.4.4)
   cucumber (= 2.0.0)
-  cucumber-sinatra
-  launchy
-  rack-test
-  rack_session_access
-  rerun
+  cucumber-sinatra (= 0.5.0)
+  launchy (= 2.4.3)
+  rack-test (= 0.6.3)
+  rack_session_access (= 0.1.1)
+  rerun (= 0.10.0)
   rspec (= 3.3.0)
-  rspec-autotest
-  simplecov
+  rspec-autotest (= 1.0.0)
+  simplecov (= 0.10.0)
   sinatra (>= 1.4)
-  sinatra-flash
-  webmock
+  sinatra-flash (= 0.3.0)
+  webmock (= 1.21.0)
 
 BUNDLED WITH
-   1.10.5
+   1.10.6

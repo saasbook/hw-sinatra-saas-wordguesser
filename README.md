@@ -363,7 +363,7 @@ block" in a **Service-Oriented Architecture**, but also how a Cucumber
 scenario can test such an app deterministically with tests that
 **break the dependency** on the external service at testing time.
 
-* In the app's root directory, say `autotest`.  
+* In the app's root directory, say `bundle exec autotest`.  
 
 This will fire up the Autotest framework, which looks for various files
 to figure out what kind of app you're testing and what test framework

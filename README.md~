@@ -363,7 +363,7 @@ block" in a **Service-Oriented Architecture**, but also how a Cucumber
 scenario can test such an app deterministically with tests that
 **break the dependency** on the external service at testing time.
 
-* In the app's root directory, say `bundle exec autotest`.  
+* In the app's root directory, say `autotest`.  
 
 This will fire up the Autotest framework, which looks for various files
 to figure out what kind of app you're testing and what test framework
@@ -786,8 +786,6 @@ Your `config.ru` file should look like the following:
 ```ruby
 require './app'
 run HangpersonApp
-# require './myapp'
-# run MyApp
 ```
 
 As before, run the shell command `rackup -p $PORT -o $IP` to start the app, or `rerun "rackup -p $PORT -o $IP"` if you want to rerun the app each time you make a code change.  

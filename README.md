@@ -1027,7 +1027,7 @@ break and play a few rounds of hangperson.
 
 While you're playing, what happens if you directly add
 `/win` to the end of your app's URL?  Make sure the player cannot cheat by
-simply visiting `GET /win`.  Consider how to modify the actions for win, lose, and show to prevent this behavior. Finishing this part is optional.
+simply visiting `GET /win`.  Consider how to modify the actions for win, lose, and show to prevent this behavior.
 
 * What to submit:  Make sure all Cucumber scenarios are passing.  A
 shorthand way to run all of them is `cucumber features/` which runs all

@@ -180,7 +180,7 @@ plus a URI).  Sinatra provides an extremely lightweight shorthand for
 matching a route with the app code to be executed when a request using
 that route arrives from the Web server.
 
-Create a file in your project called `app.rb` containing the following:
+Create a file in your project called `myapp.rb` containing the following:
 
 ```ruby
 require 'sinatra'
@@ -215,14 +215,14 @@ application server is controlled by a file `config.ru`, which you must
 now create and version, containing the following:
 
 ```ruby
-require './app'
+require './myapp'
 run MyApp
 ```
 
 
-The first line tells Rack that our app lives in the file `app.rb`, which
+The first line tells Rack that our app lives in the file `myapp.rb`, which
 you created above to hold your app's code.  We have to explicitly state
-that our `app` file is located in the current directory (.) because
+that our `myapp` file is located in the current directory (.) because
 `require` normally looks only in standard system directories to find
 gems.
 
@@ -248,7 +248,7 @@ Point a new Web browser tab at the running app's URL and verify that you can see
 > page and delivered to your browser.
 
 You should now have the following files under version control:
-`Gemfile`, `Gemfile.lock`, `app.rb`, `config.ru`.  This is a minimal
+`Gemfile`, `Gemfile.lock`, `myapp.rb`, `config.ru`.  This is a minimal
 SaaS app: the app file itself, the list of explicitly required gems, the
 list of actual gems installed including the dependencies implied by the
 required gems, and a configuration file telling the appserver how to
@@ -257,8 +257,8 @@ start the app.
 Modify the app
 --------------
 
-Modify `app.rb` so that instead of "Hello World" it prints "Goodbye World".
-Save your changes to `app.rb` and try refreshing your browser tab where the app is running.  
+Modify `myapp.rb` so that instead of "Hello World" it prints "Goodbye World".
+Save your changes to `myapp.rb` and try refreshing your browser tab where the app is running.  
 
 No changes? Confused?
 
@@ -281,7 +281,7 @@ Any gem specifications inside the group :development block will only be examined
 
 Say `rerun "rackup -p $PORT -o $IP"` in the terminal window to start your app and verify the app is running. Note that you need to put everything except `rerun` in quotes in order to make the command unambiguous in Cloud9. Now any detected changes will cause the server to restart automatically, similar to `autotest` for rspec.
 
-Modify app.rb to print a different message, and verify that the change is detected by rerun by again refreshing your browser tab with the running app.
+Modify myapp.rb to print a different message, and verify that the change is detected by rerun by again refreshing your browser tab with the running app.
 
 Deploy to Heroku
 ----------------
@@ -309,7 +309,7 @@ specifying which gems you need and running `bundle` to verify that
 they're available and create the `Gemfile.lock` file that records the
 versions of gems actually in use.
 
-* You created a Sinatra app in the file `app.rb`, pointed Rack at
+* You created a Sinatra app in the file `myapp.rb`, pointed Rack at
 this file in `config.ru`, and used `rackup` to start the appserver and
 the WEBrick web server.
 
@@ -780,6 +780,15 @@ messages in the `session[]` hash?
 
 Running the Sinatra app
 -----------------------
+
+Your `config.ru` file should look like the following:
+
+```ruby
+require './app'
+run HangpersonApp
+# require './myapp'
+# run MyApp
+```
 
 As before, run the shell command `rackup -p $PORT -o $IP` to start the app, or `rerun "rackup -p $PORT -o $IP"` if you want to rerun the app each time you make a code change.  
 

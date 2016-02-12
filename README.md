@@ -277,11 +277,15 @@ group :development do
 end
 ```
 
-Any gem specifications inside the group :development block will only be examined if bundle is run in the development environment. (The other environments you can specify are :test and :production, and you can define new environments yourself.) Gem specifications outside of any group block are assumed to apply in all environments.
+Any gem specifications inside the `group :development` block will only be examined if bundle is run in the development environment. (The other environments you can specify are :test and :production, and you can define new environments yourself.) Gem specifications outside of any group block are assumed to apply in all environments.
 
-Say `rerun "rackup -p $PORT -o $IP"` in the terminal window to start your app and verify the app is running. Note that you need to put everything except `rerun` in quotes in order to make the command unambiguous in Cloud9. Now any detected changes will cause the server to restart automatically, similar to `autotest` for rspec.
+Say `rerun "rackup -p $PORT -o $IP"` in the terminal window to start
+your app and verify the app is running. Note that you need to put
+everything except `rerun` in quotes in order to make the command
+unambiguous in Cloud9. Now any detected changes will cause the server to
+restart automatically, similar to the use of `guard` to run specs.
 
-Modify app.rb to print a different message, and verify that the change is detected by rerun by again refreshing your browser tab with the running app.
+Modify `app.rb` to print a different message, and verify that the change is detected by rerun by again refreshing your browser tab with the running app.
 
 Deploy to Heroku
 ----------------
@@ -294,12 +298,19 @@ Log in to your Heroku account by typing the command: `heroku login` in the Cloud
 
 While in the root directory of your project (not your whole workspace), type `heroku create` to create a new project in Heroku. This will tell the Heroku service to prepare for some incoming code, and locally on Cloud9, it will add a remote git repository for you called `heroku`.
 
-Next, make sure you stage and commit all changes locally as instructed above (i.e. git add, git commit, etc).
+Next, make sure you stage and commit all changes locally as instructed above (i.e. `git add`, `git commit`, etc).
 
-Then, you will push your local Cloud9 git repo (called master) to Heroku, which is now ready for you:
+Then, you will push your local Cloud9 git repo to Heroku, which is now ready for you:
 `git push heroku master`
 
-This will create a running instance of your app at some URL ending with herokuapp.com. Enter that URL in a new browser tab (not in the Cloud9 IDE) to see your app running live. You did it!
+(`master` refers to which branch of the remote Heroku repo we are
+pushing to.  We'll learn about branches later in the course, but for
+now, suffice it to say that you can only deploy to the `master` branch
+on Heroku.)
+This push will create a running instance of your app at some URL ending
+with `herokuapp.com`. Enter that URL in a new browser tab (not in the
+Cloud9 IDE) to see your app running live. Congratulations, you did
+it--your app is live!
 
 Summary
 -------
@@ -324,12 +335,12 @@ the file that starts up the app.
 
 Part 1: Hangperson
 ===========================================================================
-With all this machinery in mind, fork this repo into your github account, clone it into Cloud9, and let's work on Hangperson.
+With all this machinery in mind, fork this repo into your GitHub account, clone it into Cloud9, and let's work on Hangperson.
 
 `git clone <insert the clone url from your github fork of this repo here>`
 
-Developing Hangperson Using TDD and Autotest
---------------------------------------------
+Developing Hangperson Using TDD and Guard
+-----------------------------------------
 
 **Goals:** Use test-driven development (TDD) based on the tests we've
 provided to develop the game logic for Hangman, which forces you to
@@ -419,7 +430,7 @@ into the word.
 ### Debugging Tip
 
 When running tests, you can insert the Ruby command
-`debugger` into your app code to drop into the command-line debugger and
+`byebug` into your app code to drop into the command-line debugger and
 inspect variables and so on.  Type `h` for help at the debug prompt.
 Type `c` to leave the debugger and continue running your code.
 
@@ -1027,7 +1038,7 @@ break and play a few rounds of hangperson.
 
 While you're playing, what happens if you directly add
 `/win` to the end of your app's URL?  Make sure the player cannot cheat by
-simply visiting `GET /win`.  Consider how to modify the actions for win, lose, and show to prevent this behavior.
+simply visiting `GET /win`.  Consider how to modify the actions for `win`, `lose`, and `show` to prevent this behavior.
 
 * What to submit:  Make sure all Cucumber scenarios are passing.  A
 shorthand way to run all of them is `cucumber features/` which runs all
@@ -1074,7 +1085,7 @@ problems.
 # Optional challenge assignment
 
 
-Verify that a file exists on the courseware VM called
+Verify that a file exists in the courseware VM called
 `/usr/share/dict/words`.  What's in it?
 
 (Note: if this file doesn't exist, you can install it on Ubuntu 14 by

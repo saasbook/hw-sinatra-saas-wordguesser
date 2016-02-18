@@ -43,7 +43,7 @@ describe HangpersonGame do
         expect(@game.wrong_guesses).to eq('z')
       end
       it 'returns false', :pending => true do
-        expect(@valid).to be false
+        expect(@valid).not_to be true
       end
     end
     context 'same letter repeatedly' do

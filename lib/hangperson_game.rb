@@ -5,11 +5,22 @@ class HangpersonGame
 
   # Get a word from remote "random word" service
 
-  # def initialize()
-  # end
+   #def initialize()
+   #end
+
+  letter = "a"
+  
+  attr_accessor :guesses
+  attr_accessor :word
+  attr_accessor :wrong_guesses
+  
+  
   
   def initialize(word)
     @word = word
+    @guesses = ''
+    @wrong_guesses = ''
+    @tries = ''
   end
 
   def self.get_random_word
@@ -18,5 +29,30 @@ class HangpersonGame
     uri = URI('http://watchout4snakes.com/wo4snakes/Random/RandomWord')
     Net::HTTP.post_form(uri ,{}).body
   end
-
+  
+  def guess(letter)
+    
+    if letter.nil?
+      return 0
+    else  
+      if(letter != /[a-z]/i)
+        return letter
+      end  
+    end
+    
+  end
+  
+  def guesses()
+    if letter.nil?
+      return 0
+    else  
+      if(letter != /[a-z]/i)
+        return letter
+      end  
+    end
+    
+  end
+  
+  def wrong_guesses(letter)
+  end
 end

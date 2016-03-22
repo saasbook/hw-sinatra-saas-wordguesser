@@ -8,8 +8,6 @@ class HangpersonGame
    #def initialize()
    #end
 
-  letter = "a"
-  
   attr_accessor :guesses
   attr_accessor :word
   attr_accessor :wrong_guesses
@@ -20,9 +18,27 @@ class HangpersonGame
     @word = word
     @guesses = ''
     @wrong_guesses = ''
-    @tries = ''
+    @tries = 0
   end
 
+  def guess(letter)
+    raise ArgumentError unless letter != nil
+    raise ArgumentError if letter.length == 0
+    raise ArgumentError if letter =~ /[^a-z]/i
+    if guesses.downcase.include? letter.downcase
+      return false
+    else  
+      if word.downcase.include? letter.downcase
+        @guesses << letter
+      else
+        @wrong_guesses << letter
+        @tries += 1
+        return true
+      end  
+    end
+      
+  end  
+    
   def self.get_random_word
     require 'uri'
     require 'net/http'
@@ -30,29 +46,5 @@ class HangpersonGame
     Net::HTTP.post_form(uri ,{}).body
   end
   
-  def guess(letter)
-    
-    if letter.nil?
-      return 0
-    else  
-      if(letter != /[a-z]/i)
-        return letter
-      end  
-    end
-    
-  end
   
-  def guesses()
-    if letter.nil?
-      return 0
-    else  
-      if(letter != /[a-z]/i)
-        return letter
-      end  
-    end
-    
-  end
-  
-  def wrong_guesses(letter)
-  end
 end

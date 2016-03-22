@@ -49,7 +49,4 @@ class HangpersonGame
   def word_with_guesses
   end
   
-  def wrong_guesses
-  end
-  
 end

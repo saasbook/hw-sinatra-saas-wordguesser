@@ -52,9 +52,6 @@ class HangpersonGame
     Net::HTTP.post_form(uri ,{}).body
   end
   
-  def word_with_guesses
-  end
-  
   def finished?
     return @word == word_with_guesses
   end

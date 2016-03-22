@@ -7,12 +7,12 @@ class HangpersonApp < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
   
-  before do
-    @game = session[:game] || HangpersonGame.new('')
-  end
-  
   after do
-    session[:game] = @game
+    if @game != nil
+      session[:word] = @game.word
+      session[:guesses] = @game.guesses
+      session[:wrong_guesses] = @game.wrong_guesses
+    end
   end
   
   # These two routes are good examples of Sinatra syntax
@@ -22,7 +22,6 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/new' do
-    logger.info("faria")
     erb :new
   end
   
@@ -32,15 +31,26 @@ class HangpersonApp < Sinatra::Base
     # NOTE: don't change previous line - it's needed by autograder!
     
     @game = HangpersonGame.new(word)
+
     redirect '/show'
   end
-  
+
   # Use existing methods in HangpersonGame to process a guess.
   # If a guess is repeated, set flash[:message] to "You have already used that letter."
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
+    retrieve_game_instance
+    
     letter = params[:guess].to_s[0]
-    @game.guess(letter)
+    begin
+      guessed = @game.guess(letter)
+    rescue ArgumentError
+      flash[:message] = "Invalid guess."
+    end
+    
+    if !guessed
+      flash[:message] = "You have already used that letter."
+    end
     
     redirect '/show'
   end
@@ -51,18 +61,36 @@ class HangpersonApp < Sinatra::Base
   # Notice that the show.erb template expects to use the instance variables
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
-    ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+    retrieve_game_instance
+    
+    if @game.wrong_guesses.length >= 7
+      redirect '/lose'
+    else
+      if @game.finished?
+        redirect '/win'
+      else
+        erb :show
+      end
+    end
   end
   
   get '/win' do
-    ### YOUR CODE HERE ###
+    retrieve_game_instance
+    
     erb :win # You may change/remove this line
   end
   
   get '/lose' do
-    ### YOUR CODE HERE ###
+    retrieve_game_instance
+    
     erb :lose # You may change/remove this line
   end
-  
+
+  def retrieve_game_instance
+    word = session[:word].to_s
+    @game = HangpersonGame.new(word)
+    @game.guesses = session[:guesses].to_s
+    @game.wrong_guesses = session[:wrong_guesses].to_s
+    puts @game.wrong_guesses
+  end  
 end

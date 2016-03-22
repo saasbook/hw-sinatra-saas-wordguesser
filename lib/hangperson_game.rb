@@ -4,15 +4,9 @@ class HangpersonGame
   # to make the tests in spec/hangperson_game_spec.rb pass.
 
   # Get a word from remote "random word" service
-
-   #def initialize()
-   #end
-
   attr_accessor :guesses
   attr_accessor :word
   attr_accessor :wrong_guesses
-  
-  
   
   def initialize(word)
     @word = word
@@ -25,18 +19,19 @@ class HangpersonGame
     raise ArgumentError unless letter != nil
     raise ArgumentError if letter.length == 0
     raise ArgumentError if letter =~ /[^a-z]/i
-    if (guesses.downcase.include? letter.downcase or wrong_guesses.downcase.include? letter.downcase) 
+
+    if @guesses.downcase.include? letter.downcase or @wrong_guesses.downcase.include? letter.downcase
       return false
-    else  
-      if word.downcase.include? letter.downcase
-        @guesses << letter
-      else
-        @wrong_guesses << letter
-        @tries += 1
-        return true
-      end  
+    end  
+    
+    if @word.downcase.include? letter.downcase
+      @guesses << letter
+    else
+      @wrong_guesses << letter
+      @tries += 1
     end
-      
+    
+    return true
   end  
   
   def guess_several_letters(letters)
@@ -60,4 +55,7 @@ class HangpersonGame
   def word_with_guesses
   end
   
+  def finished?
+    return @word == word_with_guesses
+  end
 end

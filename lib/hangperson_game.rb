@@ -25,7 +25,7 @@ class HangpersonGame
     raise ArgumentError unless letter != nil
     raise ArgumentError if letter.length == 0
     raise ArgumentError if letter =~ /[^a-z]/i
-    if guesses.downcase.include? letter.downcase
+    if (guesses.downcase.include? letter.downcase or wrong_guesses.downcase.include? letter.downcase) 
       return false
     else  
       if word.downcase.include? letter.downcase
@@ -37,6 +37,17 @@ class HangpersonGame
       end  
     end
       
+  end  
+  
+  def guess_several_letters(letters)
+    
+  end
+  
+  def word_with_guesses
+    if word.downcase.include? @guesses.downcase
+      puts guesses
+    
+    end  
   end  
     
   def self.get_random_word

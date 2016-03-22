@@ -51,19 +51,19 @@ describe HangpersonGame do
         @game = HangpersonGame.new('garply')
         guess_several_letters(@game, 'aq')
       end
-      it 'does not change correct guess list', :pending => true do
+      it 'does not change correct guess list', :pending => false do
         @game.guess('a')
         expect(@game.guesses).to eq('a')
       end
-      it 'does not change wrong guess list', :pending => true do
+      it 'does not change wrong guess list', :pending => false do
         @game.guess('q')
         expect(@game.wrong_guesses).to eq('q')
       end
-      it 'returns false', :pending => true do
+      it 'returns false', :pending => false do
         expect(@game.guess('a')).to be false
         expect(@game.guess('q')).to be false
       end
-      it 'is case insensitive', :pending => true do
+      it 'is case insensitive', :pending => false do
         expect(@game.guess('A')).to be false
         expect(@game.guess('Q')).to be false
         expect(@game.guesses).not_to include('A')
@@ -86,7 +86,7 @@ describe HangpersonGame do
     end
   end
 
-  describe 'displayed word with guesses', :pending => true do
+  describe 'displayed word with guesses', :pending => false do
     before :each do
       @game = HangpersonGame.new('banana')
     end

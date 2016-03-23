@@ -58,7 +58,17 @@ class HangpersonGame
     Net::HTTP.post_form(uri ,{}).body
   end
   
-  def check_win_or_lose?
-    return @word == word_with_guesses
+  def check_win_or_lose
+    if @wrong_guesses.length >= 7
+      return :lose
+    else
+      if @word == word_with_guesses
+        return :win
+      else
+        return :play
+      end
+    end
+    
   end
+  
 end

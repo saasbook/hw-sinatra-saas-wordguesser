@@ -63,14 +63,14 @@ class HangpersonApp < Sinatra::Base
   get '/show' do
     retrieve_game_instance
     
-    if @game.wrong_guesses.length >= 7
+    state = @game.check_win_or_lose
+    case state
+    when :lose
       redirect '/lose'
+    when :win
+      redirect '/win'
     else
-      if @game.check_win_or_lose?
-        redirect '/win'
-      else
-        erb :show
-      end
+      erb :show #default :play
     end
   end
   

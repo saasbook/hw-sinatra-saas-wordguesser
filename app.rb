@@ -86,6 +86,14 @@ class HangpersonApp < Sinatra::Base
     erb :lose # You may change/remove this line
   end
 
+  def word_with_guesses(word, guesses)
+    #retrieve_game_instance
+    @game = HangpersonGame.new(word)
+    @game.guesses = guesses
+    
+    return @game.word_with_guesses
+  end
+
   def retrieve_game_instance
     word = session[:word].to_s
     @game = HangpersonGame.new(word)

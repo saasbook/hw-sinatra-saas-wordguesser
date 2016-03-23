@@ -86,7 +86,7 @@ describe HangpersonGame do
     end
   end
 
-  describe 'displayed word with guesses', :pending => false do
+  describe 'displayed word with guesses' do
     before :each do
       @game = HangpersonGame.new('banana')
     end

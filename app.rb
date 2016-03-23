@@ -66,7 +66,7 @@ class HangpersonApp < Sinatra::Base
     if @game.wrong_guesses.length >= 7
       redirect '/lose'
     else
-      if @game.finished?
+      if @game.check_win_or_lose?
         redirect '/win'
       else
         erb :show
@@ -91,6 +91,6 @@ class HangpersonApp < Sinatra::Base
     @game = HangpersonGame.new(word)
     @game.guesses = session[:guesses].to_s
     @game.wrong_guesses = session[:wrong_guesses].to_s
-    puts @game.wrong_guesses
-  end  
+  end
+  
 end

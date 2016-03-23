@@ -39,11 +39,17 @@ class HangpersonGame
   end
   
   def word_with_guesses
-    if word.downcase.include? @guesses.downcase
-      puts guesses
-    
-    end  
-  end  
+    running_word = ''
+    @word.split("").each do |letter|
+      if @guesses.include? letter
+        running_word << letter
+      else
+        running_word << "-"
+      end
+    end
+      
+    return running_word
+  end 
     
   def self.get_random_word
     require 'uri'
@@ -52,7 +58,7 @@ class HangpersonGame
     Net::HTTP.post_form(uri ,{}).body
   end
   
-  def finished?
+  def check_win_or_lose?
     return @word == word_with_guesses
   end
 end

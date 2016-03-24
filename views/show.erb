@@ -11,10 +11,9 @@
   <span class="guesses"><%= @game.wrong_guesses %></span>
 </p>
 
-<p>
-  Word so far:
+<div id="div-word">
   <span class="word"><%= @game.word_with_guesses %></span>
-</p>
+</div>
 
 <form action="/guess" method="post">
   <div class="btn-group">

@@ -42,16 +42,19 @@ class HangpersonApp < Sinatra::Base
     retrieve_game_instance
     
     letter = params[:guess].to_s[0]
-    #if letter.nil? or letter == "" or letter =~ /[^a-z]/i 
+    if letter.nil? or letter == "" or letter =~ /[^a-z]/i 
       begin
         guessed = @game.guess(letter)
         rescue ArgumentError
           flash[:message] = "Invalid guess." 
       end
-    #end  
+    end
+    if letter =~ /[a-z]/i
+      guessed = @game.guess(letter)
       if !guessed
         flash[:message] = "You have already used that letter."
       end
+    end  
     redirect '/show'
   end
   

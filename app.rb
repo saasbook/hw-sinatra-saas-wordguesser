@@ -42,16 +42,16 @@ class HangpersonApp < Sinatra::Base
     retrieve_game_instance
     
     letter = params[:guess].to_s[0]
-    begin
-      guessed = @game.guess(letter)
-    rescue ArgumentError
-      flash[:message] = "Invalid guess." 
-    end
-    
-    if !guessed
-      flash[:message] = "You have already used that letter."
-    end
-    
+    #if letter.nil? or letter == "" or letter =~ /[^a-z]/i 
+      begin
+        guessed = @game.guess(letter)
+        rescue ArgumentError
+          flash[:message] = "Invalid guess." 
+      end
+    #end  
+      if !guessed
+        flash[:message] = "You have already used that letter."
+      end
     redirect '/show'
   end
   
@@ -76,14 +76,24 @@ class HangpersonApp < Sinatra::Base
   
   get '/win' do
     retrieve_game_instance
-    
-    erb :win # You may change/remove this line
+    state = @game.check_win_or_lose
+    case state
+    when :win
+      erb :win # You may change/remove this line
+    else
+      redirect '/show'
+    end  
   end
   
   get '/lose' do
     retrieve_game_instance
-    
-    erb :lose # You may change/remove this line
+    state = @game.check_win_or_lose
+    case state
+    when :lose
+      erb :lose # You may change/remove this line
+    else
+      redirect '/show'
+    end
   end
 
   def word_with_guesses(word, guesses)

@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="/default.css" type="text/css">
-    <title>Hangperson</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic,100' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <title>Hangperson Game</title>
   </head>
   <body>
     <div class="container">
       <div id="header" class="span-24">
-        <p>Play Hangperson!</p>
+        <p>Hangperson Game</p>
       </div>
-      <div class="span-24">
-        <%= yield %>
-      </div>
-      <div id="footer" class="span-24">
-        <p>Random word generator provided by Watchout4snakes.com -- thanks!</p>
+      
+      <div class="content">
+        <div class="span-24">
+          <%= yield %>
+        </div>
       </div>
     </div>
+    
+    <div id="footer" class="span-24">
+      <h2>Our thanks to</h2>
+      <p>Random word generator service who is providing the words to be used by this game. You can find them at <a href="http://watchout4snakes.com">Watchout4snakes.com</a> -- thanks!</p>
+    </div>
+    
   </body>
 </html>

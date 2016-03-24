@@ -17,8 +17,10 @@
 </p>
 
 <form action="/guess" method="post">
-  <input type="text" size="1" name="guess" autocomplete="off"/>
-  <input type="submit" value="Guess!"/>
+  <div class="btn-group">
+    <input type="text" size="1" maxlength="1" name="guess" autocomplete="off"/>
+    <input type="submit" class="btn btn-2 hvr-float" value="Guess!"/>
+  </div>
 </form>
 
 <%= erb :new %>

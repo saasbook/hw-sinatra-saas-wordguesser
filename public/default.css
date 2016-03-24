@@ -1,17 +1,158 @@
 /* @override http://localhost:9292/default.css */
-body {
-	font-family: Helvetica, Arial, Geneva, sans-serif;
-	padding: 2em;
-	border: 8px solid teal;
+html, body{
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  line-height: 150%;
+  margin: 0px;
+  background: #faf6ee;
+  overflow: hidden;
 }
 
+img {
+  margin: 0;
+  max-width: 100%;
+  border: 0;
+}
+
+h1 {
+	margin: 0 !important;
+}
+
+a {
+  background: transparent;
+  color: #0277bb;
+  text-decoration: none;
+  -webkit-transition: color 0.1s linear;
+  -moz-transition: color 0.1s linear;
+  transition: color 0.1s linear;
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+
+#header {
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#header p {
+  color: #000;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 64px;
+  white-space: nowrap;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+#footer {
+    height: 200px;
+    min-height: 200px;
+    background: #54c0d6;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+#footer p {
+  color: #fff;
+  margin: 0 auto;
+  max-width: 960px;
+  font-size: 1.2em;
+  line-height: 2em;
+  font-weight: 100;
+}
+
+#footer p>a {
+  color: #2A6196;
+  text-decoration: none;
+}
+
+#footer p>a:hover {
+  text-decoration: underline;
+}
+
+#footer h2 {
+  color: #fff;
+  font-weight: 100;
+  font-size: 2em;
+  margin-top: 50px;  
+}
+
+.content {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 30px 20px;
+	text-align: center;
+}
+
+.btn-group {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+/* button styles from http://tympanus.net/Development/CreativeButtons/ */
+.btn {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 25px 80px;
+  display: inline-block;
+  margin: 15px 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-2 {
+  background: #B16FA1;
+  color: #fff;
+  box-shadow: 0 5px #855379;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
+  border-radius: 5px;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: rgba( 255, 255, 255, .8 ) 
+              url('./img/loading.gif') 
+              50% 50% 
+              no-repeat;
+}
+
+
+/* spans specifics */
 span.word {
-	text-transform: uppercase;
-	letter-spacing: 4px;
-	color: #0432ff;
-	font-weight: bold;
-	font-size: larger;
-	padding-left: 2em;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  color: #81ba50;
+  font-weight: 400;
+  font-size: 3em;
 }
 
 span.guesses {
@@ -23,20 +164,15 @@ span.guesses {
 }
 
 span.lose {
-	color: red;
+	color: #e75e49;
 	font-weight: bold;
 }
 
 span.error {
-  color: red;
+  color: #ee5025;
 }
 
 span.win {
-        color: green;
-        font-weight: bold;
-}
-
-form {
-	border: 1px solid grey;
-	margin: 4px;
+  color: #1abb9c;
+  font-weight: bold;
 }

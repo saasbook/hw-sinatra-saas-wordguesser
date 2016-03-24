@@ -49,7 +49,7 @@ class HangpersonApp < Sinatra::Base
     end
     
     if !guessed
-      flash[:message] = "You have already used that letter."
+      flash[:message] = "Invalid guess."
     end
     
     redirect '/show'

@@ -82,7 +82,7 @@ class HangpersonApp < Sinatra::Base
     state = @game.check_win_or_lose
     case state
     when :win
-      erb :win # You may change/remove this line
+      erb :win
     else
       redirect '/show'
     end  
@@ -93,14 +93,13 @@ class HangpersonApp < Sinatra::Base
     state = @game.check_win_or_lose
     case state
     when :lose
-      erb :lose # You may change/remove this line
+      erb :lose
     else
       redirect '/show'
     end
   end
 
   def word_with_guesses(word, guesses)
-    #retrieve_game_instance
     @game = HangpersonGame.new(word)
     @game.guesses = guesses
     

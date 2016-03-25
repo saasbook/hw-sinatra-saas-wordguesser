@@ -5,7 +5,7 @@ html, body{
   font-size: 1em;
   line-height: 150%;
   margin: 0px;
-  background: #faf6ee;
+  background: #d5d9dc;
   overflow: hidden;
 }
 
@@ -38,6 +38,9 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
   overflow: hidden;
   white-space: nowrap;
+  float: left;
+  width: 100%;
+  height: 65px;
 }
 
 #header p {
@@ -51,14 +54,14 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 #footer {
-    height: 200px;
-    min-height: 200px;
-    background: #54c0d6;
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    text-align: center;
+  height: 200px;
+  background: #54c0d6;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  display: block;
+  left: 0;
+  bottom: 0;
 }
 
 #footer p {
@@ -89,8 +92,18 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 .content {
 	max-width: 960px;
 	margin: 0 auto;
-	padding: 30px 20px;
+	padding: 10px;
 	text-align: center;
+}
+
+.container {
+  clear: both;
+  width: 100%;
+  background-color: #d5d9dc;
+  min-height: 650px;
+  background-image: url('./img/hang.png');
+  background-size: contain;
+  background-repeat: no-repeat;  
 }
 
 .btn-group {
@@ -103,16 +116,16 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 .btn {
   border: none;
   font-family: inherit;
-  font-size: inherit;
+  font-size: 0.9em;
   color: inherit;
   background: none;
   cursor: pointer;
-  padding: 25px 80px;
+  padding: 15px 40px;
   display: inline-block;
   margin: 15px 30px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 700;
+  font-weight: 500;
   outline: none;
   position: relative;
   -webkit-transition: all 0.3s;
@@ -121,9 +134,9 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 .btn-2 {
-  background: #B16FA1;
+  background: #b16fa1;
   color: #fff;
-  box-shadow: 0 5px #855379;
+  box-shadow: 0 3px #855379;
   -webkit-transition: none;
   -moz-transition: none;
   transition: none;
@@ -159,12 +172,17 @@ span.word {
   font-size: 3em;
 }
 
-span.guesses {
+span.w-guesses {
 	color: #ff2600;
 	font-weight: bold;
 	letter-spacing: 4px;
 	text-transform: uppercase;
 	padding-left: 1em;
+}
+
+span.guesses {
+  visibility: hidden;
+  display: none;
 }
 
 span.lose {
@@ -179,4 +197,9 @@ span.error {
 span.win {
   color: #1abb9c;
   font-weight: bold;
+}
+
+#frm-guess div.submit {
+  display: none;
+  visibility: hidden;
 }

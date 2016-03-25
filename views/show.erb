@@ -6,19 +6,54 @@
   </p>
 <% end %>
 
-<p>
+<div id="div-guesses">
   Wrong Guesses:
-  <span class="guesses"><%= @game.wrong_guesses %></span>
-</p>
+  <span class="w-guesses"><%= @game.wrong_guesses %></span>
+  <span class="guesses"><%= @game.guesses %></span>
+</div>
 
-<p>
-  Word so far:
+<div id="div-word">
   <span class="word"><%= @game.word_with_guesses %></span>
-</p>
+</div>
 
-<form action="/guess" method="post">
-  <input type="text" size="1" name="guess" autocomplete="off"/>
-  <input type="submit" value="Guess!"/>
+<form id="frm-guess" action="/guess" method="post">
+
+	<div id="keyboard">
+  	<ul class="cf">
+    	<li><a href="#" class="key" id="a"><span>a</span></a></li>
+    	<li><a href="#" class="key" id="b"><span>b</span></a></li>
+    	<li><a href="#" class="key" id="c"><span>c</span></a></li>
+    	<li><a href="#" class="key" id="d"><span>d</span></a></li>
+    	<li><a href="#" class="key" id="e"><span>e</span></a></li>
+    	<li><a href="#" class="key" id="f"><span>f</span></a></li>
+    	<li><a href="#" class="key" id="g"><span>g</span></a></li>
+    	<li><a href="#" class="key" id="h"><span>h</span></a></li>
+    	<li><a href="#" class="key" id="i"><span>i</span></a></li>
+    	<li><a href="#" class="key" id="j"><span>j</span></a></li>
+    	<li><a href="#" class="key" id="k"><span>k</span></a></li>
+    	<li><a href="#" class="key" id="l"><span>l</span></a></li>
+    	<li><a href="#" class="key" id="m"><span>m</span></a></li>
+    </ul>
+    <ul class="cf">
+    	<li><a href="#" class="key" id="n"><span>n</span></a></li>
+    	<li><a href="#" class="key" id="o"><span>o</span></a></li>
+    	<li><a href="#" class="key" id="p"><span>p</span></a></li>
+    	<li><a href="#" class="key" id="q"><span>q</span></a></li>
+    	<li><a href="#" class="key" id="r"><span>r</span></a></li>
+    	<li><a href="#" class="key" id="s"><span>s</span></a></li>
+    	<li><a href="#" class="key" id="t"><span>t</span></a></li>
+    	<li><a href="#" class="key" id="u"><span>u</span></a></li>
+    	<li><a href="#" class="key" id="v"><span>v</span></a></li>
+    	<li><a href="#" class="key" id="w"><span>w</span></a></li>
+    	<li><a href="#" class="key" id="x"><span>x</span></a></li>
+    	<li><a href="#" class="key" id="y"><span>y</span></a></li>
+    	<li><a href="#" class="key" id="z"><span>z</span></a></li>    	
+    </ul>
+  </div>
+    
+  <div class="btn-group submit">
+    <input type="text" size="1" maxlength="1" name="guess" id="guess" autocomplete="off"/>
+  </div>
 </form>
 
 <%= erb :new %>

@@ -7,12 +7,12 @@ class HangpersonApp < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
   
-  before do
-    @game = session[:game] || HangpersonGame.new('')
-  end
-  
   after do
-    session[:game] = @game
+    if @game != nil
+      session[:word] = @game.word
+      session[:guesses] = @game.guesses
+      session[:wrong_guesses] = @game.wrong_guesses
+    end
   end
   
   # These two routes are good examples of Sinatra syntax
@@ -29,17 +29,32 @@ class HangpersonApp < Sinatra::Base
     # NOTE: don't change next line - it's needed by autograder!
     word = params[:word] || HangpersonGame.get_random_word
     # NOTE: don't change previous line - it's needed by autograder!
-
+    
     @game = HangpersonGame.new(word)
+
     redirect '/show'
   end
-  
+
   # Use existing methods in HangpersonGame to process a guess.
   # If a guess is repeated, set flash[:message] to "You have already used that letter."
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
+    retrieve_game_instance
+    
     letter = params[:guess].to_s[0]
-    ### YOUR CODE HERE ###
+    if letter.nil? or letter == "" or letter =~ /[^a-z]/i 
+      begin
+        guessed = @game.guess(letter)
+        rescue ArgumentError
+          flash[:message] = "Invalid guess." 
+      end
+    end
+    if letter =~ /[a-z]/i
+      guessed = @game.guess(letter)
+      if !guessed
+        flash[:message] = "You have already used that letter."
+      end
+    end  
     redirect '/show'
   end
   
@@ -49,18 +64,53 @@ class HangpersonApp < Sinatra::Base
   # Notice that the show.erb template expects to use the instance variables
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
-    ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+    retrieve_game_instance
+    
+    state = @game.check_win_or_lose
+    case state
+    when :lose
+      redirect '/lose'
+    when :win
+      redirect '/win'
+    else
+      erb :show #default :play
+    end
   end
   
   get '/win' do
-    ### YOUR CODE HERE ###
-    erb :win # You may change/remove this line
+    retrieve_game_instance
+    state = @game.check_win_or_lose
+    case state
+    when :win
+      erb :win
+    else
+      redirect '/show'
+    end  
   end
   
   get '/lose' do
-    ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    retrieve_game_instance
+    state = @game.check_win_or_lose
+    case state
+    when :lose
+      erb :lose
+    else
+      redirect '/show'
+    end
+  end
+
+  def word_with_guesses(word, guesses)
+    @game = HangpersonGame.new(word)
+    @game.guesses = guesses
+    
+    return @game.word_with_guesses
+  end
+
+  def retrieve_game_instance
+    word = session[:word].to_s
+    @game = HangpersonGame.new(word)
+    @game.guesses = session[:guesses].to_s
+    @game.wrong_guesses = session[:wrong_guesses].to_s
   end
   
 end

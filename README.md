@@ -7,6 +7,25 @@ Hangperson: a scaffolded (!) ESaaS getting-started assignment
 In this assignment you'll be introduced to part of the basic cycle of creating SaaS in
 a disciplined way.
 
+Learning Goals
+--------------
+After completing this assignment, you will be able to:
+* Create and deploy simple SaaS apps in your development environment, and deploy them to the public cloud
+* Practice the basic workflow of test-driven development (TDD), in which tests are written before the code (so they fail when first run) and code is then added to make them pass
+* Understand how SaaS frameworks such as Sinatra support the conceptual components of a three-tier SaaS application architecture
+* Understand the challenges of adapting a non-SaaS application to a SaaS environment, including how to identify and manage application state
+* Understand one use case of service-oriented architecture, in which your SaaS app relies on an external service's API (application programming interface) to provide part of the SaaS app's functionality.
+
+Prerequisites
+-------------
+* You should be familiar with Ruby basics, for example by completing the Ruby Intro or Ruby Calisthenics assignment.
+* You should have read [ESaaS](http://www.saasbook.info) Chapter 2, "The Architecture of SaaS Applications", and watched the accompanying videos in the [MOOC](http://www.saas-class.org).
+* You should be comfortable with basic Git usage and how to push your code to GitHub, as described in
+Appendix A of [ESaaS](http://www.saasbook.info).
+* You will need "survival level" Unix command-line skills and facility with an editor to edit code files, such as the built-in editor in the Cloud9 IDE.
+
+Introduction
+------------
 The full Agile/XP cycle we follow in ESaaS includes talking to the
 customer, using BDD to develop scenarios, turning those scenarios into
 runnable integration/acceptance tests with Cucumber, using those
@@ -38,20 +57,6 @@ rather than Rails, so
 that you can focus on tools, mechanics, and SaaS concepts, all of which
 will readily map to Rails later.  Since our app doesn't have a database
 and has very few functions, Sinatra is an easy way to get started.
-
-Prerequisites
--------------
-
-You will need to be comfortable with the following concepts and skills:
-
-* Basic Git usage and how to push your code to GitHub, as described in
-Appendix A of *Engineering Software as a Service*.
- 
-* "Survival level" Unix command-line skills and facility with an editor
-to edit code files.
-
-* Basic concepts behind SaaS application architecture, as described in
-Chapter 2 of *Engineering Software as a Service*.
 
 Part 0: Demystifying SaaS app creation
 ==============================

@@ -52,7 +52,7 @@ assignment we provide both the scenarios and step definitions for you.
 You'll deploy your game to the cloud using Heroku, giving you experience
 in automating SaaS deployment.
 
-**Why Sinatra?** This assignment uses the simple Sinatra framework
+**Why Sinatra?** This assignment uses the simple https://github.com/sinatra/sinatra[Sinatra](https://github.com/sinatra/sinatra) framework
 rather than Rails, so 
 that you can focus on tools, mechanics, and SaaS concepts, all of which
 will readily map to Rails later.  Since our app doesn't have a database
@@ -102,7 +102,7 @@ anywhere it goes:
 
 ```
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.3.0'
 
 gem 'sinatra', '>= 1.4'
 ```
@@ -137,10 +137,10 @@ git add -A
 git commit -am "Set up the Gemfile"
 
 ```
+
 The first command stages all changed files for committing.
 The second command commits the staged files with the comment in the quotes.
 You can repeat these commands to commit future changes. Remember that these are LOCAL commits -- if you want these changes on GitHub, you'll need to do a git push command, which we will show later.
-
 
 * What's the difference between the purpose and contents of `Gemfile`
 and `Gemfile.lock`?  Which file is needed to completely reproduce the
@@ -284,7 +284,7 @@ end
 
 Any gem specifications inside the `group :development` block will only be examined if bundle is run in the development environment. (The other environments you can specify are :test and :production, and you can define new environments yourself.) Gem specifications outside of any group block are assumed to apply in all environments.
 
-Say `rerun "rackup -p $PORT -o $IP"` in the terminal window to start
+Say `rerun -- rackup -p $PORT -o $IP` in the terminal window to start
 your app and verify the app is running. Note that you need to put
 everything except `rerun` in quotes in order to make the command
 unambiguous in Cloud9. Now any detected changes will cause the server to

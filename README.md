@@ -340,9 +340,9 @@ the file that starts up the app.
 
 Part 1: Hangperson
 ===========================================================================
-With all this machinery in mind, fork this repo into your GitHub account, clone it into Cloud9, and let's work on Hangperson.
+With all this machinery in mind, clone this repo into Cloud9, and let's work on Hangperson.
 
-`git clone <insert the clone url from your github fork of this repo here>`
+`git clone https://github.com/saasbook/hw-sinatra-saas-hangperson`
 
 Developing Hangperson Using TDD and Guard
 -----------------------------------------

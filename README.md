@@ -797,7 +797,7 @@ messages in the `session[]` hash?
 Running the Sinatra app
 -----------------------
 
-As before, run the shell command `rackup -p $PORT -o $IP` to start the app, or `rerun "rackup -p $PORT -o $IP"` if you want to rerun the app each time you make a code change.  
+As before, run the shell command `rackup -p $PORT -o $IP` to start the app, or `rerun -- rackup -p $PORT -o $IP` if you want to rerun the app each time you make a code change.  
 
 * Self-check: based on the output from running this command, what is the
 full URL you need to visit in order to visit the New Game page?

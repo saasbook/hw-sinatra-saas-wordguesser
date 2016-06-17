@@ -82,7 +82,7 @@ The first command stages all changed files for committing.
 The second command commits the staged files with the comment in the quotes.
 You can repeat these commands to commit future changes. Remember that these are LOCAL commits -- if you want these changes on GitHub, you'll need to do a git push command, which we will show later.
 
-#### Self Check Questions
+#### Self Check Questions (click triangle to check your answer)
 
 <details>
   <summary>What's the difference between the purpose and contents of `Gemfile`
@@ -146,7 +146,7 @@ The `get` method is provided by the `Sinatra::Base` class, from which
 our `MyApp` class inherits; `Sinatra::Base` is available because we load
 the Sinatra library  in line 1.
 
-#### Self Check Questions
+#### Self Check Question
 
 <details>
   <summary>What *two* steps did we take earlier to guarantee that the
@@ -189,7 +189,7 @@ information there.  If you're using Cloud9, you will see a small popup in the te
 
 Point a new Web browser tab at the running app's URL and verify that you can see "Hello World".
 
-#### Self Check Questions
+#### Self Check Question
 
 <details>
   <summary>What happens if you try to visit a non-root URL such as

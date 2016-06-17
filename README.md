@@ -58,6 +58,9 @@ that you can focus on tools, mechanics, and SaaS concepts, all of which
 will readily map to Rails later.  Since our app doesn't have a database
 and has very few functions, Sinatra is an easy way to get started.
 
+Contents
+---------
+
 * Part 0: [Demystifying SaaS app creation](docs/part_0_create_saas_app.md)
 * Part 1: [Hangperson](docs/part_1_hangperson.md)
 * Part 2: [RESTful thinking for HangPerson](docs/part_2_restful_thinking.md)

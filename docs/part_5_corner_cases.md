@@ -30,4 +30,4 @@ shorthand way to run all of them is `cucumber features/` which runs all
 
 -----
 
-Next: [Submission](../README.md)
+Next: [Conclusion](part_6_conclusion.md)

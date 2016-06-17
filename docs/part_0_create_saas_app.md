@@ -96,18 +96,6 @@ reproduce the gems available in the development environment.</blockquote></p>
 </details>
 
 <details>
-  <summary>What's the difference between the purpose and contents of `Gemfile`
-and `Gemfile.lock`?  Which file is needed to completely reproduce the
-development environment's gems in the production environment?</summary>
-  <p><blockquote>`Gemfile` specifies the gems you need and
-in some cases the constraints on which version(s) are acceptable.
-`Gemfile.lock` records the *actual* versions found, not only of the gems
-you specified explicitly but also any other gems on which they
-depend, so it is the file used by the production environment to
-reproduce the gems available in the development environment.</blockquote></p>
-</details>
-
-<details>
   <summary>After running `bundle`, why are there gems listed in `Gemfile.lock`
 that were not listed in `Gemfile`?</summary>
   <p><blockquote>Bundler looked up the information for each Gem you requested (in this

@@ -146,6 +146,8 @@ The `get` method is provided by the `Sinatra::Base` class, from which
 our `MyApp` class inherits; `Sinatra::Base` is available because we load
 the Sinatra library  in line 1.
 
+#### Self Check Questions
+
 <details>
   <summary>What *two* steps did we take earlier to guarantee that the
 Sinatra library is available to load in line 1?</summary>
@@ -185,16 +187,18 @@ This command starts the Rack appserver and the WEBrick webserver.  Rack
 will look for `config.ru` and attempt to start our app based on the
 information there.  If you're using Cloud9, you will see a small popup in the terminal with a URL to your running webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
 
-
 Point a new Web browser tab at the running app's URL and verify that you can see "Hello World".
 
-* What happens if you try to visit a non-root URL such as
-`https://workspace-username.c9.io/hello` and why? (your URL root will vary)
+#### Self Check Questions
 
-> You'll get a humorous error message from the Sinatra framework, since
-> you don't have a route matching `get '/hello'` in your app.  Since
-> Sinatra is a SaaS framework, the error message is packaged up in a Web
-> page and delivered to your browser.
+<details>
+  <summary>What happens if you try to visit a non-root URL such as
+`https://workspace-username.c9.io/hello` and why? (your URL root will vary)</summary>
+  <p><blockquote> You'll get a humorous error message from the Sinatra framework, since
+you don't have a route matching `get '/hello'` in your app.  Since
+Sinatra is a SaaS framework, the error message is packaged up in a Web
+page and delivered to your browser.</blockquote></p>
+</details>
 
 You should now have the following files under version control:
 `Gemfile`, `Gemfile.lock`, `app.rb`, `config.ru`.  This is a minimal

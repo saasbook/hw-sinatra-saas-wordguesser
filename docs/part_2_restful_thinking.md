@@ -41,25 +41,31 @@ pointer to state that lives in a database.  But for this simple example,
 the game state is small enough that we can keep it directly in the
 session cookie.
 
-* Enumerate the minimal game state that must be maintained
-during a game of Hangperson.
+#### Self Check Question
 
-> The secret word; the list of letters that have been guessed correctly;
-> the list of letters that have been guessed incorrectly.  Conveniently,
-> the well-factored HangpersonGame class encapsulates this state using
-> its instance variables, as proper object-oriented design recommends.
+<details>
+  <summary>Enumerate the minimal game state that must be maintained
+during a game of Hangperson.</summary>
+  <p><blockquote>The secret word; the list of letters that have been guessed correctly;
+the list of letters that have been guessed incorrectly.  Conveniently,
+the well-factored HangpersonGame class encapsulates this state using
+its instance variables, as proper object-oriented design recommends.</blockquote></p>
+</details>
 
 The game as a RESTful resource
 ------------------------------
 
-* Enumerate the player actions that could cause changes
-in game state.
+#### Self Check Question
 
-> Guess a letter: possibly modifies the lists of correct or incorrect
-> guesses; possibly results in winning or losing the game.
->
-> Start new game: chooses a new word and sets the incorrect and correct
-> guess lists to empty.
+<details>
+  <summary>Enumerate the player actions that could cause changes
+in game state.</summary>
+  <p><blockquote>Guess a letter: possibly modifies the lists of correct or incorrect
+guesses; possibly results in winning or losing the game.
+<br/><br/>
+Start new game: chooses a new word and sets the incorrect and correct
+guess lists to empty.</blockquote></p>
+</details>
 
 In a service-oriented architecture, we do not expose
 internal state directly; instead we expose a set of HTTP requests that
@@ -86,16 +92,19 @@ where we've also given a suggestive name to each action:
 0. `show`: Show the status of the current game
 0. `guess`: Guess a letter
 
-* Self-check: for a good RESTful design, which of the resource operations
-should be handled by HTTP GET and which ones should be handled by HTTP
-POST?
+#### Self Check Question
 
-> Operations handled with `GET` should not have side effects on the
-> resource, so `show` can be handled by a `GET`, but `create` and `guess`
-> (which modify game state) should use `POST`.  (In fact,
-> in a true service-oriented architecture we can also choose to use other
-> HTTP verbs like `PUT` and `DELETE`, but we won't cover that in this
-> assignment.)
+<details>
+  <summary>For a good RESTful design, which of the resource operations
+should be handled by HTTP GET and which ones should be handled by HTTP
+POST?</summary>
+  <p><blockquote>Operations handled with `GET` should not have side effects on the
+resource, so `show` can be handled by a `GET`, but `create` and `guess`
+(which modify game state) should use `POST`.  (In fact,
+in a true service-oriented architecture we can also choose to use other
+HTTP verbs like `PUT` and `DELETE`, but we won't cover that in this
+assignment.)</blockquote></p>
+</details>
 
 HTTP is a request-reply protocol and the Web browser is
 fundamentally a request-reply user interface, so each action by the user
@@ -186,19 +195,23 @@ create or update a player record, we will have to provide `new` and
 `edit` actions respectively that allow the user to enter the information
 on an HTML form.
 
-* Self-check: why is it appropriate for the `new` action to use
-`GET` rather than `POST`?  
+#### Self Check Questions
 
-> The `new` action doesn't by itself cause any state change: it just
-> returns a form that the player can submit.
+<details>
+  <summary>Why is it appropriate for the `new` action to use
+`GET` rather than `POST`?</summary>
+  <p><blockquote>The `new` action doesn't by itself cause any state change: it just
+returns a form that the player can submit.</blockquote></p>
+</details>
 
-* Self-check: explain why the `GET /new` action wouldn't be needed if
+<details>
+  <summary>Explain why the `GET /new` action wouldn't be needed if
 your Hangperson game was called as a service in a true service-oriented
-architecture. 
-
-> In a true SOA, the service that calls Hangperson can generate an HTTP
-> `POST` request directly.  The only reason for the `new` action is to
-> provide the human Web user a way to generate that request.
+architecture. </summary>
+  <p><blockquote>In a true SOA, the service that calls Hangperson can generate an HTTP
+`POST` request directly.  The only reason for the `new` action is to
+provide the human Web user a way to generate that request.</blockquote></p>
+</details>
 
 Lastly, when the game is over (whether win or lose), we shouldn't be
 accepting any more guesses.  Since we're planning for our `show` page to
@@ -210,9 +223,8 @@ and losing, both of which give the player the chance to start a new
 game.  Since the `show` action can certainly tell if the game is over,
 it can conditionally redirect to the `win` or `lose` action when called.
 
-* Self-check(*): show the route for each of the RESTful actions in the
-game, based on the description of what the route should do; we've
-provided the first one.
+The routes for each of the RESTful actions in the
+game, based on the description of what the route should do:
 
 <table>
 <tr>

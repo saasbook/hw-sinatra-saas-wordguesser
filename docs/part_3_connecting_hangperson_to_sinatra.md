@@ -106,3 +106,6 @@ Let's get our app onto Heroku.
 * Verify that the Heroku-deployed Hangperson behaves the same as your development version before continuing. A few lines up from the bottom of the Heroku output in the Cloud9 terminal should have a URL ending in herokuapp.com. Find that, copy it to the clipboard, and paste it into a new browser tab to see the current app. The Cloud9 IDE browser tab won't render the app properly, so use a new browser tab outside of Cloud9.
 * Verify the broken functionality by clicking the new game button.
 
+-----
+
+Next: [Part 4 - Cucumber](part_4_cucumber.md)

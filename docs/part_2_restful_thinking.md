@@ -264,3 +264,7 @@ simple enough framework that we can use it to implement MVC in this
 app since we have only one model.  As we'll see later, more powerful
 MVC-focused frameworks like Rails are much more productive for creating
 apps that have many types of models.
+
+-----
+
+Next: [Part 3 - Connecting Hangperson to Sinatra](part_3_connecting_hangperson_to_sinatra.md)

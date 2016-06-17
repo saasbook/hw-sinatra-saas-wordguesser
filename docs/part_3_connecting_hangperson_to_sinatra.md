@@ -17,15 +17,18 @@ inside, and substitutes the result.  The code is executed in the same
 context as the call to `erb`, so the code can "see" any instance
 variables set up in the `get` or `post` blocks.
 
-* Self-check: `@game` in this context is an instance variable of what
-class?  (Careful-- tricky!)
+#### Self Check Question
 
-> It's an instance variable of the `HangpersonApp` class in the app.rb file.  Remember we are dealing
-> with two Ruby classes here: the `HangpersonGame` class encapsulates
-> the game logic itself (that is, the Model in model-view-controller),
-> whereas `HangpersonApp` encapsulates the logic that lets us deliver
-> the game as SaaS (you can roughly think of it as the Controller logic
-> plus the ability to render the views via `erb`).
+<details>
+  <summary>`@game` in this context is an instance variable of what
+class?  (Careful-- tricky!)</summary>
+  <p><blockquote>It's an instance variable of the `HangpersonApp` class in the app.rb file.  Remember we are dealing
+with two Ruby classes here: the `HangpersonGame` class encapsulates
+the game logic itself (that is, the Model in model-view-controller),
+whereas `HangpersonApp` encapsulates the logic that lets us deliver
+the game as SaaS (you can roughly think of it as the Controller logic
+plus the ability to render the views via `erb`).</blockquote></p>
+</details>
 
 The Session
 -----------
@@ -63,32 +66,41 @@ Gemfile.  `flash[]` is a hash for remembering short messages that
 persist until the *very next* request (usually a redirect), and are then
 erased. 
 
-* Self-check: Why does this save work compared to just storing those
-messages in the `session[]` hash?
+#### Self Check Question
 
-> When we put something in `session[]` it stays there until we delete
-> it.  The common case for a message that must survive a redirect is
-> that it should only be shown once; `flash[]` includes the extra
-> functionality of erasing the messages after the next request.
+<details>
+  <summary>Why does this save work compared to just storing those
+messages in the `session[]` hash?</summary>
+  <p><blockquote>When we put something in `session[]` it stays there until we delete
+it.  The common case for a message that must survive a redirect is
+that it should only be shown once; `flash[]` includes the extra
+functionality of erasing the messages after the next request.</blockquote></p>
+</details>
 
 Running the Sinatra app
 -----------------------
 
 As before, run the shell command `rackup -p $PORT -o $IP` to start the app, or `rerun -- rackup -p $PORT -o $IP` if you want to rerun the app each time you make a code change.  
 
-* Self-check: based on the output from running this command, what is the
-full URL you need to visit in order to visit the New Game page?
+#### Self Check Question
 
-> The web server connected to Sinatra is running on Cloud9, so the first part of the URL is something like `http://your-workspace-name.c9.io`.
-> The Ruby code `get '/new' do...` in `app.rb` renders the New Game
-> page, so the full URL is in the form `http://your-workspace-name.c9.io/new`.
+<details>
+  <summary>Based on the output from running this command, what is the
+full URL you need to visit in order to visit the New Game page?</summary>
+  <p><blockquote>The web server connected to Sinatra is running on Cloud9, so the first part of the URL is something like `http://your-workspace-name.c9.io`.
+The Ruby code `get '/new' do...` in `app.rb` renders the New Game
+page, so the full URL is in the form `http://your-workspace-name.c9.io/new`.</blockquote></p>
+</details>
 
 Visit this URL and verify that the Start New Game page appears. 
 
-* Self-check: where is the HTML code for this page?
+#### Self Check Question
 
-> It's in `views/new.erb`, which is processed into HTML by the `erb
-> :new` directive.
+<details>
+  <summary>Where is the HTML code for this page?</summary>
+  <p><blockquote>It's in `views/new.erb`, which is processed into HTML by the `erb
+:new` directive.</blockquote></p>
+</details>
 
 Verify that when you click the New Game button, you get an error.  This
 is because we've deliberately left the `<form>` that encloses this

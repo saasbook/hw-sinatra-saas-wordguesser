@@ -188,3 +188,7 @@ step definition will cause the step to open a Web browser window showing
 what the page looks like at that point in the scenario.  The
 functionality is provided in part by a gem called `launchy` which is in
 the Gemfile.
+
+-----
+
+Next: [Part 5 - Corner Cases](part_5_corner_cases.md)

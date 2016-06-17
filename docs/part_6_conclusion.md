@@ -36,4 +36,4 @@ problems.
 
 -----
 
-Next: [Conclusion](part_6_conclusion.md)  
+Next: [Optional Challenge Assignment](part_7_optional_challenge.md)  

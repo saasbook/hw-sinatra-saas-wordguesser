@@ -82,6 +82,7 @@ The first command stages all changed files for committing.
 The second command commits the staged files with the comment in the quotes.
 You can repeat these commands to commit future changes. Remember that these are LOCAL commits -- if you want these changes on GitHub, you'll need to do a git push command, which we will show later.
 
+#### Self Check Questions
 
 <details>
   <summary>What's the difference between the purpose and contents of `Gemfile`

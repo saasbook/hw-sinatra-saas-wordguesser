@@ -28,6 +28,10 @@ simply visiting `GET /win`.  Consider how to modify the actions for `win`, `lose
 shorthand way to run all of them is `cucumber features/` which runs all
 `.feature` files in the given directory.
 
+Submission Instructions
+-----------------------
+When all scenarios are passing, deploy to Heroku and submit the URL of your deployed game.
+
 -----
 
 Next: [Conclusion](part_6_conclusion.md)

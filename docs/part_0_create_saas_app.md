@@ -82,29 +82,45 @@ The first command stages all changed files for committing.
 The second command commits the staged files with the comment in the quotes.
 You can repeat these commands to commit future changes. Remember that these are LOCAL commits -- if you want these changes on GitHub, you'll need to do a git push command, which we will show later.
 
-* What's the difference between the purpose and contents of `Gemfile`
+
+<details>
+  <summary>What's the difference between the purpose and contents of `Gemfile`
 and `Gemfile.lock`?  Which file is needed to completely reproduce the
-development environment's gems in the production environment?
+development environment's gems in the production environment?</summary>
+  <p><blockquote>`Gemfile` specifies the gems you need and
+in some cases the constraints on which version(s) are acceptable.
+`Gemfile.lock` records the *actual* versions found, not only of the gems
+you specified explicitly but also any other gems on which they
+depend, so it is the file used by the production environment to
+reproduce the gems available in the development environment.</blockquote></p>
+</details>
 
-> `Gemfile` specifies the gems you need and
-> in some cases the constraints on which version(s) are acceptable.
-> `Gemfile.lock` records the *actual* versions found, not only of the gems
->  you specified explicitly but also any other gems on which they
->  depend, so it is the file used by the production environment to
->  reproduce the gems available in the development environment.
+<details>
+  <summary>What's the difference between the purpose and contents of `Gemfile`
+and `Gemfile.lock`?  Which file is needed to completely reproduce the
+development environment's gems in the production environment?</summary>
+  <p><blockquote>`Gemfile` specifies the gems you need and
+in some cases the constraints on which version(s) are acceptable.
+`Gemfile.lock` records the *actual* versions found, not only of the gems
+you specified explicitly but also any other gems on which they
+depend, so it is the file used by the production environment to
+reproduce the gems available in the development environment.</blockquote></p>
+</details>
 
-* After running `bundle`, why are there gems listed in `Gemfile.lock`
-that were not listed in `Gemfile`?
+<details>
+  <summary>After running `bundle`, why are there gems listed in `Gemfile.lock`
+that were not listed in `Gemfile`?</summary>
+  <p><blockquote>Bundler looked up the information for each Gem you requested (in this
+case, only `sinatra`) and realized that it depends on other gems,
+which in turn depend on still others, so it recursively installed all
+those dependencies.  For example, the `rack` appserver is a gem, and
+while you didn't explicitly request it, `sinatra` depends on it.  This
+is an example of the power of automation: rather than requiring you
+(the app developer) to understand every Gem dependency, Bundler
+automates that process and lets you focus only on your app's top-level
+dependencies.</blockquote></p>
+</details>
 
-> Bundler looked up the information for each Gem you requested (in this
-> case, only `sinatra`) and realized that it depends on other gems,
-> which in turn depend on still others, so it recursively installed all
-> those dependencies.  For example, the `rack` appserver is a gem, and
-> while you didn't explicitly request it, `sinatra` depends on it.  This
-> is an example of the power of automation: rather than requiring you
-> (the app developer) to understand every Gem dependency, Bundler
-> automates that process and lets you focus only on your app's top-level
-> dependencies.
 
 Create a simple SaaS app with Sinatra
 -------------------------------------
@@ -141,12 +157,11 @@ The `get` method is provided by the `Sinatra::Base` class, from which
 our `MyApp` class inherits; `Sinatra::Base` is available because we load
 the Sinatra library  in line 1.
 
-* What *two* steps did we take earlier to guarantee that the
-Sinatra library is available to load in line 1?
-
-> We specified  `gem 'sinatra'`  in the `Gemfile` *and* successfully ran
-> `bundle` to confirm that the gem is installed and "lock" the correct
-> version of it in `Gemfile.lock`.
+<details>
+  <summary>What *two* steps did we take earlier to guarantee that the
+Sinatra library is available to load in line 1?</summary>
+  <p><blockquote> We specified  `gem 'sinatra'`  in the `Gemfile` *and* successfully ran `bundle` to confirm that the gem is installed and "lock" the correct version of it in `Gemfile.lock`.</blockquote></p>
+</details>
 
 As you see from the above simple example, Sinatra lets you write
 functions that match an incoming HTTP route, in this case `GET '/'`
@@ -277,4 +292,6 @@ the file that starts up the app.
 
 * You deployed this simple app to Heroku.
 
-[Next: Part 1 - Hangperson](part_1_hangperson.md)
+-----
+
+Next: [Part 1 - Hangperson](part_1_hangperson.md)

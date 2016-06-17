@@ -115,3 +115,8 @@ no form fields are needed.)
 Using `curl` is a great way to debug interactions with
 external services.  `man curl` for (much) more detail on this powerful
 command-line tool.
+
+
+-----
+
+Next: [Part 2 - RESTful Thinking](part_2_restful_thinking.md)

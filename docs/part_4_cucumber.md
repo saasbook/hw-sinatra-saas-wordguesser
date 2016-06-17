@@ -44,31 +44,36 @@ Ruby-based browser simulator that includes a domain-specific language
 for simulating browser actions and inspecting the SaaS server's
 responses to those actions.
 
-* Self-check: read the section on "Using Capybara with Cucumber" on
+#### Self Check Questions
+
+<details>
+  <summary>Read the section on "Using Capybara with Cucumber" on
 Capybara's home page.  Which step definitions use Capybara to simulate
 the server as a browser would?  Which step definitions use Capybara to
-inspect the app's response to the stimulus?
+inspect the app's response to the stimulus?</summary>
+  <p><blockquote>Step definitions that use `visit`, `click_button`, `fill_in` are
+simulating a browser by visiting a page and/or filling in a form on
+that page and clicking its buttons.  Those that use `have_content` are
+inspecting the output.</blockquote></p>
+</details>
 
-> Step definitions that use `visit`, `click_button`, `fill_in` are
-> simulating a browser by visiting a page and/or filling in a form on
-> that page and clicking its buttons.  Those that use `have_content` are
-> inspecting the output.
+<details>
+  <summary>Looking at `features/guess.feature`, what is the
+role of the three lines following the "Feature:" heading?</summary>
+  <p><blockquote>They are comments showing the purpose and actors of this story.
+Cucumber won't execute them.</blockquote></p>
+</details>
 
-* Self-check: Looking at `features/guess.feature`, what is the
-role of the three lines following the "Feature:" heading?
-
-> They are comments showing the purpose and actors of this story.
-> Cucumber won't execute them.
-
-* Self-check: In the same file, looking at the scenario step `Given I
+<details>
+  <summary>In the same file, looking at the scenario step `Given I
 start a new game with word "garply"`, what lines in `game_steps.rb` will
 be invoked when Cucumber tries to execute this step, and what is the
-role of the string `"garply"` in the step?
-
-> Lines 13-16 of the file will execute.  Since a step is chosen by
-> matching a regular expression, `word` will match the first (and in
-> this case only) parenthesis capture group in the regexp, which in this
-> example is `garply`.
+role of the string `"garply"` in the step?</summary>
+  <p><blockquote>Lines 13-16 of the file will execute.  Since a step is chosen by
+matching a regular expression, `word` will match the first (and in
+this case only) parenthesis capture group in the regexp, which in this
+example is `garply`.</blockquote></p>
+</details>
 
 ## Get your first scenario to pass
 
@@ -81,15 +86,18 @@ You already saw that you can load the new game page, but get an error
 when clicking the button for actually creating a new game.  You'll now
 reproduce this behavior with a Cuke scenario.
 
-* Self-check: When the "browser simulator" in Capybara issues the `visit
+#### Self Check Question
+
+<details>
+  <summary>When the "browser simulator" in Capybara issues the `visit
 '/new'` request, Capybara will do an HTTP GET to the partial URL `/new` on the
 app.  Why do you think `visit` always does a GET, rather than giving the
-option to do either a GET or a POST in a given step?
-
-> Cucumber/Capybara is only supposed to be able to do what a human user
-> can do.  As we discussed earlier, the only way a human user can cause
-> a POST to happen via a web browser is submitting an HTML form, which
-> is accomplished by `click_button` in Capybara.
+option to do either a GET or a POST in a given step?</summary>
+  <p><blockquote>Cucumber/Capybara is only supposed to be able to do what a human user
+can do.  As we discussed earlier, the only way a human user can cause
+a POST to happen via a web browser is submitting an HTML form, which
+is accomplished by `click_button` in Capybara.</blockquote></p>
+</details>
 
 Run the "new game" scenario with:
 
@@ -118,15 +126,16 @@ View how these steps are actualized in the app.rb file under the `post /create d
 
 At that point, stage and commit all files locally on Cloud9, then `git push heroku master` to deploy to Heroku again and manually verify this improved behavior.
 
-* Self-check: What is the significance of using `Given` vs. `When`
+#### Self Check Question
+
+<details>
+  <summary>What is the significance of using `Given` vs. `When`
 vs. `Then` in the feature file?  What happens if you switch them around?
 Conduct a simple experiment to find out, then confirm your results by
-using the Google.
-
-> The keywords are all aliases for the same method.  Which one you use
-> is determined by what makes the scenario most readable.
-
-
+using the Google.</summary>
+  <p><blockquote>The keywords are all aliases for the same method.  Which one you use
+is determined by what makes the scenario most readable.</blockquote></p>
+</details>
 
 Develop the scenario for guessing a letter
 -------------------------------------------
@@ -137,18 +146,21 @@ correct
 action.  You already have a `HangpersonGame#guess` instance method that
 has the needed functionality.  
 
-* Self-check: In `game_steps.rb`, look at the code for "I start a new
+#### Self Check Question
+
+<details>
+  <summary>In `game_steps.rb`, look at the code for "I start a new
 game..." step, and in particular the `stub_request` command.  Given the
 hint that that command is provided by a Gem (library) called `webmock`,
 what's going on with that line, and why is it needed?  (Use the Google
-if needed.)
-
-> Webmock lets our tests "intercept" HTTP requests coming **from** our
-> app and directed to another service.  In this case, it's intercepting
-> the POST request (the same one you manually did with `curl` in an
-> earlier part of the assignment) and faking the reply value.  This lets
-> us enforce deterministic behavior of our tests, and also means we're
-> not hitting the real external server each time our test runs.
+if needed.)</summary>
+  <p><blockquote>Webmock lets our tests "intercept" HTTP requests coming **from** our
+app and directed to another service.  In this case, it's intercepting
+the POST request (the same one you manually did with `curl` in an
+earlier part of the assignment) and faking the reply value.  This lets
+us enforce deterministic behavior of our tests, and also means we're
+not hitting the real external server each time our test runs.</blockquote></p>
+</details>
 
 The special Sinatra hash `params[]` has a key-value pair for each
 nonblank field on a submitted form: the key is the symbolized `name`
@@ -158,18 +170,21 @@ browser-specified values indicating if it's checked or unchecked.
 ("Symbolized" means the string is converted to a symbol, so `"foo"`
 becomes `:foo`.)
 
-* Self-check: In your Sinatra code for processing a guess, what
+#### Self Check Question
+
+<details>
+  <summary>In your Sinatra code for processing a guess, what
 expression would should you use to extract *just the first character* of
 what the user typed in the letter-guess field of the form in `show.erb`?
 **CAUTION:** if the user typed nothing, there won't be any matching
 key in `params[]`, so dereferencing the form field will give `nil`.  In
 that case, your code should return the empty string rather than an
-error.
-
-> `params[:guess].to_s[0]` or its equivalent.  `to_s` converts `nil` to
-> the empty string in case the form field was left blank (and therefore
-> not included in `params` at all).   `[0]` grabs the first character
-> only; for an empty string, it returns an empty string.
+error.</summary>
+  <p><blockquote>`params[:guess].to_s[0]` or its equivalent.  `to_s` converts `nil` to
+the empty string in case the form field was left blank (and therefore
+not included in `params` at all).   `[0]` grabs the first character
+only; for an empty string, it returns an empty string.</blockquote></p>
+</details>
 
 In the `guess` code in the Sinatra app.rb file, you should:
 

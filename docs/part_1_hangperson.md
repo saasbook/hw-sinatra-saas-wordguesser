@@ -32,6 +32,9 @@ Our Web-based version of the popular game "hangman" works as follows:
 letters, they win; otherwise they lose.  (Guessing the same letter
 repeatedly is simply ignored.)
 
+* A letter that has already been guessed or is a non-alphabet character is considered 
+"invalid", i.e. it is not a "valid" guess
+
 To make the game fun to play, each time you start a new game the app
 will actually retrieve a random English word from a remote server, so
 every game will be different.  This feature will introduce you not only
@@ -65,19 +68,23 @@ the behavior of a 'new' HangpersonGame instance."  The `hangpersonGame` line
 causes a new instance to be created, and the next lines verify the
 presence and values of instance variables.
 
-* Self-check: According to our test cases, how many arguments does the
+#### Self Check Questions
+
+<details>
+  <summary>According to our test cases, how many arguments does the
 game class constructor expect, and therefore what will the first line of
 the method definition look like that you must add to
-`hangperson_game.rb`?
+`hangperson_game.rb`?</summary>
+  <p><blockquote>One argument (in this example, "glorp"), and since constructors in
+Ruby are always named `initialize`, the first line will be
+`def initialize(new_word)` or something similar.</blockquote></p>
+</details>
 
-> One argument (in this example, "glorp"), and since constructors in
-> Ruby are always named `initialize`, the first line will be
-> `def initialize(new_word)` or something similar.
-
-* Self-check: According to the tests in this `describe` block, what
-instance variables is a HangpersonGame expected to have?
-
-> @word, @guesses, and @wrong_guesses.
+<details>
+  <summary>According to the tests in this `describe` block, what
+instance variables is a HangpersonGame expected to have?</summary>
+  <p><blockquote>@word, @guesses, and @wrong_guesses.</blockquote></p>
+</details>
 
 You'll need to create getters and setters for these.  Hint: use `attr_accessor`.
 When you've done this successfully and saved `hangperson_game.rb`,

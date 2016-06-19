@@ -52,7 +52,7 @@ assignment we provide both the scenarios and step definitions for you.
 You'll deploy your game to the cloud using Heroku, giving you experience
 in automating SaaS deployment.
 
-**Why Sinatra?** This assignment uses the simple https://github.com/sinatra/sinatra[Sinatra](https://github.com/sinatra/sinatra) framework
+**Why Sinatra?** This assignment uses the simple [Sinatra](https://github.com/sinatra/sinatra) framework
 rather than Rails, so 
 that you can focus on tools, mechanics, and SaaS concepts, all of which
 will readily map to Rails later.  Since our app doesn't have a database

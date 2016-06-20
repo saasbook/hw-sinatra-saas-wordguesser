@@ -3,10 +3,10 @@ Part 1: Hangperson
 ===========================================================================
 With all this machinery in mind, clone this repo into Cloud9, and let's work on Hangperson.
 
-```
-git clone https://github.com/saasbook/hw-sinatra-saas-hangperson
-cd hw-sinatra-saas-hangperson
-bundle
+```sh
+$ git clone https://github.com/saasbook/hw-sinatra-saas-hangperson
+$ cd hw-sinatra-saas-hangperson
+$ bundle
 ```
 
 Developing Hangperson Using TDD and Guard
@@ -117,7 +117,9 @@ that does just that.  Use the following command to verify that the Web
 service actually works this way. Run it several times to verify that you
 get different words.
 
-`curl --data '' http://watchout4snakes.com/wo4snakes/Random/RandomWord`
+```
+$ curl --data '' http://watchout4snakes.com/wo4snakes/Random/RandomWord
+```
 
 (`--data` is necessary to force `curl`
 to do a POST rather than a GET.  Normally the

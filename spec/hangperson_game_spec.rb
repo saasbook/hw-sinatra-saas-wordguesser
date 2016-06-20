@@ -10,7 +10,7 @@ describe HangpersonGame do
   end
 
   describe 'new', :pending => true do
-    it "takes a parameter and returns a HangpersonGame object" do      
+    it "takes a parameter and returns a HangpersonGame object" do
       @hangpersonGame = HangpersonGame.new('glorp')
       expect(@hangpersonGame).to be_an_instance_of(HangpersonGame)
       expect(@hangpersonGame.word).to eq('glorp')
@@ -42,8 +42,8 @@ describe HangpersonGame do
         expect(@game.guesses).to eq('')
         expect(@game.wrong_guesses).to eq('z')
       end
-      it 'returns true', :pending => true do
-        expect(@valid).not_to be false
+      it 'returns false', :pending => true do
+        expect(@valid).not_to be true
       end
     end
     context 'same letter repeatedly' do
@@ -105,7 +105,7 @@ describe HangpersonGame do
   end
 
   describe 'game status' do
-    before :each do 
+    before :each do
       @game = HangpersonGame.new('dog')
     end
     it 'should be win when all letters guessed', :pending => true do

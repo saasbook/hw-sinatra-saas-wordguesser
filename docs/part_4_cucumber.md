@@ -101,11 +101,13 @@ is accomplished by `click_button` in Capybara.</blockquote></p>
 
 Run the "new game" scenario with:
 
-```bash
-cucumber features/start_new_game.feature
+```sh
+$ cucumber features/start_new_game.feature
 ```
+
 If you get an error about Cucumber like this one, just follow the advice and run `bundle install` first.
-```bash
+
+```sh
 ~/workspace/hw-sinatra-saas-hangperson (master) $ cucumber features/start_new_game.feature
 Could not find proper version of cucumber (2.0.0) in any of the sources
 Run `bundle install` to install missing gems.

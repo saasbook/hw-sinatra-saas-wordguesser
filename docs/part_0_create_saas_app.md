@@ -70,12 +70,11 @@ sure the correct gems (and, where specified, the correct versions) are
 available, and tries to install them otherwise.  This will create a new
 file `Gemfile.lock`, *which you should place under version control.*
 
-```
 To place under version control, use these commands:
 
-git add -A
-git commit -am "Set up the Gemfile"
-
+```sh
+$ git add -A
+$ git commit -am "Set up the Gemfile"
 ```
 
 The first command stages all changed files for committing.
@@ -179,8 +178,8 @@ gems.
 
 If you're using Cloud9, you're now ready to test-drive our simple app with this command line:
 
-```bash
-rackup -p $PORT -o $IP
+```sh
+$ rackup -p $PORT -o $IP
 ```
 
 This command starts the Rack appserver and the WEBrick webserver.  Rack
@@ -224,7 +223,7 @@ you have to restart Rack in order for it to "see" those changes. Since restartin
 
 You're probably already thinking: "Aha! If our app depends on this additional gem, we should add it to the Gemfile and run bundle to make sure it's really present." Good thinking. But it may also occur to you that this particular gem wouldn't be necessary in a production environment: we only need it as a tool while developing. Fortunately, there's a way to tell Bundler that some gems are only necessary in certain environments. Add the following to the Gemfile (it doesn't matter where):
 
-```bash
+```ruby
 group :development do
   gem 'rerun'
 end

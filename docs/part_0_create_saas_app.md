@@ -255,7 +255,16 @@ While in the root directory of your project (not your whole workspace), type `he
 
 Next, make sure you stage and commit all changes locally as instructed above (i.e. `git add`, `git commit`, etc).
 
-Then, you will push your local Cloud9 git repo to Heroku, which is now ready for you:
+Earlier we saw that to run the app locally you run `rackup` to start the Rack appserver, and Rack looks in `config.ru` to determine
+how to start your Sinatra app.  How do you tell a production environment how to start an appserver or other processes
+necessary to receive requests and start your app?  In the case of Heroku, this is done with a special file named `Procfile`, 
+which specifies one or more types of Heroku processes your app will use, and how to start each one.
+The most basic Heroku process type is called a Dyno, or "web worker".  One Dyno can serve one user request at a time.  Since
+we're on Heroku's free tier, we can only have one Dyno.  Take a look in the `Procfile` and you'll see that it tells Heroku
+to start a single web worker (Dyno) using essentially the same command line you used to start Rack locally.  The `Procfile` is
+important because without it, Heroku won't know how to start your app.
+
+Your local Cloud9 repo is now ready to deploy to Heroku:
 
 ```
 $ git push heroku master

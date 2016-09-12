@@ -260,7 +260,7 @@ how to start your Sinatra app.  How do you tell a production environment how to 
 necessary to receive requests and start your app?  In the case of Heroku, this is done with a special file named `Procfile`, 
 which specifies one or more types of Heroku processes your app will use, and how to start each one.
 The most basic Heroku process type is called a Dyno, or "web worker".  One Dyno can serve one user request at a time.  Since
-we're on Heroku's free tier, we can only have one Dyno. Let's create a file named `Procfile`, and not anything else (i.e. Procfile.txt is not valid). Write the following line in your `Procfile`:
+we're on Heroku's free tier, we can only have one Dyno. Let's create a file named `Procfile`, and only this as the name (i.e. Procfile.txt is not valid). Write the following line in your `Procfile`:
 
 ```
 web: bundle exec rackup config.ru -p $PORT

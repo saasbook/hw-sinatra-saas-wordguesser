@@ -31,6 +31,7 @@ shorthand way to run all of them is `cucumber features/` which runs all
 Submission Instructions
 -----------------------
 When all scenarios are passing, deploy to Heroku and submit the URL of your deployed game.
+**Note:** Make sure not to include HTTP header. For example, if your app name on heroku is 'dragon-4582', then the proper Heroku URL would be 'dragon-4582.herokuapp.com' with nothing else.
 
 -----
 

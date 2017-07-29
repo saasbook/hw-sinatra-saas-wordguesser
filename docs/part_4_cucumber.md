@@ -176,7 +176,7 @@ becomes `:foo`.)
 
 <details>
   <summary>In your Sinatra code for processing a guess, what
-expression would should you use to extract *just the first character* of
+expression would you use to extract *just the first character* of
 what the user typed in the letter-guess field of the form in `show.erb`?
 **CAUTION:** if the user typed nothing, there won't be any matching
 key in `params[]`, so dereferencing the form field will give `nil`.  In

@@ -27,9 +27,9 @@ ruby '2.3.0'
 gem 'sinatra', '>= 1.4'
 ```
 
-The first line says that the preferred place to download any necessary gems is https://rubygems.org, which is where the Ruby community registers "production ready" gems.
+The first line says that the codeferred place to download any necessary gems is https://rubygems.org, which is where the Ruby community registers "production ready" gems.
 
-The second line specifies which version of the Ruby language interpreter is required.  If we omitted this line, Bundler wouldn't try to verify which version of Ruby is available; there are subtle differences between the versions, and not all gems work with all versions, so it's best to specify this.
+The second line specifies which version of the Ruby language intercodeter is required.  If we omitted this line, Bundler wouldn't try to verify which version of Ruby is available; there are subtle differences between the versions, and not all gems work with all versions, so it's best to specify this.
 
 The last line says we need version 1.4 or later of the `sinatra` gem. In some cases we don't need to specify which version of a gem we want; in this case we do specify it because we rely on some features that are absent from earlier versions of Sinatra.
 
@@ -50,14 +50,14 @@ The first command stages all changed files for committing. The second command co
 #### Self Check Questions (click triangle to check your answer)
 
 <details>
-  <summary>What's the difference between the purpose and contents of <pre>Gemfile</pre> and <pre>Gemfile.lock</pre>?  Which file is needed to completely reproduce the development environment's gems in the production environment?</summary>
-  <p><blockquote><pre>Gemfile</pre> specifies the gems you need and in some cases the constraints on which version(s) are acceptable. <pre>Gemfile.lock</pre> records the *actual* versions found, not only of the gems you specified explicitly but also any other gems on which they depend, so it is the file used by the production environment to reproduce the gems available in the development environment.</blockquote></p>
+  <summary>What's the difference between the purpose and contents of <code>Gemfile</code> and <code>Gemfile.lock</code>?  Which file is needed to completely reproduce the development environment's gems in the production environment?</summary>
+  <p><blockquote><code>Gemfile</code> specifies the gems you need and in some cases the constraints on which version(s) are acceptable. <code>Gemfile.lock</code> records the *actual* versions found, not only of the gems you specified explicitly but also any other gems on which they depend, so it is the file used by the production environment to reproduce the gems available in the development environment.</blockquote></p>
 </details>
 <br/>
 <details>
-  <summary>After running <pre>bundle</pre>, why are there gems listed in <pre>Gemfile.lock</pre>
-that were not listed in <pre>Gemfile</pre>?</summary>
-  <p><blockquote>Bundler looked up the information for each Gem you requested (in this case, only <pre>sinatra</pre>) and realized that it depends on other gems, which in turn depend on still others, so it recursively installed all those dependencies.  For example, the <pre>rack</pre> appserver is a gem, and while you didn't explicitly request it, <pre>sinatra</pre> depends on it.  This is an example of the power of automation: rather than requiring you (the app developer) to understand every Gem dependency, Bundler automates that process and lets you focus only on your app's top-level dependencies.</blockquote></p>
+  <summary>After running <code>bundle</code>, why are there gems listed in <code>Gemfile.lock</code>
+that were not listed in <code>Gemfile</code>?</summary>
+  <p><blockquote>Bundler looked up the information for each Gem you requested (in this case, only <code>sinatra</code>) and realized that it depends on other gems, which in turn depend on still others, so it recursively installed all those dependencies.  For example, the <code>rack</code> appserver is a gem, and while you didn't explicitly request it, <code>sinatra</code> depends on it.  This is an example of the power of automation: rather than requiring you (the app developer) to understand every Gem dependency, Bundler automates that process and lets you focus only on your app's top-level dependencies.</blockquote></p>
 </details>
 
 
@@ -108,10 +108,10 @@ As you see from the above simple example, Sinatra lets you write
 functions that match an incoming HTTP route, in this case `GET '/'`
 (the root URL), a very simple HTML document containing 
 the string `Hello World` will be returned
-to the presentation tier as the result of the request.
+to the codesentation tier as the result of the request.
 
 To run our app, we have to start the
-application server and presentation tier (web) server.  The `rack`
+application server and codesentation tier (web) server.  The `rack`
 application server is controlled by a file `config.ru`, which you must
 now create and version, containing the following:
 
@@ -167,13 +167,13 @@ Save your changes to `app.rb` and try refreshing your browser tab where the app 
 No changes? Confused?
 
 Now go back to the shell window where you ran `rackup`
-and press Ctrl-C to stop Rack.  Then type `rackup -p $PORT -o $IP` again (for Cloud9), and once it is running, go back to
+and codess Ctrl-C to stop Rack.  Then type `rackup -p $PORT -o $IP` again (for Cloud9), and once it is running, go back to
 your browser tab with your app and refresh the page.  This time it should work.
 
 What this shows you is that if you modify your app while it's running,
 you have to restart Rack in order for it to "see" those changes. Since restarting it manually is tedious, we'll use the rerun gem, which restarts Rack automatically when it sees changes to files in the app's directory. (Rails does this for you by default during development, as we'll see, but Sinatra doesn't.)
 
-You're probably already thinking: "Aha! If our app depends on this additional gem, we should add it to the Gemfile and run bundle to make sure it's really present." Good thinking. But it may also occur to you that this particular gem wouldn't be necessary in a production environment: we only need it as a tool while developing. Fortunately, there's a way to tell Bundler that some gems are only necessary in certain environments. Add the following to the Gemfile (it doesn't matter where):
+You're probably already thinking: "Aha! If our app depends on this additional gem, we should add it to the Gemfile and run bundle to make sure it's really codesent." Good thinking. But it may also occur to you that this particular gem wouldn't be necessary in a production environment: we only need it as a tool while developing. Fortunately, there's a way to tell Bundler that some gems are only necessary in certain environments. Add the following to the Gemfile (it doesn't matter where):
 
 ```ruby
 group :development do
@@ -203,7 +203,7 @@ $ wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 Log in to your Heroku account by typing the command: `heroku login` in the Cloud9 terminal. This will connect your Cloud9 workspace to your Heroku account.
 
-While in the root directory of your project (not your whole workspace), type `heroku create` to create a new project in Heroku. This will tell the Heroku service to prepare for some incoming code, and locally on Cloud9, it will add a remote git repository for you called `heroku`.
+While in the root directory of your project (not your whole workspace), type `heroku create` to create a new project in Heroku. This will tell the Heroku service to codepare for some incoming code, and locally on Cloud9, it will add a remote git repository for you called `heroku`.
 
 Next, make sure you stage and commit all changes locally as instructed above (i.e. `git add`, `git commit`, etc).
 

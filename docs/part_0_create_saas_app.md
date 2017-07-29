@@ -1,112 +1,63 @@
 Part 0: Demystifying SaaS app creation
 ==============================
 
-**Goal:** Understand the steps needed to create, version, and deploy a
-SaaS app, including tracking the libraries it depends on so that your
-production and development environments are as similar as possible.
+**Goal:** Understand the steps needed to create, version, and deploy a SaaS app, including tracking the libraries it depends on so that your production and development environments are as similar as possible.
 
-**What you will do:** Create a simple "hello world" app using the
-Sinatra framework, version it properly, and deploy it to Heroku.
+**What you will do:** Create a simple "hello world" app using the Sinatra framework, version it properly, and deploy it to Heroku.
 
 Creating and versioning a simple SaaS app
 -----------------------------------------
 
-SaaS apps are developed on your computer (or cloud-based IDE) but *deployed to production* on
-a server that others can access.  We try to minimize the differences
-between the development and production *environments*, to avoid
-difficult-to-diagnose problems in which something works one way on your
-development computer but a different way (or not at all) when that code
-is deployed to production.
+SaaS apps are developed on your computer (or cloud-based IDE) but *deployed to production* on a server that others can access.  We try to minimize the differences between the development and production *environments*, to avoid difficult-to-diagnose problems in which something works one way on your development computer but a different way (or not at all) when that code is deployed to production.
 
-We have two mechanisms for keeping the development and production
-environments consistent.  The first is *version control*, such as Git,
-for the app's code.  But since almost all apps also rely on *libraries*
-written by others, such as *gems* in the case of Ruby, we need a way to
-keep track of which versions of which libraries our app has been tested
-with, so that the same ones are used in development and production.
+We have two mechanisms for keeping the development and production environments consistent.  The first is *version control*, such as Git, for the app's code.  But since almost all apps also rely on *libraries* written by others, such as *gems* in the case of Ruby, we need a way to keep track of which versions of which libraries our app has been tested with, so that the same ones are used in development and production.
 
-Happily, Ruby has a wonderful system for managing gem dependencies: a
-gem called **Bundler** looks for a file called `Gemfile` in the *app
-root directory* of each project.  `Gemfile` contains a list of gems and
-versions your app depends on. Bundler verifies that those gems, and any
-others that they in turn depend on, are properly installed on your
-system and accessible to the app.
+Happily, Ruby has a wonderful system for managing gem dependencies: a gem called **Bundler** looks for a file called `Gemfile` in the *app root directory* of each project.  The `Gemfile` contains a list of gems and versions your app depends on. Bundler verifies that those gems, and any others that they in turn depend on, are properly installed on your system and accessible to the app.
 
-* Create a new empty directory to hold your new app, and use `git init`
-in that directory to start versioning it with Git.
+Let's start with the following steps:
 
-* In that directory, create a new file called `Gemfile` (the
-capitalization is important) with the following contents.  This file
-will be a permanent part of your app and will travel with your app
-anywhere it goes:
+* Create a new empty directory to hold your new app, and use `git init` in that directory to start versioning it with Git.
 
-```
+* In that directory, create a new file called `Gemfile` (the capitalization is important) with the following contents.  This file will be a permanent part of your app and will travel with your app anywhere it goes:
+
+```rb
 source 'https://rubygems.org'
 ruby '2.3.0'
 
 gem 'sinatra', '>= 1.4'
 ```
 
-The first line says that the preferred place to download any necessary
-gems is https://rubygems.org, which is where the Ruby community
-registers "production ready" gems.
+The first line says that the preferred place to download any necessary gems is https://rubygems.org, which is where the Ruby community registers "production ready" gems.
 
-The second line specifies which version of the Ruby language interpreter
-is required.  If we omitted this line, Bundler wouldn't try to verify
-which version of Ruby is available; there are subtle differences between
-the versions, and not all gems work with all versions, so it's best to
-specify this.
+The second line specifies which version of the Ruby language interpreter is required.  If we omitted this line, Bundler wouldn't try to verify which version of Ruby is available; there are subtle differences between the versions, and not all gems work with all versions, so it's best to specify this.
 
-The last line says we need version 1.4 or later of the `sinatra` gem.
-In some cases we don't need to specify which version of a gem we want;
-in this case we do specify it because we rely on some features that are
-absent from earlier versions of Sinatra.
+The last line says we need version 1.4 or later of the `sinatra` gem. In some cases we don't need to specify which version of a gem we want; in this case we do specify it because we rely on some features that are absent from earlier versions of Sinatra.
 
 Run Bundler
 -----------
 
-Run the command `bundle`, which examines your `Gemfile` to make
-sure the correct gems (and, where specified, the correct versions) are
-available, and tries to install them otherwise.  This will create a new
-file `Gemfile.lock`, *which you should place under version control.*
+Run the command `bundle`, which examines your `Gemfile` to make sure the correct gems (and, where specified, the correct versions) are available, and tries to install them otherwise.  This will create a new file `Gemfile.lock`, *which you should place under version control.*
 
 To place under version control, use these commands:
 
 ```sh
-$ git add -A
+$ git add .
 $ git commit -m "Set up the Gemfile"
 ```
 
-The first command stages all changed files for committing.
-The second command commits the staged files with the comment in the quotes.
-You can repeat these commands to commit future changes. Remember that these are LOCAL commits -- if you want these changes on GitHub, you'll need to do a git push command, which we will show later.
+The first command stages all changed files for committing. The second command commits the staged files with the comment in the quotes. You can repeat these commands to commit future changes. Remember that these are LOCAL commits -- if you want these changes on GitHub, you'll need to do a git push command, which we will show later.
 
 #### Self Check Questions (click triangle to check your answer)
 
 <details>
-  <summary>What's the difference between the purpose and contents of `Gemfile`
-and `Gemfile.lock`?  Which file is needed to completely reproduce the
-development environment's gems in the production environment?</summary>
-  <p><blockquote>`Gemfile` specifies the gems you need and
-in some cases the constraints on which version(s) are acceptable.
-`Gemfile.lock` records the *actual* versions found, not only of the gems
-you specified explicitly but also any other gems on which they
-depend, so it is the file used by the production environment to
-reproduce the gems available in the development environment.</blockquote></p>
+  <summary>What's the difference between the purpose and contents of <pre>Gemfile</pre> and <pre>Gemfile.lock</pre>?  Which file is needed to completely reproduce the development environment's gems in the production environment?</summary>
+  <p><blockquote><pre>Gemfile</pre> specifies the gems you need and in some cases the constraints on which version(s) are acceptable. <pre>Gemfile.lock</pre> records the *actual* versions found, not only of the gems you specified explicitly but also any other gems on which they depend, so it is the file used by the production environment to reproduce the gems available in the development environment.</blockquote></p>
 </details>
-
+<br/>
 <details>
-  <summary>After running `bundle`, why are there gems listed in `Gemfile.lock`
-that were not listed in `Gemfile`?</summary>
-  <p><blockquote>Bundler looked up the information for each Gem you requested (in this
-case, only `sinatra`) and realized that it depends on other gems,
-which in turn depend on still others, so it recursively installed all
-those dependencies.  For example, the `rack` appserver is a gem, and
-while you didn't explicitly request it, `sinatra` depends on it.  This
-is an example of the power of automation: rather than requiring you
-(the app developer) to understand every Gem dependency, Bundler
-automates that process and lets you focus only on your app's top-level
-dependencies.</blockquote></p>
+  <summary>After running <pre>bundle</pre>, why are there gems listed in <pre>Gemfile.lock</pre>
+that were not listed in <pre>Gemfile</pre>?</summary>
+  <p><blockquote>Bundler looked up the information for each Gem you requested (in this case, only <pre>sinatra</pre>) and realized that it depends on other gems, which in turn depend on still others, so it recursively installed all those dependencies.  For example, the <pre>rack</pre> appserver is a gem, and while you didn't explicitly request it, <pre>sinatra</pre> depends on it.  This is an example of the power of automation: rather than requiring you (the app developer) to understand every Gem dependency, Bundler automates that process and lets you focus only on your app's top-level dependencies.</blockquote></p>
 </details>
 
 

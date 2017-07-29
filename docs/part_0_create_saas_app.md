@@ -74,7 +74,7 @@ To place under version control, use these commands:
 
 ```sh
 $ git add -A
-$ git commit -am "Set up the Gemfile"
+$ git commit -m "Set up the Gemfile"
 ```
 
 The first command stages all changed files for committing.
@@ -181,6 +181,7 @@ If you're using Cloud9, you're now ready to test-drive our simple app with this 
 ```sh
 $ rackup -p $PORT -o $IP
 ```
+[Available ports on a hosted Cloud9 workspace](https://docs.c9.io/docs/run-an-application)
 
 This command starts the Rack appserver and the WEBrick webserver.  Rack
 will look for `config.ru` and attempt to start our app based on the
@@ -233,7 +234,7 @@ Any gem specifications inside the `group :development` block will only be examin
 
 Say `rerun -- rackup -p $PORT -o $IP` in the terminal window to start
 your app and verify the app is running. Note that you need to put
-everything except `rerun` in quotes in order to make the command
+everything except `rerun -- ` in quotes in order to make the command
 unambiguous in Cloud9. Now any detected changes will cause the server to
 restart automatically, similar to the use of `guard` to run specs.
 

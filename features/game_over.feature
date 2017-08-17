@@ -13,6 +13,6 @@ Scenario: game over because I guess the word
 Scenario: game over because I run out of guesses
 
   Given I start a new game with word "zebra"
-  When I make the following guesses: i,s,u,c,k,h,a,r
-  And I guess "d"
+  When I make the following guesses: t,u,v,w,x,y
+  And I guess "z"
   Then I should see "Sorry, you lose!"

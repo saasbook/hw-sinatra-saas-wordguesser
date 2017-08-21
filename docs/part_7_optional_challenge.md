@@ -19,5 +19,6 @@ must be stored in managed storage such as a database or other per-app
 abstraction, or managed on remote servers.
 </blockquote></p>
 </details>
+<br/>
 
 Using Sinatra, create and deploy locally (on your computer) a *SOA endpoint* that mimics the behavior of the Random Word Generator service we used in this assignment.  A simple implementation would respond to the RESTful request `GET /` with a random word drawn randomly from `/usr/share/dict/words`. 

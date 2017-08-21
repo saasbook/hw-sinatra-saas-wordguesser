@@ -59,7 +59,7 @@ Our initial list of operations on the resource might look like this, where we've
 
 <details>
   <summary>For a good RESTful design, which of the resource operations should be handled by HTTP GET and which ones should be handled by HTTP POST?</summary>
-  <p><blockquote>Operations handled with `GET` should not have side effects on the resource, so `show` can be handled by a `GET`, but `create` and `guess` (which modify game state) should use `POST`.  (In fact, in a true service-oriented architecture we can also choose to use other HTTP verbs like `PUT` and `DELETE`, but we won't cover that in this assignment.)</blockquote></p>
+  <p><blockquote>Operations handled with <code>GET</code> should not have side effects on the resource, so <code>show</code> can be handled by a <code>GET</code>, but <code>create</code> and <code>guess</code> (which modify game state) should use <CODE>POST</CODE>.  (In fact, in a true service-oriented architecture we can also choose to use other HTTP verbs like <CODE>PUT</CODE> and <CODE>DELETE</CODE>, but we won't cover that in this assignment.)</blockquote></p>
 </details>
 
 <br />
@@ -86,9 +86,9 @@ So we can start mapping our RESTful actions in terms of HTTP requests as follows
 </thead>
 <tbody>
 
-<tr><td> `GET /show`      </td><td>   show game state      </td><td>  display correct & wrong guesses so far</td></tr>
-<tr><td> `POST /guess`    </td><td>   update game state with new guessed letter </td><td> redirect to `show`</td></tr>
-<tr><td> `POST /create`   </td><td>   create new game      </td><td>  redirect to `show`</td></tr>
+<tr><td> <code>GET /show</code>      </td><td>   show game state      </td><td>  display correct & wrong guesses so far</td></tr>
+<tr><td> <code>POST /guess</code>    </td><td>   update game state with new guessed letter </td><td> redirect to <code>show</code></td></tr>
+<tr><td> <code>POST /create</code>   </td><td>   create new game      </td><td>  redirect to <code>show</code></td></tr>
 </tbody>
 </table>
 
@@ -101,7 +101,7 @@ So to start a new game, we actually need to provide the user a way to post the f
 <table>
 <tbody>
 <tr>
-<td>`GET /new`   </td><td>  give human user a chance to start new game </td><td> display a form that includes a "start new game"  button  </td>
+<td><code>GET /new</code>   </td><td>  give human user a chance to start new game </td><td> display a form that includes a "start new game"  button  </td>
 </tr>
 </tbody>
 </table>
@@ -113,19 +113,19 @@ We will see this pattern mirrored later in Rails: a typical resource (such as th
 #### Self Check Questions
 
 <details>
-  <summary>Why is it appropriate for the `new` action to use
-`GET` rather than `POST`?</summary>
-  <p><blockquote>The `new` action doesn't by itself cause any state change: it just
+  <summary>Why is it appropriate for the <code>new</code> action to use
+<CODE>GET</CODE> rather than <CODE>POST</CODE>?</summary>
+  <p><blockquote>The <code>new</code> action doesn't by itself cause any state change: it just
 returns a form that the player can submit.</blockquote></p>
 </details>
 <br />
 
 <details>
-  <summary>Explain why the `GET /new` action wouldn't be needed if
+  <summary>Explain why the <code>GET /new</code> action wouldn't be needed if
 your Hangperson game was called as a service in a true service-oriented
 architecture. </summary>
   <p><blockquote>In a true SOA, the service that calls Hangperson can generate an HTTP
-`POST` request directly.  The only reason for the `new` action is to
+<CODE>POST</CODE> request directly.  The only reason for the <code>new</code> action is to
 provide the human Web user a way to generate that request.</blockquote></p>
 </details>
 <br />
@@ -142,7 +142,7 @@ Lose  </td>
 <td>GET /show</td>
 </tr>
 <tr>
-<td>Display form that can generate `POST /create`   </td><td>  GET /new</td>
+<td>Display form that can generate <code>POST /create</code>   </td><td>  GET /new</td>
 </tr>
 <tr><td>Start new game; redirects to Show Game after changing
 state</td><td>  POST /create</td></tr>

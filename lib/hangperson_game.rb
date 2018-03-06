@@ -7,7 +7,7 @@ class HangpersonGame
 
   # def initialize()
   # end
-  
+
   def initialize(word)
     @word = word
   end
@@ -20,7 +20,7 @@ class HangpersonGame
     require 'net/http'
     uri = URI('http://watchout4snakes.com/wo4snakes/Random/RandomWord')
     Net::HTTP.new('watchout4snakes.com').start { |http|
-      return http.post(uri, "").body
+      return http.post(uri, '').body
     }
   end
 

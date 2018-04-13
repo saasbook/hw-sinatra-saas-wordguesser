@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+ruby '2.4.0'
 
-gem 'sinatra', '>= 1.4'
+gem 'sinatra', '>= 2.0.1'
 gem 'sinatra-flash', '0.3.0'
 
 group :development, :test do
@@ -19,7 +19,7 @@ group :development, :test do
   gem 'launchy', '2.4.3'
   gem 'rerun', '0.10.0'
 
-  gem 'simplecov', '0.10.0'
+  gem 'simplecov', '0.16.1'
   gem 'webmock', '1.21.0'
   gem 'ZenTest', '4.11.0'
 end

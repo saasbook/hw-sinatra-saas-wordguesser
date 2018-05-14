@@ -20,6 +20,6 @@ group :development, :test do
   gem 'rerun', '0.10.0'
 
   gem 'simplecov', '0.16.1'
-  gem 'webmock', '1.21.0'
+  gem 'webmock', '3.3.0'
   gem 'ZenTest', '4.11.0'
 end

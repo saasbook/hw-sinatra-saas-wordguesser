@@ -1,24 +1,28 @@
-<h2>Guess a letter</h2>
-
 <% if flash[:message] %>
-  <p>
-    <span class="error"><%= flash[:message] %></span>
-  </p>
+   <div class="alert alert-danger">
+     <%= flash[:message] %>  
+   </div>
 <% end %>
 
-<p>
-  Wrong Guesses:
-  <span class="guesses"><%= @game.wrong_guesses %></span>
-</p>
+<div class="alert alert-warning">
+  <p class="lead">
+    Wrong Guesses:
+    <%= @game.wrong_guesses %>
+  </p>
+</div>
 
-<p>
+<p class="alert alert-success">
   Word so far:
   <span class="word"><%= @game.word_with_guesses %></span>
 </p>
 
 <form action="/guess" method="post">
-  <input type="text" size="1" name="guess" autocomplete="off"/>
-  <input type="submit" value="Guess!"/>
+  <div class="form-group row">
+    <label for="guess" class="col-md-2 col-form-label">Guess a letter:</label>
+    <input type="text" name="guess" autocomplete="off"
+           class="form-control col-md-1"/>
+    <input type="submit" value="Guess!" class="col-md-2 btn btn-success"/>
+  </div>
 </form>
 
 <%= erb :new %>

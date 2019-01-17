@@ -1,20 +1,22 @@
-<!DOCTYPE html>
+<!DOCTYPE html lang="en-us">
 <html>
   <head>
-    <link rel="stylesheet" href="/default.css" type="text/css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Hangperson</title>
   </head>
   <body>
+    <div class="jumbotron">
+      <h1 class="display-4">Play Hangperson!</h1>
+      <p class="lead">Random word generator provided by Watchout4snakes.com</p>
+    </div>
     <div class="container">
-      <div id="header" class="span-24">
-        <p>Play Hangperson!</p>
-      </div>
-      <div class="span-24">
-        <%= yield %>
-      </div>
-      <div id="footer" class="span-24">
-        <p>Random word generator provided by Watchout4snakes.com -- thanks!</p>
-      </div>
+      <%= yield %>
     </div>
   </body>
+</div>
+</body>
 </html>

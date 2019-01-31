@@ -40,13 +40,14 @@ messages in the <code>session[]</code> hash?</summary>
 Running the Sinatra app
 -----------------------
 
-As before, run the shell command `bundle exec rackup -p $PORT -o $IP` to start the app, or `bundle exec rerun -- rackup -p $PORT -o $IP` if you want to rerun the app each time you make a code change.  
+As before, run the shell command `bundle exec rackup` (`bundle exec rackup -p $PORT -o $IP` for Cloud9) to start the app, or `bundle exec rerun -- rackup` (`bundle exec rerun -- rackup -p $PORT -o $IP` for Cloud9) if you want to rerun the app each time you make a code change.  
 
 #### Self Check Question
 
 <details>
   <summary>Based on the output from running this command, what is the full URL you need to visit in order to visit the New Game page?</summary>
-  <p><blockquote>The web server connected to Sinatra is running on Cloud9, so the first part of the URL is something like <code>http://your-workspace-name.c9.io</code>. The Ruby code <code>get '/new' do...</code> in <code>app.rb</code> renders the New Game page, so the full URL is in the form <code>http://your-workspace-name.c9.io/new</code>.</blockquote></p>
+  <p><blockquote>The Ruby code <code>get '/new' do...</code> in <code>app.rb</code> renders the New Game page, so the full URL is in the form <code>http://localhost:9292/new</code></p>
+  <p><blockquote>If you are developing on Cloud9, the URL is something like <code>http://your-workspace-name.c9.io/new</code>.</blockquote></p>
 </details>
 <br />
 
@@ -66,12 +67,12 @@ But first, let's get our app onto Heroku.  This is actually a critical step.  We
 
 * First, run `bundle install` to make sure our Gemfile and Gemfile.lock are in sync.
 * Next, type `git add .` to stage all changed files (including Gemfile.lock)
-* Then type `git commit -m "Ready for Heroku!"` to commit all local changes on Cloud9.
+* Then type `git commit -m "Ready for Heroku!"` to commit all local changes.
 * Next, type `heroku login` and authenticate.
 * Since this is the first time we're telling Heroku about the Hangperson app, we must type `heroku create` to have Heroku prepare to recieve this code and to have it create a git reference for referencing the new remote repository. 
-* Then, type `git push heroku master` to push your Cloud9 code to Heroku. 
-* When you want to update Heroku later, you only need to commit your changes to git locally in Cloud9, then push to Heroku as in the last step. 
-* Verify that the Heroku-deployed Hangperson behaves the same as your development version before continuing. A few lines up from the bottom of the Heroku output in the Cloud9 terminal should have a URL ending in herokuapp.com. Find that, copy it to the clipboard, and paste it into a new browser tab to see the current app. The Cloud9 IDE browser tab won't render the app properly, so use a new browser tab outside of Cloud9.
+* Then, type `git push heroku master` to push your code to Heroku. 
+* When you want to update Heroku later, you only need to commit your changes to git locally, then push to Heroku as in the last step. 
+* Verify that the Heroku-deployed Hangperson behaves the same as your development version before continuing. A few lines up from the bottom of the Heroku output in the terminal should have a URL ending in herokuapp.com. Find that, copy it to the clipboard, and paste it into a browser tab to see the current app. The Cloud9 IDE browser tab won't render the app properly, so use a new browser tab outside of Cloud9.
 * Verify the broken functionality by clicking the new game button.
 
 -----

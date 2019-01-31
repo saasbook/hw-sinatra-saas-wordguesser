@@ -21,7 +21,7 @@ Submission Instructions
 -----------------------
 When all scenarios are passing, deploy to Heroku and submit the URL of your deployed game. **Note:** Make sure the Heroku URL does not begin with `https` or with `http`, or you may get a socket error message. For example, if your app name on heroku is 'dragon-4582', then the proper Heroku URL would be 'dragon-4582.herokuapp.com' with nothing else.
 
-IMPORTANT!!! The file that you will submit to the autograder MUST be ASCII encoded. If you do not know what this means then please create your text file in cloud9 using the `echo` command like this:
+IMPORTANT!!! The file that you will submit to the autograder MUST be ASCII encoded. If you do not know what this means then please create your text file using the `echo` command like this:
 
 ```
 echo 'my-app-12345.herokuapp.com' > hw2.txt
@@ -39,7 +39,9 @@ then the output should look like this:
 my-app-12345.herokuapp.com
 ```
 
-You would of course change 'my-app-12345' to match your heroku URL. Then right-click on the 'hw2.txt' file in the left side panel of cloud9 and choose 'Download'. Remember which folder you download this into so that you can browse for it on the homework submission page. It is usually your 'My Downloads' folder.
+You would of course change 'my-app-12345' to match your heroku URL.
+
+If you're using Cloud9, right-click on the 'hw2.txt' file in the left side panel of Cloud9 and choose 'Download'. Remember which folder you download this into so that you can browse for it on the homework submission page. It is usually your 'My Downloads' folder.
 
 Lastly, visit the same URL that you put into the text file with your web browser to be sure that your app is running correctly at that address before submitting the text file.
 

@@ -1,13 +1,13 @@
 <% if flash[:message] %>
    <div class="alert alert-danger">
-     <%= flash[:message] %>  
+     <span class="error"><%= flash[:message] %></span>
    </div>
 <% end %>
 
 <div class="alert alert-warning">
   <p class="lead">
     Wrong Guesses:
-    <%= @game.wrong_guesses %>
+    <span class="guesses"><%= @game.wrong_guesses %></span>
   </p>
 </div>
 

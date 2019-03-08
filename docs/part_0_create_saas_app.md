@@ -24,14 +24,14 @@ Let's start with the following steps:
 source 'https://rubygems.org'
 ruby '>= 2.2.0', '< 3.0.0'
 
-gem 'sinatra', '>= 2.0.1'
+gem 'sinatra', '>= 2.0.5'
 ```
 
 The first line says that the preferred place to download any necessary gems is https://rubygems.org, which is where the Ruby community registers "production ready" gems.
 
 The second line specifies which version of the Ruby language interpreter is required.  If we omitted this line, Bundler wouldn't try to verify which version of Ruby is available; there are subtle differences between the versions, and not all gems work with all versions, so it's best to specify this.
 
-The last line says we need version 2.0.1 or later of the `sinatra` gem. In some cases we don't need to specify which version of a gem we want; in this case we do specify it because we rely on some features that are absent from earlier versions of Sinatra.
+The last line says we need version 2.0.5 or later of the `sinatra` gem. In some cases we don't need to specify which version of a gem we want; in this case we do specify it because we rely on some features that are absent from earlier versions of Sinatra.
 
 Run Bundler
 -----------

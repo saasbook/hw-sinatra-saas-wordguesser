@@ -170,7 +170,7 @@ If using Cloud9, update your Heroku Toolbelt installation by typing the followin
 $ wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 ```
 
-Log in to your Heroku account by typing the command: `heroku login` in the terminal. This will connect you to your Heroku account.
+Log in to your Heroku account by typing the command: `heroku login -i` in the terminal. This will connect you to your Heroku account.
 
 While in the root directory of your project (not your whole workspace), type `heroku create` to create a new project in Heroku. This will tell the Heroku service to prepare for some incoming code, and locally it will add a remote git repository for you called `heroku`.
 

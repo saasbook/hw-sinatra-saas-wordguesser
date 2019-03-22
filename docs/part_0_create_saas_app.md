@@ -106,25 +106,7 @@ If you're developing locally, you're now ready to test-drive our simple app with
 ```sh
 $ bundle exec rackup
 ```
-
-##### Cloud9 operation
-
-If you're using Cloud9, you should use this command line:
-
-```sh
-$ bundle exec rackup -p $PORT -o $IP
-```
-[Available ports on a hosted Cloud9 workspace](https://docs.c9.io/docs/run-an-application)
-
-##### Codio operation
-
-If you're using Codio, you should use this command line:
-
-```sh
-$ bundle exec rackup --host 0.0.0.0 -p 3000
-```
-
-and click on the Codio "Project Index (static)" drop down and select "Box URL" in order to access 
+*Note:* [How to run web apps (e.g. rackup) on cloud services such as Cloud9 or Codio](cloud_service_port_configuration.md)
 
 Whichever platform you are working with, this `rackup` command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 

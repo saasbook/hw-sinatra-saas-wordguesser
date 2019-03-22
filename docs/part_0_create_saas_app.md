@@ -106,7 +106,7 @@ If you're developing locally, you're now ready to test-drive our simple app with
 ```sh
 $ bundle exec rackup
 ```
-*Note:* [How to run web apps (e.g. rackup) on cloud services such as Cloud9 or Codio](cloud_service_port_configuration.md)
+**Note:** [How to run web apps (e.g. rackup) on cloud services such as Cloud9 or Codio](cloud_service_port_configuration.md)
 
 Whichever platform you are working with, this `rackup` command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 
@@ -132,7 +132,7 @@ Modify `app.rb` so that instead of "Hello World" it prints "Goodbye World". Save
 
 No changes? Confused?
 
-Now go back to the shell window where you ran `rackup` and press Ctrl-C to stop Rack.  Then type `bundle exec rackup` again (`bundle exec rackup -p $PORT -o $IP`, for Cloud9), and once it is running, go back to your browser tab with your app and refresh the page.  This time it should work.
+Now go back to the shell window where you ran `rackup` and press Ctrl-C to stop Rack.  Then type `bundle exec rackup` again, and once it is running, go back to your browser tab with your app and refresh the page.  This time it should work.
 
 What this shows you is that if you modify your app while it's running, you have to restart Rack in order for it to "see" those changes.  Since restarting it manually is tedious, we'll use the `rerun` gem, which restarts Rack automatically when it sees changes to files in the app's directory. (Rails does this for you by default during development, as we'll see, but Sinatra doesn't.)
 
@@ -146,15 +146,15 @@ end
 
 Any gem specifications inside the `group :development` block will only be examined if bundle is run in the development environment.  (The other environments you can specify are :test and :production, and you can define new environments yourself.)  Gem specifications outside of any group block are assumed to apply in all environments.
 
-Say `bundle exec rerun -- rackup -p $PORT -o $IP` in the terminal window to start your app and verify the app is running.  There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
+Say `bundle exec rerun -- rackup` in the terminal window to start your app and verify the app is running.  There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
 
-In this case we are prefixing with `bundle exec` again in order to ensure we are using the gems in the Gemfile.lock, and the `--` symbol is there to assert that the command we want rerun to operate with is `rackup -p $PORT -o $IP`.  We could achieve the same effect with `bundle exec rerun "rackup -p $PORT -o $IP"`.  They are equivalent.   More importantly any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
+Any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
 
 Modify `app.rb` to print a different message, and verify that the change is detected by refreshing your browser tab with the running app.  Also before we move on you should commit your latest changes to git.
 
 Deploy to Heroku
 ----------------
-Heroku is a cloud platform-as-a-service (PaaS) where we can deploy our Sinatra (and later Rails) applications in a more robust way than via Cloud9. If you don't have an account yet, go sign up at http://www.heroku.com. You'll need your login and password for the next step.
+Heroku is a cloud platform-as-a-service (PaaS) where we can deploy our Sinatra (and later Rails) applications in a more robust way than via Cloud9 or Codio. If you don't have an account yet, go sign up at http://www.heroku.com. You'll need your login and password for the next step.
 
 If you're developing locally, install Heroku CLI following [instructions](https://devcenter.heroku.com/articles/heroku-cli).
 
@@ -173,7 +173,7 @@ Next, make sure you stage and commit all changes locally as instructed above (i.
 Earlier we saw that to run the app locally you run `rackup` to start the Rack appserver, and Rack looks in `config.ru` to determine how to start your Sinatra app.  How do you tell a production environment how to start an appserver or other processes necessary to receive requests and start your app?  In the case of Heroku, this is done with a special file named `Procfile`,  which specifies one or more types of Heroku processes your app will use, and how to start each one. The most basic Heroku process type is called a Dyno, or "web worker".  One Dyno can serve one user request at a time.  Since we're on Heroku's free tier, we can only have one Dyno. Let's create a file named `Procfile`, and only this as the name (i.e. Procfile.txt is not valid). Write the following line in your `Procfile`:
 
 ```
-web: bundle exec rackup config.ru -p $PORT
+web: bundle exec rackup config.ru
 ```
 
 This tells Heroku to start a single web worker (Dyno) using essentially the same command line you used to start Rack locally. Note that in some cases, a `Procfile` is not necessary since Heroku can infer from your files how to start the app. However, it's always better to be explicit.  

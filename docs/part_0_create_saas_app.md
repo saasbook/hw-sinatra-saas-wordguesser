@@ -116,7 +116,7 @@ $ bundle exec rackup -p $PORT -o $IP
 
 This command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 
-If you're developign locally, you can visit `localhost:9292` in your browser to see the webapp.  If you're using Cloud9, you will see a small popup in the terminal with a URL to your running webapp.  It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
+If you're developing locally, you can visit `localhost:9292` in your browser to see the webapp.  If you're using Cloud9, you will see a small popup in the terminal with a URL to your running webapp.  It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
 
 Point a new Web browser tab at the running app's URL and verify that you can see "Hello World".
 

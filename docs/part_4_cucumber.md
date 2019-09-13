@@ -24,7 +24,7 @@ Since a SaaS server is simulated by issuing HTTP requests, and its behavior can 
 
 <details>
   <summary>Read the section on "Using Capybara with Cucumber" on Capybara's home page.  Which step definitions use Capybara to simulate the server as a browser would?  Which step definitions use Capybara to inspect the app's response to the stimulus?</summary>
-  <p><blockquote>Step definitions that use <code>visit</code>, <code>click_button</code>`, <code>fill_in</code> are simulating a browser by visiting a page and/or filling in a form on that page and clicking its buttons.  Those that use <code>have_content</code> are inspecting the output.</blockquote></p>
+  <p><blockquote>Step definitions that use <code>visit</code>, <code>click_button</code>, <code>fill_in</code> are simulating a browser by visiting a page and/or filling in a form on that page and clicking its buttons.  Those that use <code>have_content</code> are inspecting the output.</blockquote></p>
 </details>
 <br />
 

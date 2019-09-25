@@ -7,7 +7,7 @@ You've already met Sinatra.  Here's what's new in the Sinatra app skeleton [`app
 * `before do...end` is a block of code executed *before* every SaaS request
 
 * `after do...end` is executed *after* every SaaS request
- 
+
 * The calls  `erb :` *action* cause Sinatra to look for the file `views/`*action*`.erb` and run them through the Embedded Ruby processor, which looks for constructions `<%= like this %>`, executes the Ruby code inside, and substitutes the result.  The code is executed in the same context as the call to `erb`, so the code can "see" any instance variables set up in the `get` or `post` blocks.
 
 #### Self Check Question
@@ -27,7 +27,7 @@ If the game object were large, we'd probably store it in a database on the serve
 
 There is one other session-like object we will use.  In some cases above, one action will perform some state change and then redirect to another action, such as when the Guess action (triggered by `POST /guess`) redirects to the Show action (`GET /show`) to redisplay the game state after each guess.  But what if the Guess action wants to display a message to the player, such as to inform them that they have erroneously repeated a guess?  The problem is that since every request is stateless, we need to get that message "across" the redirect, just as we need to preserve game state "across" HTTP requests.
 
-To do this, we use the `sinatra-flash` gem, which you can see in the Gemfile.  `flash[]` is a hash for remembering short messages that persist until the *very next* request (usually a redirect), and are then erased. 
+To do this, we use the `sinatra-flash` gem, which you can see in the Gemfile.  `flash[]` is a hash for remembering short messages that persist until the *very next* request (usually a redirect), and are then erased.
 
 #### Self Check Question
 
@@ -40,18 +40,17 @@ messages in the <code>session[]</code> hash?</summary>
 Running the Sinatra app
 -----------------------
 
-As before, run the shell command `bundle exec rackup` (`bundle exec rackup -p $PORT -o $IP` for Cloud9) to start the app, or `bundle exec rerun -- rackup` (`bundle exec rerun -- rackup -p $PORT -o $IP` for Cloud9) if you want to rerun the app each time you make a code change.  
+As before, run the shell command `bundle exec rackup` to start the app, or `bundle exec rerun -- rackup` if you want to rerun the app each time you make a code change.
 
 #### Self Check Question
 
 <details>
   <summary>Based on the output from running this command, what is the full URL you need to visit in order to visit the New Game page?</summary>
   <p><blockquote>The Ruby code <code>get '/new' do...</code> in <code>app.rb</code> renders the New Game page, so the full URL is in the form <code>http://localhost:9292/new</code></p>
-  <p><blockquote>If you are developing on Cloud9, the URL is something like <code>http://your-workspace-name.c9.io/new</code>.</blockquote></p>
 </details>
 <br />
 
-Visit this URL and verify that the Start New Game page appears. 
+Visit this URL and verify that the Start New Game page appears.
 
 #### Self Check Question
 
@@ -69,10 +68,10 @@ But first, let's get our app onto Heroku.  This is actually a critical step.  We
 * Next, type `git add .` to stage all changed files (including Gemfile.lock)
 * Then type `git commit -m "Ready for Heroku!"` to commit all local changes.
 * Next, type `heroku login` and authenticate.
-* Since this is the first time we're telling Heroku about the Hangperson app, we must type `heroku create` to have Heroku prepare to recieve this code and to have it create a git reference for referencing the new remote repository. 
-* Then, type `git push heroku master` to push your code to Heroku. 
-* When you want to update Heroku later, you only need to commit your changes to git locally, then push to Heroku as in the last step. 
-* Verify that the Heroku-deployed Hangperson behaves the same as your development version before continuing. A few lines up from the bottom of the Heroku output in the terminal should have a URL ending in herokuapp.com. Find that, copy it to the clipboard, and paste it into a browser tab to see the current app. The Cloud9 IDE browser tab won't render the app properly, so use a new browser tab outside of Cloud9.
+* Since this is the first time we're telling Heroku about the Hangperson app, we must type `heroku create` to have Heroku prepare to recieve this code and to have it create a git reference for referencing the new remote repository.
+* Then, type `git push heroku master` to push your code to Heroku.
+* When you want to update Heroku later, you only need to commit your changes to git locally, then push to Heroku as in the last step.
+* Verify that the Heroku-deployed Hangperson behaves the same as your development version before continuing. A few lines up from the bottom of the Heroku output in the terminal should have a URL ending in herokuapp.com. Find that, copy it to the clipboard, and paste it into a browser tab to see the current app.
 * Verify the broken functionality by clicking the new game button.
 
 -----

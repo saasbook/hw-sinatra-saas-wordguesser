@@ -8,7 +8,7 @@ Part 0: Demystifying SaaS app creation
 Creating and versioning a simple SaaS app
 -----------------------------------------
 
-SaaS apps are developed on your computer (or cloud-based IDE) but *deployed to production* on a server that others can access.  We try to minimize the differences between the development and production *environments*, to avoid difficult-to-diagnose problems in which something works one way on your development computer but a different way (or not at all) when that code is deployed to production.
+SaaS apps are developed on your computer but *deployed to production* on a server that others can access.  We try to minimize the differences between the development and production *environments*, to avoid difficult-to-diagnose problems in which something works one way on your development computer but a different way (or not at all) when that code is deployed to production.
 
 We have two mechanisms for keeping the development and production environments consistent.  The first is *version control*, such as Git, for the app's code.  But since almost all apps also rely on *libraries* written by others, such as *gems* in the case of Ruby, we need a way to keep track of which versions of which libraries our app has been tested with, so that the same ones are used in development and production.
 
@@ -107,16 +107,9 @@ If you're developing locally, you're now ready to test-drive our simple app with
 $ bundle exec rackup
 ```
 
-If you're using Cloud9, you should use this command line:
-
-```sh
-$ bundle exec rackup -p $PORT -o $IP
-```
-[Available ports on a hosted Cloud9 workspace](https://docs.c9.io/docs/run-an-application)
-
 This command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 
-If you're developing locally, you can visit `localhost:9292` in your browser to see the webapp.  If you're using Cloud9, you will see a small popup in the terminal with a URL to your running webapp.  It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
+If you're developing locally, you can visit `localhost:9292` in your browser to see the webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
 
 Point a new Web browser tab at the running app's URL and verify that you can see "Hello World".
 
@@ -134,11 +127,11 @@ You should now have the following files under version control: `Gemfile`, `Gemfi
 Modify the app
 --------------
 
-Modify `app.rb` so that instead of "Hello World" it prints "Goodbye World". Save your changes to `app.rb` and try refreshing your browser tab where the app is running.  
+Modify `app.rb` so that instead of "Hello World" it prints "Goodbye World". Save your changes to `app.rb` and try refreshing your browser tab where the app is running.
 
 No changes? Confused?
 
-Now go back to the shell window where you ran `rackup` and press Ctrl-C to stop Rack.  Then type `bundle exec rackup` again (`bundle exec rackup -p $PORT -o $IP`, for Cloud9), and once it is running, go back to your browser tab with your app and refresh the page.  This time it should work.
+Now go back to the shell window where you ran `rackup` and press Ctrl-C to stop Rack.  Then type `bundle exec rackup` again, and once it is running, go back to your browser tab with your app and refresh the page.  This time it should work.
 
 What this shows you is that if you modify your app while it's running, you have to restart Rack in order for it to "see" those changes.  Since restarting it manually is tedious, we'll use the `rerun` gem, which restarts Rack automatically when it sees changes to files in the app's directory. (Rails does this for you by default during development, as we'll see, but Sinatra doesn't.)
 
@@ -162,15 +155,9 @@ Modify `app.rb` to print a different message, and verify that the change is dete
 
 Deploy to Heroku
 ----------------
-Heroku is a cloud platform-as-a-service (PaaS) where we can deploy our Sinatra (and later Rails) applications in a more robust way than via Cloud9. If you don't have an account yet, go sign up at http://www.heroku.com. You'll need your login and password for the next step.
+Heroku is a cloud platform-as-a-service (PaaS) where we can deploy our Sinatra (and later Rails) applications. If you don't have an account yet, go sign up at http://www.heroku.com. You'll need your login and password for the next step.
 
-If you're developing locally, install Heroku CLI following [instructions](https://devcenter.heroku.com/articles/heroku-cli).
-
-If using Cloud9, update your Heroku Toolbelt installation by typing the following command:
-
-```
-$ wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-```
+Install Heroku CLI following [instructions](https://devcenter.heroku.com/articles/heroku-cli).
 
 Log in to your Heroku account by typing the command: `heroku login -i` in the terminal. This will connect you to your Heroku account.
 
@@ -184,7 +171,7 @@ Earlier we saw that to run the app locally you run `rackup` to start the Rack ap
 web: bundle exec rackup config.ru -p $PORT
 ```
 
-This tells Heroku to start a single web worker (Dyno) using essentially the same command line you used to start Rack locally. Note that in some cases, a `Procfile` is not necessary since Heroku can infer from your files how to start the app. However, it's always better to be explicit.  
+This tells Heroku to start a single web worker (Dyno) using essentially the same command line you used to start Rack locally. Note that in some cases, a `Procfile` is not necessary since Heroku can infer from your files how to start the app. However, it's always better to be explicit.
 
 Your local repo is now ready to deploy to Heroku:
 
@@ -192,7 +179,7 @@ Your local repo is now ready to deploy to Heroku:
 $ git push heroku master
 ```
 
-(`master` refers to which branch of the remote Heroku repo we are pushing to.  We'll learn about branches later in the course, but for now, suffice it to say that you can only deploy to the `master` branch on Heroku.) This push will create a running instance of your app at some URL ending with `herokuapp.com`. Enter that URL in a new browser tab (not in the Cloud9 IDE) to see your app running live. Congratulations, you did it--your app is live!
+(`master` refers to which branch of the remote Heroku repo we are pushing to.  We'll learn about branches later in the course, but for now, suffice it to say that you can only deploy to the `master` branch on Heroku.) This push will create a running instance of your app at some URL ending with `herokuapp.com`. Enter that URL in a new browser tab to see your app running live. Congratulations, you did it--your app is live!
 
 Summary
 -------

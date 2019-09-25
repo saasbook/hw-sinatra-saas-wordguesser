@@ -109,7 +109,7 @@ $ bundle exec rackup
 
 This command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 
-If you're developign locally, you can visit `localhost:9292` in your browser to see the webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
+If you're developing locally, you can visit `localhost:9292` in your browser to see the webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
 
 Point a new Web browser tab at the running app's URL and verify that you can see "Hello World".
 
@@ -142,6 +142,8 @@ group :development do
   gem 'rerun'
 end
 ```
+
+Now run `bundle install` to have it download the `rerun` gem and any dependencies, if they aren't already in place.
 
 Any gem specifications inside the `group :development` block will only be examined if bundle is run in the development environment.  (The other environments you can specify are :test and :production, and you can define new environments yourself.)  Gem specifications outside of any group block are assumed to apply in all environments.
 

@@ -19,18 +19,18 @@ While you're playing, what happens if you directly add `/win` to the end of your
 
 Submission Instructions
 -----------------------
-When all scenarios are passing, deploy to Heroku and submit the URL of your deployed game. **Note:** Make sure the Heroku URL does not begin with `https` or with `http`, or you may get a socket error message. For example, if your app name on heroku is 'dragon-4582', then the proper Heroku URL would be 'dragon-4582.herokuapp.com' with nothing else.
+When all scenarios are passing, deploy to Heroku and submit the URL of your deployed game in a file named `sinatra-url.txt`. 
 
-IMPORTANT!!! The file that you will submit to the autograder MUST be ASCII encoded. If you do not know what this means then please create your text file using the `echo` command like this:
-
-```
-echo 'my-app-12345.herokuapp.com' > hw2.txt
-```
-
-Note that the auto-grader expects the URL to be of a specific form - the URL in the text file should contain neither http:// nor https://. If you run the `cat` command after creating the file like this:
+You can create your text file using the `echo` command like this:
 
 ```
-cat hw2.txt
+echo 'my-app-12345.herokuapp.com' > sinatra-url.txt
+```
+
+If you run the `cat` command after creating the file like this:
+
+```
+cat sinatra-url.txt
 ```
 
 then the output should look like this:
@@ -39,7 +39,7 @@ then the output should look like this:
 my-app-12345.herokuapp.com
 ```
 
-You would of course change 'my-app-12345' to match your heroku URL.
+You would of course change 'my-app-12345' to match your Heroku URL.
 
 Lastly, visit the same URL that you put into the text file with your web browser to be sure that your app is running correctly at that address before submitting the text file.
 

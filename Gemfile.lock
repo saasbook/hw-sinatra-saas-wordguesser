@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    ZenTest (4.11.0)
+    ZenTest (4.11.2)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     builder (3.2.3)
@@ -113,7 +113,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest (= 4.11.0)
+  ZenTest (= 4.11.2)
   byebug (= 5.0.0)
   capybara (= 3.1)
   cucumber (= 2.0.0)
@@ -133,4 +133,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.17.3

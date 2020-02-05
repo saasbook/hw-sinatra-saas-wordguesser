@@ -1,9 +1,10 @@
-Hangperson: a scaffolded (!) ESaaS getting-started assignment
+Hangperson: a scaffolded ESaaS getting-started assignment
 =============================================================
 
-(v1.1, September 2015.  Written by Armando Fox and Nick Herson)
-(some edits by mverdicchio 21 September 2015)
-(refinements by Armando Fox September 2017)
+- (v1.1, September 2015.  Written by Armando Fox and Nick Herson)
+- (some edits by mverdicchio 21 September 2015)
+- (refinements by Armando Fox September 2017)
+- (adapted for GitPod at GMIT by John French, February 2020)
 
 In this assignment you'll be introduced to part of the basic cycle of creating SaaS in a disciplined way.
 
@@ -23,10 +24,11 @@ After completing this assignment, you will be able to:
 
 Prerequisites
 -------------
-* You should be familiar with Ruby basics, for example by completing the Ruby Intro or Ruby Calisthenics assignment.
-* You should have read [ESaaS](http://www.saasbook.info) Chapter 2, "The Architecture of SaaS Applications", and watched the accompanying videos in the [MOOC](http://www.saas-class.org).
+* You should be familiar with basic Ruby syntax through completing the ca1-ruby assignment.
 * You should be comfortable with basic Git usage and how to push your code to GitHub, as described in Appendix A of [ESaaS](http://www.saasbook.info).
 * You will need "survival level" Unix command-line skills and facility with an editor to edit code files.
+* More background information on the concepts used here are contained in [ESaaS](http://www.saasbook.info) Chapter 2, "The Architecture of SaaS Applications".
+
 
 **NOTE: You may find the [Sinatra documentation](https://sinatrarb.com) helpful to have on hand.**
 

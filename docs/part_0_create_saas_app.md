@@ -16,9 +16,18 @@ Happily, Ruby has a wonderful system for managing gem dependencies: a gem called
 
 Let's start with the following steps:
 
-* Create a new empty directory to hold your new app, and use `git init` in that directory to start versioning it with Git.
-
-* In that directory, create a new file called `Gemfile` (the capitalization is important) with the following contents.  This file will be a permanent part of your app and will travel with your app anywhere it goes:
+* Using the terminal in GitPod, create a new empty directory in the top-level GitPod workspace folder to hold your new app:
+```sh
+cd /workspace
+mkdir demo-app
+```
+* Navigate to your new directory and initialist a new git repository in it:
+```sh
+cd ./demo-app
+git init
+```
+* Use the GitPod IDE to add this new directory to your IDE's workspace so that it's visible in the file explorer.
+* In that directory, create a new file called `Gemfile` (the capitalization is important). (Use the terminal command `touch Gemfile` to create a new empty file). Open the file in the editor and add the contents shown below.  This file will be a permanent part of your app and will travel with your app anywhere it goes:
 
 ```rb
 source 'https://rubygems.org'
@@ -109,14 +118,12 @@ $ bundle exec rackup
 
 This command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 
-If you're developing locally, you can visit `localhost:9292` in your browser to see the webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
-
-Point a new Web browser tab at the running app's URL and verify that you can see "Hello World".
+GitPod will prompt you to expose a port for the service that you've just started. Click "Open in Browser" to open a new browser tab at the URL of your app running in the GitPod environment. Verify that you can see "Hello World".
 
 #### Self Check Question
 
 <details>
-  <summary>What happens if you try to visit a non-root URL such as <code>https://workspace-username.c9.io/hello</code> and why? (your URL root will vary)</summary>
+  <summary>What happens if you try to visit a non-root URL such as <code>https://<gitpod-instance-id>.gitpod.io/hello</code> and why? (your gitpod-instance-id will vary)</summary>
   <p><blockquote> You'll get a humorous error message from the Sinatra framework, since you don't have a route matching <code>get '/hello'</code> in your app.  Since Sinatra is a SaaS framework, the error message is packaged up in a Web page and delivered to your browser.</blockquote></p>
 </details>
 
@@ -147,9 +154,9 @@ Now run `bundle install` to have it download the `rerun` gem and any dependencie
 
 Any gem specifications inside the `group :development` block will only be examined if bundle is run in the development environment.  (The other environments you can specify are :test and :production, and you can define new environments yourself.)  Gem specifications outside of any group block are assumed to apply in all environments.
 
-Say `bundle exec rerun -- rackup -p $PORT -o $IP` in the terminal window to start your app and verify the app is running.  There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
+Say `bundle exec rerun -- rackup` in the terminal window to start your app and verify the app is running.  There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
 
-In this case we are prefixing with `bundle exec` again in order to ensure we are using the gems in the Gemfile.lock, and the `--` symbol is there to assert that the command we want rerun to operate with is `rackup -p $PORT -o $IP`.  We could achieve the same effect with `bundle exec rerun "rackup -p $PORT -o $IP"`.  They are equivalent.   More importantly any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
+In this case we are prefixing with `bundle exec` again in order to ensure we are using the gems in the Gemfile.lock, and the `--` symbol is there to assert that the command we want rerun to operate with is `rackup`.  We could achieve the same effect with `bundle exec rerun "rackup"`.  They are equivalent.   More importantly any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
 
 Modify `app.rb` to print a different message, and verify that the change is detected by refreshing your browser tab with the running app.  Also before we move on you should commit your latest changes to git.
 
@@ -157,9 +164,7 @@ Deploy to Heroku
 ----------------
 Heroku is a cloud platform-as-a-service (PaaS) where we can deploy our Sinatra (and later Rails) applications. If you don't have an account yet, go sign up at http://www.heroku.com. You'll need your login and password for the next step.
 
-Install Heroku CLI following [instructions](https://devcenter.heroku.com/articles/heroku-cli).
-
-Log in to your Heroku account by typing the command: `heroku login -i` in the terminal. This will connect you to your Heroku account.
+The Heroku CLI (command-line interface) is preinstalled. Use it to log in to your Heroku account by typing the command: `heroku login -i` in the terminal. This will connect you to your Heroku account.
 
 While in the root directory of your project (not your whole workspace), type `heroku create` to create a new project in Heroku. This will tell the Heroku service to prepare for some incoming code, and locally it will add a remote git repository for you called `heroku`.
 

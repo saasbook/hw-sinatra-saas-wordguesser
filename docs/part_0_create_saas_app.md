@@ -123,7 +123,7 @@ GitPod will prompt you to expose a port for the service that you've just started
 #### Self Check Question
 
 <details>
-  <summary>What happens if you try to visit a non-root URL such as <code>https://<gitpod-instance-id>.gitpod.io/hello</code> and why? (your gitpod-instance-id will vary)</summary>
+  <summary>What happens if you try to visit a non-root URL such as <code>https://ac2d2.ws-eu01.gitpod.io.gitpod.io/hello</code> and why? (your GitPod root url will vary)</summary>
   <p><blockquote> You'll get a humorous error message from the Sinatra framework, since you don't have a route matching <code>get '/hello'</code> in your app.  Since Sinatra is a SaaS framework, the error message is packaged up in a Web page and delivered to your browser.</blockquote></p>
 </details>
 

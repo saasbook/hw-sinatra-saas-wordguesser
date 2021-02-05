@@ -18,8 +18,8 @@ class HangpersonGame
   def self.get_random_word
     require 'uri'
     require 'net/http'
-    uri = URI('http://watchout4snakes.com/wo4snakes/Random/RandomWord')
-    Net::HTTP.new('watchout4snakes.com').start { |http|
+    uri = URI('http://randomword.saasbook.info/RandomWord')
+    Net::HTTP.new('randomword.saasbook.info').start { |http|
       return http.post(uri, "").body
     }
   end

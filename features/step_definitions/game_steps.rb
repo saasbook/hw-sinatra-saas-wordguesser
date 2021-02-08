@@ -10,7 +10,7 @@ end
 World(WithinHelpers)
 
 When /^I start a new game with word "(.*)"$/ do |word|
-  stub_request(:post, "http://watchout4snakes.com/wo4snakes/Random/RandomWord").
+  stub_request(:post, "http://randomword.saasbook.info/RandomWord").
     to_return(:status => 200, :headers => {}, :body => word)
   visit '/new'
   click_button "New Game"

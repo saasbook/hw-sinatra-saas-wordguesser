@@ -74,7 +74,7 @@ When running tests, you can insert the Ruby command `byebug` into your app code 
 * Take a look at the code in the class method `get_random_word`, which retrieves a random word from a Web service we found that does just that.  Use the following command to verify that the Web service actually works this way. Run it several times to verify that you get different words.
 
 ```
-$ curl --data '' http://watchout4snakes.com/wo4snakes/Random/RandomWord
+$ curl --data '' http://randomword.saasbook.info/RandomWord
 ```
 
 (`--data` is necessary to force `curl` to do a POST rather than a GET.  Normally the argument to `--data` would be the encoded form fields, but in this case no form fields are needed.) Using `curl` is a great way to debug interactions with external services.  `man curl` for (much) more detail on this powerful command-line tool.

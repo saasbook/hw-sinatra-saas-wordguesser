@@ -102,10 +102,10 @@ run MyApp
 
 The first line tells Rack that our app lives in the file `app.rb`, which you created above to hold your app's code.  We have to explicitly state that our `app` file is located in the current directory (.) because `require` normally looks only in standard system directories to find gems.
 
-If you're developing locally, you're now ready to test-drive our simple app with this command line:
-```sh
-$ bundle exec rackup
-```
+You're now ready to test-drive our simple app with a command line:
+| Local computer | Codio |
+|-----|------|
+| `$ bundle exec rackup` | `$ bundle exec rackup --host 0.0.0.0` |
 
 This command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 
@@ -131,7 +131,7 @@ Modify `app.rb` so that instead of "Hello World" it prints "Goodbye World". Save
 
 No changes? Confused?
 
-Now go back to the shell window where you ran `rackup` and press Ctrl-C to stop Rack.  Then type `bundle exec rackup` again, and once it is running, go back to your browser tab with your app and refresh the page.  This time it should work.
+Now go back to the shell window where you ran `rackup` and press Ctrl-C to stop Rack.  Then type `bundle exec rackup` for local developemt or `$bundle exec rackup --host 0.0.0.0` for Codio development again, and once it is running, go back to your browser tab with your app and refresh the page.  This time it should work.
 
 What this shows you is that if you modify your app while it's running, you have to restart Rack in order for it to "see" those changes.  Since restarting it manually is tedious, we'll use the `rerun` gem, which restarts Rack automatically when it sees changes to files in the app's directory. (Rails does this for you by default during development, as we'll see, but Sinatra doesn't.)
 
@@ -147,7 +147,12 @@ Now run `bundle install` to have it download the `rerun` gem and any dependencie
 
 Any gem specifications inside the `group :development` block will only be examined if bundle is run in the development environment.  (The other environments you can specify are :test and :production, and you can define new environments yourself.)  Gem specifications outside of any group block are assumed to apply in all environments.
 
-Say `bundle exec rerun -- rackup -p $PORT -o $IP` in the terminal window to start your app and verify the app is running.  There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
+Say the following in the terminal window to start your app and verify the app is running:
+| Local computer | Codio |
+|-----|------|
+| `$ bundle exec rerun -- rackup -p $PORT -o $IP` | `$ bundle exec rerun -- rackup -p 9292 -o 0.0.0.0` |
+
+There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
 
 In this case we are prefixing with `bundle exec` again in order to ensure we are using the gems in the Gemfile.lock, and the `--` symbol is there to assert that the command we want rerun to operate with is `rackup -p $PORT -o $IP`.  We could achieve the same effect with `bundle exec rerun "rackup -p $PORT -o $IP"`.  They are equivalent.   More importantly any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
 

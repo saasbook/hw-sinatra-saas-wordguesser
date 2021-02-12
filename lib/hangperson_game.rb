@@ -12,7 +12,8 @@ class HangpersonGame
     @word = word
   end
 
-  # You can test it by running $ bundle exec irb -I. -r app.rb
+  # You can test it by installing irb via $ gem install irb
+  # and then running $ irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
   #  => "cooking"   <-- some random word
   def self.get_random_word

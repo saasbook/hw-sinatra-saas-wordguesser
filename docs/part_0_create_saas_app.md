@@ -22,7 +22,7 @@ Let's start with the following steps:
 
 ```rb
 source 'https://rubygems.org'
-ruby '>= 2.2.0', '< 3.0.0'
+ruby '2.6.6'
 
 gem 'sinatra', '>= 2.0.1'
 ```
@@ -150,11 +150,13 @@ Any gem specifications inside the `group :development` block will only be examin
 Say the following in the terminal window to start your app and verify the app is running:
 | Local computer | Codio |
 |-----|------|
-| `$ bundle exec rerun -- rackup -p $PORT -o $IP` | `$ bundle exec rerun -- rackup -p 9292 -o 0.0.0.0` |
+| `$ bundle exec rerun -- rackup ` | `$ bundle exec rerun -- rackup -p 9292 -o 0.0.0.0` |
 
-There are more details on rerun's usage available in the gem's [GitHub README](https://github.com/alexch/rerun#usage). Gem's are usually on GitHub and their README's full of helpful instructions about how to use them.
+There are more details on rerun's usage available in the gem's [GitHub
+README](https://github.com/alexch/rerun#usage). Gems are usually on
+GitHub and their READMEs are usually full of helpful instructions about how to use them.
 
-In this case we are prefixing with `bundle exec` again in order to ensure we are using the gems in the Gemfile.lock, and the `--` symbol is there to assert that the command we want rerun to operate with is `rackup -p $PORT -o $IP`.  We could achieve the same effect with `bundle exec rerun "rackup -p $PORT -o $IP"`.  They are equivalent.   More importantly any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
+In this case we are prefixing with `bundle exec` again in order to ensure we are using the gems in the Gemfile.lock, and the `--` symbol is there to assert that the command we want rerun to operate with is `rackup -p $PORT -o $IP`.  We could achieve the same effect with `bundle exec rerun "rackup -p 9292 -o 0.0.0.0"`.  They are equivalent.   More importantly, any detected changes will now cause the server to restart automatically, similar to the use of `guard` to auto re-run specs when files change.
 
 Modify `app.rb` to print a different message, and verify that the change is detected by refreshing your browser tab with the running app.  Also before we move on you should commit your latest changes to git.
 

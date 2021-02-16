@@ -109,9 +109,11 @@ You're now ready to test-drive our simple app with a command line:
 
 This command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 
-If you're developing locally, you can visit `localhost:9292` in your browser to see the webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL.
+To see the webapp:
 
-Point a new Web browser tab at the running app's URL and verify that you can see "Hello World".
+| Local computer | Codio |
+|-----|------|
+| Visit `localhost:9292` in your browser to see the webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL. <br><br> Point a new Web browser tab at the running app's URL and verify that you can see "Hello World". | Click the "Box URL" button on your top tool bar that has been pre-configured to point at port 9292: <br> <br> ![BoxURL](https://global.codio.com/content/BoxURL.png) <br> <br> The app should open in a new tab. Verify that you can see "Hello World". |
 
 #### Self Check Question
 

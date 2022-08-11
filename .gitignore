@@ -1,0 +1,5 @@
+coverage
+.bundle/
+TAGS
+.ruby-version
+*.swp

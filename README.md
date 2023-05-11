@@ -55,3 +55,18 @@ Contents
 * Part 5: [Corner Cases](docs/part_5_corner_cases.md)
 * Part 6: [Conclusion](docs/part_6_conclusion.md)
 * Part 7: [Optional Challenge Assignment](docs/part_7_optional_challenge.md)
+
+
+** Dockerfile usage **
+
+* Pre requisites
+Have docker installed into the machine
+
+In order to use the docker image you first must compile it using the following commad:
+
+docker build -t <tag-name> .
+
+Then just run the image exposing port 3000
+
+docker run -p 3000:9292 <tag-name>
+

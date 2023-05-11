@@ -1,0 +1,7 @@
+# .dockerignore
+
+.env
+.bundle/
+node_modules/
+.git/
+.gitignore

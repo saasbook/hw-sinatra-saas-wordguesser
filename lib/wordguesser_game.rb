@@ -1,5 +1,6 @@
 class WordGuesserGame
 
+  # first commit check after forking
   # add the necessary class methods, attributes, etc. here
   # to make the tests in spec/wordguesser_game_spec.rb pass.
 

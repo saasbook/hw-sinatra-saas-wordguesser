@@ -13,6 +13,7 @@ class WordGuesserGame
     @word = word
     @guesses = ''
     @wrong_guesses = ''
+    @count = 0
   end
 
   def guess letter
@@ -24,6 +25,7 @@ class WordGuesserGame
         return false
       else
         @guesses += letter
+        @count+=1
         return true
       end
     else
@@ -31,17 +33,36 @@ class WordGuesserGame
         return false
       else
         @wrong_guesses = letter
+        @count+=1
         return true
       end
     end
   end
-
 
   def word_with_guesses
     @word.gsub(/./) do |item| 
       @guesses.include?(item) ? item: '-'
     end
   end
+
+  def check_win_or_lose
+    
+    flag = @word.chars.all? do |c|
+      @guesses.include?(c)
+    end
+
+    if (@count <= 7 && flag)
+      @count = 0
+      return :win
+    elsif (@count < 7 && !flag)
+      return :play
+    else
+      @count = 0
+      return :lose
+    end
+  end
+
+
 
   # You can test it by installing irb via $ gem install irb
   # and then running $ irb -I. -r app.rb

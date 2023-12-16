@@ -5,8 +5,36 @@ class WordGuesserGame
 
   # Get a word from remote "random word" service
 
+  attr_accessor :word
+  attr_accessor :guesses
+  attr_accessor :wrong_guesses
+
   def initialize(word)
     @word = word
+    @guesses = ''
+    @wrong_guesses = ''
+  end
+
+  def guess letter
+    raise ArgumentError, 'Invalid guess: empty string' if letter.nil? || letter.empty?
+    raise ArgumentError, 'Invalid guess: not a letter' unless letter.match?(/[A-Za-z]/)
+    letter.downcase!
+    if @word.include?(letter)
+      if @guesses.include?(letter)
+        return false
+      else
+        @guesses = letter
+        return true
+      end
+
+    else
+      if wrong_guesses.include?(letter)
+        return false
+      else
+        @wrong_guesses = letter
+        return true
+      end
+    end
   end
 
   # You can test it by installing irb via $ gem install irb

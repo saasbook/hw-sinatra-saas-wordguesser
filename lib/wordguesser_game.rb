@@ -23,10 +23,9 @@ class WordGuesserGame
       if @guesses.include?(letter)
         return false
       else
-        @guesses = letter
+        @guesses += letter
         return true
       end
-
     else
       if wrong_guesses.include?(letter)
         return false
@@ -34,6 +33,13 @@ class WordGuesserGame
         @wrong_guesses = letter
         return true
       end
+    end
+  end
+
+
+  def word_with_guesses
+    @word.gsub(/./) do |item| 
+      @guesses.include?(item) ? item: '-'
     end
   end
 

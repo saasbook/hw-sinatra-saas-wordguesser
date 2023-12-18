@@ -45,9 +45,7 @@ class WordGuesserGame
     flag = @word.chars.all? do |c|
       @guesses.include?(c)
     end
-
     if @count <= 7 && flag
-      @count = 0
       :win
     elsif @count < 7 && !flag
       :play

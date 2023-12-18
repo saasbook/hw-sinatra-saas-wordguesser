@@ -32,7 +32,7 @@ class WordGuesserGame
       if wrong_guesses.include?(letter)
         return false
       else
-        @wrong_guesses = letter
+        @wrong_guesses += letter
         @count+=1
         return true
       end

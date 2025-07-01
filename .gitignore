@@ -1,0 +1,4 @@
+coverage
+.bundle/
+TAGS
+*.swp

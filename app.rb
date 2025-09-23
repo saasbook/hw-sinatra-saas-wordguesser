@@ -39,8 +39,14 @@ class WordGuesserApp < Sinatra::Base
   # If a guess is repeated, set flash[:message] to "You have already used that letter."
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
-    params[:guess].to_s[0]
+    letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
+    begin
+        used = !@game.guess(letter)
+        flash[:message] = "You have already used that letter." if used
+      rescue ArgumentError
+        flash[:message] = "Invalid guess."
+    end
     redirect '/show'
   end
 
@@ -51,16 +57,29 @@ class WordGuesserApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+    case @game.check_win_or_lose
+    when :win then redirect '/win'
+    when :lose then redirect '/lose'
+    else
+      erb :show # You may change/remove this line
+    end
   end
+    ### YOUR CODE HERE ###
 
   get '/win' do
-    ### YOUR CODE HERE ###
-    erb :win # You may change/remove this line
+    if @game.check_win_or_lose == :win
+      erb :win
+    else
+      redirect '/show'
+    end
   end
-
+  
   get '/lose' do
-    ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    if @game.check_win_or_lose == :lose
+      erb :lose
+    else
+      redirect '/show'
+    end
   end
 end
+  

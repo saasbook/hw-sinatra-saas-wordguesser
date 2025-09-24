@@ -58,16 +58,10 @@ class WordGuesserGame
   def self.get_random_word
     require 'uri'
     require 'net/http'
-    begin
-      uri = URI('http://randomword.saasbook.info/RandomWord')
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.open_timeout = 5
-      http.read_timeout = 5
-      response = http.post(uri.path, "")
-      return response.body.strip
-    rescue StandardError, Timeout::Error => e
-      # Fallback word if network fails (for autograder or network issues)
-      return "fallback"
+    uri = URI('http://randomword.saasbook.info/RandomWord')
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      response = http.post(uri.request_uri, "")
+      return response.body
     end
   end
 end

@@ -9,11 +9,9 @@ class WordGuesserGame
     @guesses = ''
     @wrong_guesses = ''
     @displayed = '-' * word.length
-    @cnt = 0
   end
 
   def guess(letter)
-    @cnt += 1
     if letter.nil? or letter == '' or !letter.match?(/[a-zA-Z]/) == true
       raise ArgumentError
     end
@@ -45,7 +43,7 @@ class WordGuesserGame
     if @displayed == @word
       return :win
     end
-    if @cnt >= 7
+    if @wrong_guesses.length >= 7
       return :lose
     end
     return :play

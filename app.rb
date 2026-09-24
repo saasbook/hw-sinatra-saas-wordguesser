@@ -9,11 +9,11 @@ class WordGuesserApp < Sinatra::Base
   set :host_authorization, { permitted_hosts: [] }  
 
   before do
-    @game = session[:game] || WordGuesserGame.new('')
+    @game = session[:game] || WordGuesserGame.new('') #before 
   end
 
   after do
-    session[:game] = @game
+    session[:game] = @game #end 
   end
 
   # These two routes are good examples of Sinatra syntax

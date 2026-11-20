@@ -3,7 +3,7 @@ ruby  '>= 3.3.8'
 
 gem 'sinatra',        '~> 4.0'
 gem 'sinatra-flash',  '~> 0.3'
-gem 'puma',    '~> 6.6'
+gem 'puma',    '~> 8.1'
 gem 'rackup',  '~> 2.2.1'
 
 group :development, :test do

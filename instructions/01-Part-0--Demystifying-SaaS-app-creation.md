@@ -23,10 +23,10 @@ Let's start with the following steps:
 
 ```rb
 source 'https://rubygems.org'
-ruby '3.3.8'
+ruby '>= 3.3.8'
 
 gem 'sinatra', '~> 4.1'
-gem 'puma',    '~> 6.6'
+gem 'puma',    '~> 8.1'
 gem 'rackup',  '~> 2.2.1'
 ```
 

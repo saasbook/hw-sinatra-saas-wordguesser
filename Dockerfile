@@ -8,7 +8,7 @@
 # copies to the root of the generated starter repo, which is the build context
 # the COPY paths below are relative to. Unlike 2.5, this chip's Codio build
 # does not copy solutions/, so nothing has to except it.
-FROM ruby:3.3.8
+FROM ruby:3.3.13
 
 RUN gem install bundler
 
